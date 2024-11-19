@@ -163,8 +163,9 @@ public class NavigationTask : ExperimentTask
             }
             else if (hideTargetOnStart == HideTargetOnStart.SetInvisible)
             {
-                manager.HideRecursive(currentTarget);
-                manager.DisableRecursive(currentTarget, ignoreSelf: true); // turn off walls but not target collision
+                //manager.HideRecursive(currentTarget);
+                //manager.DisableRecursive(currentTarget, ignoreSelf: true); // turn off walls but not target collision
+                currentTarget.SetActive(false);
             }
             else if (hideTargetOnStart == HideTargetOnStart.DisableCompletely)
             {
@@ -277,39 +278,39 @@ public class NavigationTask : ExperimentTask
 		}
 
         //show target after set time
-        if (hideTargetOnStart != HideTargetOnStart.Off && Time.time - startTime > showTargetAfterSeconds && !exploration)
-        {
+        //if (hideTargetOnStart != HideTargetOnStart.Off && Time.time - startTime > showTargetAfterSeconds && !exploration)
+        //{
 
-            switch (hideTargetOnStart)
-            {
-                case HideTargetOnStart.SetInactive:
-                    manager.DisableRecursive(currentTarget, true);
-                    //foreach (var c in currentTarget.GetComponents<Collider>()) c.enabled = true;
-                    break;
-                case HideTargetOnStart.SetInvisible:
-                    manager.HideRecursive(currentTarget, true);
-                    manager.DisableRecursive(currentTarget, restore:true, ignoreSelf: true); // turn off walls but not target collision
-                    break;
-                case HideTargetOnStart.DisableCompletely:
-                    manager.HideRecursive(currentTarget, true);
-                    manager.DisableRecursive(currentTarget, true);
-                    //foreach (var c in currentTarget.GetComponents<Collider>()) c.enabled = true;
-                    foreach (var child in currentTarget.GetComponentsInChildren<Transform>())
-                    {
-                        var halo = (Behaviour)child.GetComponent("Halo");
-                        if (halo != null) halo.enabled = true;
-                    }
-                    break;
-                case HideTargetOnStart.SetProbeTrial:
-                    manager.HideRecursive(currentTarget, true);
-                    manager.DisableRecursive(currentTarget, true);
-                    //foreach (var c in currentTarget.GetComponents<Collider>()) c.enabled = true;
-                    break;
-                default:
-                    Debug.Log("No hidden targets identified");
-                    break;
-            }
-        }
+        //    switch (hideTargetOnStart)
+        //    {
+        //        case HideTargetOnStart.SetInactive:
+        //            manager.DisableRecursive(currentTarget, true);
+        //            //foreach (var c in currentTarget.GetComponents<Collider>()) c.enabled = true;
+        //            break;
+        //        case HideTargetOnStart.SetInvisible:
+        //            //manager.HideRecursive(currentTarget, true);
+        //            //manager.DisableRecursive(currentTarget, restore:true, ignoreSelf: true); // turn off walls but not target collision
+        //            break;
+        //        case HideTargetOnStart.DisableCompletely:
+        //            manager.HideRecursive(currentTarget, true);
+        //            manager.DisableRecursive(currentTarget, true);
+        //            //foreach (var c in currentTarget.GetComponents<Collider>()) c.enabled = true;
+        //            foreach (var child in currentTarget.GetComponentsInChildren<Transform>())
+        //            {
+        //                var halo = (Behaviour)child.GetComponent("Halo");
+        //                if (halo != null) halo.enabled = true;
+        //            }
+        //            break;
+        //        case HideTargetOnStart.SetProbeTrial:
+        //            manager.HideRecursive(currentTarget, true);
+        //            manager.DisableRecursive(currentTarget, true);
+        //            //foreach (var c in currentTarget.GetComponents<Collider>()) c.enabled = true;
+        //            break;
+        //        default:
+        //            Debug.Log("No hidden targets identified");
+        //            break;
+        //    }
+        //}
 
         // Keep updating the distance traveled and kill task if they reach max
         playerDistance += Vector3.Distance(avatar.GetComponent<LM_PlayerController>().collisionObject.transform.position, playerLastPosition);

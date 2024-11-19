@@ -28,7 +28,8 @@ public class MoveObjects : ExperimentTask {
 	private GameObject source;
 
 	private GameObject destination;
-	public ObjectList destinations;
+    public string cur_des;
+    public ObjectList destinations;
     public bool hideDestinations = true;
 	
 	public bool swap;
@@ -134,7 +135,7 @@ public class MoveObjects : ExperimentTask {
             log.log("TARGET INFORMATION ----------------------------------------", 1);
         }
 
-        destination = destinations.currentObject();		
+        destination = destinations.currentObject();
 		source = sources.currentObject();	
 		
 		while (source != null && destination != null ) {	
@@ -172,8 +173,9 @@ public class MoveObjects : ExperimentTask {
 			
 			destinations.incrementCurrent();
 			destination = destinations.currentObject();
-			
-			sources.incrementCurrent();
+            cur_des = destination.tag;
+
+            sources.incrementCurrent();
 			source = sources.currentObject();
 		}
 

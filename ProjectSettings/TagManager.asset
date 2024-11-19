@@ -17,6 +17,11 @@ TagManager:
   - Error
   - Target
   - Task
+  - front
+  - mid
+  - far
+  - tar_obj
+  - tar_des
   layers:
   - Default
   - TransparentFX
