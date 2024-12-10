@@ -27,7 +27,7 @@ public class MoveObjects : ExperimentTask {
     public ObjectList sources;
 	private GameObject source;
 
-	private GameObject destination;
+	public GameObject destination;
     public string cur_des;
     public ObjectList destinations;
     public bool hideDestinations = true;

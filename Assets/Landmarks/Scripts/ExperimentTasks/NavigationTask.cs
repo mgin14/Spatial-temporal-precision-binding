@@ -49,13 +49,6 @@ public class NavigationTask : ExperimentTask
     // Manipulate the rendering of the non-target environment objects (default: always show)
     public bool hideNonTargets;
 
-    // for compass assist
-    public LM_Compass assistCompass;
-    [Tooltip("negative values denote time before compass is hidden; 0 is always on; set very high for no compass")]
-    public float SecondsUntilAssist = Mathf.Infinity;
-    public Vector3 compassPosOffset; // where is the compass relative to the active player snappoint
-    public Vector3 compassRotOffset; // compass rotation relative to the active player snap point
-
 
     // For logging output
     private float startTime;
@@ -76,6 +69,7 @@ public class NavigationTask : ExperimentTask
     private Vector3 startXYZ;
     private Vector3 endXYZ;
 
+
     public override void startTask ()
 	{
 		TASK_START();
@@ -93,6 +87,10 @@ public class NavigationTask : ExperimentTask
             log.log("INFO    skip task    " + name, 1);
             return;
         }
+
+        // Move player to the starting location
+        //avatar.transform.position = GameObject.Find("Start").transform.position;
+
 
         if (!destinations)
         {
@@ -224,15 +222,6 @@ public class NavigationTask : ExperimentTask
         else optimalDistance = Vector3.Distance(avatar.GetComponent<LM_PlayerController>().collisionObject.transform.position, currentTarget.transform.position);
 
 
-        // Grab our LM_Compass object and move it to the player snapPoint
-        if (assistCompass != null)
-        {
-            assistCompass.transform.parent = avatar.GetComponentInChildren<LM_SnapPoint>().transform;
-            assistCompass.transform.localPosition = compassPosOffset;
-            assistCompass.transform.localEulerAngles = compassRotOffset;
-            assistCompass.gameObject.SetActive(false);
-        }
-
         //// MJS 2019 - Move HUD to top left corner
         //hud.hudPanel.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 1);
         //hud.hudPanel.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.9f);
@@ -323,20 +312,6 @@ public class NavigationTask : ExperimentTask
             scaledPlayerDistance += Vector3.Distance(scaledAvatar.transform.position, scaledPlayerLastPosition);
             scaledPlayerLastPosition = scaledAvatar.transform.position;
         }
-        
-        // handle the compass objects render (visible or not)
-        if (assistCompass != null)
-        {
-            // Keep the assist compass pointing at the target (even if it isn't visible)
-            var targetDirection = 2 * assistCompass.transform.position - currentTarget.transform.position;
-            targetDirection = new Vector3(targetDirection.x, assistCompass.pointer.transform.position.y, targetDirection.z);
-            assistCompass.pointer.transform.LookAt(targetDirection, Vector3.up);
-            // Show assist compass if and when it is needed
-            if (assistCompass.gameObject.activeSelf == false & SecondsUntilAssist >= 0 & (Time.time - startTime > SecondsUntilAssist))
-            {
-                assistCompass.gameObject.SetActive(true);
-            }
-        }
 
 
         float distanceRemaining = distanceAllotted - playerDistance;
@@ -347,46 +322,19 @@ public class NavigationTask : ExperimentTask
             printRemainingTimeTo.text = string.Format(baseText, Mathf.Round(distanceRemaining), Mathf.Round(timeRemaining));
         }
 
-        // End the trial if they reach the max distance allotted
-        if (!isScaled & playerDistance >= distanceAllotted) return true;
-        else if (isScaled & scaledPlayerDistance >= distanceAllotted) return true;
-        // End the trial if they reach the max time allotted
-        if (Time.time - startTime >= timeAllotted)
-        {
-            Debug.LogWarning("WTF.. END!");
-            return true;
-        }
 
         if (killCurrent == true)
 		{
 			return KillCurrent ();
 		}
 
-        // if we're letting them say when they think they've arrived
-        if (Time.time - startTime > allowContinueAfter)
+
+        // If they reached the end of the hall, end
+        if (EndofHaLL.reachedEnd)
         {
-            if (vrEnabled)
-            {
-                if (vrInput.TriggerButton.GetStateDown(SteamVR_Input_Sources.Any))
-                {
-                    Debug.Log("Participant ended the trial");
-                    log.log("INPUT_EVENT    Player Arrived at Destination    1", 1);
-                    hud.hudPanel.SetActive(false);
-                    hud.setMessage("");
-
-                    if (haptics) SteamVR_Actions.default_Haptic.Execute(0f, 2.0f, 65f, 1f, SteamVR_Input_Sources.Any);
-
-                    return true;
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                Debug.Log("Participant ended the trial");
-                log.log("INPUT_EVENT    Player Arrived at Destination    1", 1);
-                hud.hudPanel.SetActive(false);
-                hud.setMessage("");
-                return true;
-            }
+            Debug.Log("+_+_+_+_+_+_+_+ REACHED THE END");
+            EndofHaLL.reachedEnd = false;
+            return true;
         }
 
 		return false;
@@ -445,12 +393,7 @@ public class NavigationTask : ExperimentTask
 
         hud.SecondsToShow = hud.GeneralDuration;
 
-        if (assistCompass != null)
-        {
-            // Hide the assist compass
-            assistCompass.gameObject.SetActive(false);
-        }
-        
+
         // Move hud back to center and reset
         hud.hudPanel.GetComponent<RectTransform>().anchorMin = new Vector2(0, 0);
         hud.hudPanel.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1);

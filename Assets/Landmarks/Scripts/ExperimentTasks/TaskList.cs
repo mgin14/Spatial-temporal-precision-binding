@@ -42,7 +42,7 @@ public class TaskList : ExperimentTask
     public ObjectList overrideRepeat;
     public int repeatCount = 1;
 
-    [HideInInspector]
+    //[HideInInspector]
     public ExperimentTask currentTask;
 
     private int currentTaskIndex = 0;

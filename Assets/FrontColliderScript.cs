@@ -20,19 +20,21 @@ public class FrontColliderScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // This function will show the target item at its designated spot in the hallway when the collider is reached
     // other: 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(" ___________________________INSIDE TIRIGGER");
+        Debug.Log(" ___________________________INSIDE TIRIGGER: " + gameObject.name);
         cur_des = GameObject.FindGameObjectWithTag("tar_des").GetComponent<MoveObjects>().cur_des;
         Debug.Log(" Des tag " + cur_des);
-        if (cur_des == gameObject.tag)
+        if (GameObject.Find("NavigationTrials").GetComponent<TaskList>().currentTask.name == "Navigate" && cur_des == gameObject.tag)
         {
+            Debug.Log("++++++++Activate object");
             cur_tar.currentTarget.SetActive(true);
+            //cur_tar.GetComponent<MeshRenderer>().enabled= true;
         }
     }
 

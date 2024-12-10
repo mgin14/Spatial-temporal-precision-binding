@@ -61,8 +61,8 @@ public class InstructionsTask : ExperimentTask {
     }
 
     public override void startTask () {
-        TASK_START();
         Debug.Log ("Starting an Instructions Task");
+        TASK_START();
     }
 
     public override void TASK_START()
@@ -72,6 +72,7 @@ public class InstructionsTask : ExperimentTask {
         base.startTask();
 
         if (skip) {
+            Debug.Log("Skipping Temporal Instructions Task");
             log.log("INFO    skip task    " + name,1 );
             return;
         }

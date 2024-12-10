@@ -23,7 +23,7 @@ using UnityEditor;
 
 public class ExperimentTask : MonoBehaviour{
 
-	protected GameObject avatar;
+	public GameObject avatar;
 	protected HUD hud;
 	protected GameObject experiment;
 	protected dbLog log;

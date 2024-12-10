@@ -26,7 +26,7 @@ public class MovePlayerToDestination : ExperimentTask {
 	public bool ignoreDestinationY;
 	public bool swap;
 
-	[HideInInspector] public GameObject start;
+    [HideInInspector] public GameObject start;
 	[HideInInspector] public GameObject destination;
 	
 	private static Vector3 position;
@@ -47,10 +47,11 @@ public class MovePlayerToDestination : ExperimentTask {
         if (isScaled)
         {
             start = scaledAvatar;
-        } else start = avatar;
-		
-		
-		if (skip) {
+        }
+        else start = avatar;
+
+
+        if (skip) {
 			log.log("INFO	skip task	" + name,1 );
 			return;
 		}
@@ -105,7 +106,7 @@ public class MovePlayerToDestination : ExperimentTask {
 	
 	public override void TASK_END() {
 		base.endTask();
-		
+        Debug.Log("Ending Move Player To Destination");
 		if ( destinations ) {
 			destinations.incrementCurrent();
 			destination = destinations.currentObject();

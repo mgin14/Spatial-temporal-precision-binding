@@ -42,6 +42,7 @@ public class MovePlayer : ExperimentTask {
 
 	public override void startTask () {
         // Debug.Log("MS Repetition:"+repetition);
+        //Debug.Log("Starting MovePlayerToSpawn");
         TASK_START();
 	}
 
@@ -80,11 +81,9 @@ public class MovePlayer : ExperimentTask {
         // Temporary transforms that can be easily modified
         var originPos = start.transform.position;
         var originRot = start.transform.eulerAngles;
-        var terminusPos = useSnapPoint ?    destination.transform.GetComponentInChildren<LM_SnapPoint>().transform.position : 
-                                            destination.transform.position;
+        var terminusPos = destination.transform.position;
         Debug.Log(terminusPos.y);
-        var terminusRot = useSnapPoint ?    destination.transform.GetComponentInChildren<LM_SnapPoint>().transform.localEulerAngles :
-                                            destination.transform.eulerAngles;
+        var terminusRot = destination.transform.eulerAngles;
 
         // -----------------
         // Move the player
@@ -93,7 +92,7 @@ public class MovePlayer : ExperimentTask {
         if (localOffsetFacing != Vector3.zero) terminusPos += destination.transform.TransformDirection(localOffsetFacing);
         if (ignoreY) terminusPos.y = originPos.y;
         start.GetComponentInChildren<CharacterController>().enabled = false;
-        start.transform.position = terminusPos;
+        start.transform.position = destination.transform.position;
         log.log("TASK_POSITION\t" + start.name + "\t" + this.GetType().Name + "\t" + start.transform.transform.position.ToString("f1"), 1);
         start.GetComponentInChildren<CharacterController>().enabled = true;
 
