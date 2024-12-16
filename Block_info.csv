@@ -1,0 +1,11 @@
+﻿Environment,Block,Trial 1,Trial 2,Trial 3,Trial 4,Trial 5,Trial 6
+Spatial,1,far_l_bottom_mid,front_l_mid_mid,mid_r_mid,mid_l_midmid_bottom,far_r_midmid_bottom,front_l_midmid_top
+Temporal,1,far_r_bottom_mid,mid_r_mid,mid_r_bottom_mid,front_r_mid_bottom,front_l_mid_top,far_r_mid_top
+Spatial,2,far_l_bottom_mid,front_r_bottom_mid,mid_r_mid,mid_l_top,front_l_mid,far_l_mid_mid
+Temporal,2,front_r_top_mid,front_l_bottom_mid,mid_l_midmid_top,far_r_bottom_mid,far_l_midmid_top,mid_r_mid
+Spatial,3,front_r_bottom_mid,far_l_midmid_bottom,front_l_top_mid,far_r_mid_top,mid_l_top,mid_r_midmid_bottom
+Temporal,3,front_l_mid,far_r_top_mid,far_l_mid_top,front_r_bottom,front_r_mid_bottom,front_r_midmid_bottom
+Spatial,4,far_r_midmid_top,far_l_mid_bottom,front_l_top,mid_l_bottom,mid_l_bottom_mid,front_r_mid_bottom
+Temporal,4,front_l_bottom_mid,far_r_midmid_top,far_l_top_mid,far_l_top,mid_r_midmid_bottom,front_l_mid_bottom
+Spatial,5,far_r_mid_mid,mid_r_bottom_mid,front_l_mid_top,mid_r_mid,far_r_top_mid,front_l_bottom_mid
+Temporal,5,far_r_bottom,front_l_mid_bottom,mid_r_mid_top,mid_r_mid,far_l_mid_top,front_l_midmid_top

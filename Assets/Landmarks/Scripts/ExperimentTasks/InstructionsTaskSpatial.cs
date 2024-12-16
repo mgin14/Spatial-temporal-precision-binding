@@ -20,7 +20,7 @@ using UnityEngine.UI;
 using UnityStandardAssets.Characters.ThirdPerson;
 using TMPro;
 
-public class InstructionsTask : ExperimentTask {
+public class InstructionsTaskSpatial : ExperimentTask {
 
 
     

@@ -21,6 +21,7 @@ public class NavigationTask : ExperimentTask
     [Tooltip("Leave blank for free exploration")]
     public ObjectList destinations;
 	public GameObject currentTarget;
+    public GameObject prevTarget;
 
     public TextAsset NavigationInstruction;
 
@@ -367,6 +368,10 @@ public class NavigationTask : ExperimentTask
 
         if (logStartEnd) endXYZ = avatar.GetComponent<LM_PlayerController>().collisionObject.transform.position;
 
+        // Melanie 12/2024
+        // Increment the block var in readTrialInfo so we are in the correct block after 6 trials
+        if (GameObject.Find("TASK_MainLoop").GetComponent<TaskList>().repeatCount >= 6) GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().block++;
+
         //avatarController.stop();
         avatarLog.navLog = false;
         if (isScaled) scaledAvatarLog.navLog = false;
@@ -452,13 +457,14 @@ public class NavigationTask : ExperimentTask
                 nexus.ResetDecisionPoint();
             }
         }
-        
+
         // Hide the overlay by setting back to empty string
         //if (overlayTargetObject != null) overlayTargetObject.text = "";
 
         //// If we created a dummy Objectlist for exploration, destroy it
         //Destroy(GetComponent<ObjectList>());
 
+        prevTarget = currentTarget;
         if (canIncrementLists) destinations.incrementCurrent();
         if (!exploration) currentTarget = destinations.currentObject();
     }

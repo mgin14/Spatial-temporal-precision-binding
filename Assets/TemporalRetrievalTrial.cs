@@ -32,17 +32,19 @@ public class TemporalRetrievalTrial : ExperimentTask
         base.startTask();
         //hud.showOnlyTargets(); // Show object
 
-        if (skip)
-        {
-            Debug.Log("Skipping Temporal Task");
-            log.log("INFO    skip task    " + name, 1);
-            return;
-        }
+        
     }
 
     // the returned bool indicates whether to continue updating. True-stop, false-continue
     public override bool updateTask()
     {
+        if (skip)
+        {
+            Debug.Log("Skipping Temporal Task");
+            log.log("INFO    skip task    " + name, 1);
+            return true;
+        }
+        
         // Get the time the subject first presses the space bar
         if (Input.GetKeyDown(KeyCode.Space)) // This will only be initialized once when they press the space bar
         {
@@ -63,10 +65,33 @@ public class TemporalRetrievalTrial : ExperimentTask
 
     public override void endTask()
     {
+        
+        TASK_END();
+
+    }
+
+    public override void TASK_END()
+    {
         // Input response to output file HERE
 
 
         base.endTask();
     }
+
+    public override void TASK_PAUSE()
+    {
+        avatarLog.navLog = false;
+        if (isScaled) scaledAvatarLog.navLog = false;
+        //base.endTask();
+        log.log("TASK_PAUSE\t" + name + "\t" + this.GetType().Name + "\t", 1);
+        //avatarController.stop();
+
+        hud.setMessage("");
+        hud.showScore = false;
+
+    }
+
+
+
 
 }

@@ -28,7 +28,8 @@ public class FrontColliderScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(" ___________________________INSIDE TIRIGGER: " + gameObject.name);
-        cur_des = GameObject.FindGameObjectWithTag("tar_des").GetComponent<MoveObjects>().cur_des;
+        int current = GameObject.Find("TASK_MainLoop").GetComponent<TaskList>().repeatCount;
+        cur_des = GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().CurrentLocation().tag;
         Debug.Log(" Des tag " + cur_des);
         if (GameObject.Find("NavigationTrials").GetComponent<TaskList>().currentTask.name == "Navigate" && cur_des == gameObject.tag)
         {

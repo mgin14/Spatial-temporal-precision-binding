@@ -28,7 +28,6 @@ public class MoveObjects : ExperimentTask {
 	private GameObject source;
 
 	public GameObject destination;
-    public string cur_des;
     public ObjectList destinations;
     public bool hideDestinations = true;
 	
@@ -43,6 +42,8 @@ public class MoveObjects : ExperimentTask {
     private List<GameObject> unusedTargets = new List<GameObject>();
     private GameObject spent; // container for parent object of UsedObjects
     private GameObject stored; // container for parent object of UnusedObjects
+
+    public List<string> tar_des; // This will list the correct coordinates to the where the targets are
 
 	public override void startTask () {
 		TASK_START();
@@ -170,10 +171,11 @@ public class MoveObjects : ExperimentTask {
 				destination.transform.localRotation = rotation;
 		
 			}
-			
+
+            tar_des.Add(destination.tag);
 			destinations.incrementCurrent();
 			destination = destinations.currentObject();
-            cur_des = destination.tag;
+            
 
             sources.incrementCurrent();
 			source = sources.currentObject();
