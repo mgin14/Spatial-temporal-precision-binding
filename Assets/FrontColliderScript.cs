@@ -35,6 +35,7 @@ public class FrontColliderScript : MonoBehaviour
         {
             Debug.Log("++++++++Activate object");
             cur_tar.currentTarget.SetActive(true);
+            GameObject.Find("Navigate").GetComponent<NavigationTask>().collider = gameObject;
             //cur_tar.GetComponent<MeshRenderer>().enabled= true;
         }
     }

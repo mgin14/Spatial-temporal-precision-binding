@@ -23,6 +23,8 @@ public class NavigationTask : ExperimentTask
 	public GameObject currentTarget;
     public GameObject prevTarget;
 
+    public GameObject collider;
+
     public TextAsset NavigationInstruction;
 
     // Manipulate trial/task termination criteria

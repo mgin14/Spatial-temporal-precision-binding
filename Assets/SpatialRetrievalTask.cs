@@ -27,21 +27,21 @@ public class SpatialRetrievalTask : ExperimentTask
 
     public override void TASK_START()
     {
+        GameObject.Find("KeyboardMouseController").GetComponent<FirstPersonController>().enabled = false;
+
         if (!manager) Start();
         base.startTask();
-
-
-        GameObject.Find("KeyboardMouseController").GetComponent<FirstPersonController>().enabled = false;
+        
         cur_tar = GameObject.FindGameObjectWithTag("tar_obj").GetComponent<NavigationTask>();
         
-        // Move player to the location where they viewed the item
-        itemLocation = cur_tar.transform.position;
+        // Move player to where the triggered collider is
+        GameObject collider = GameObject.Find("Navigate").GetComponent<NavigationTask>().collider;
+        itemLocation = collider.transform.position;
         cur_tar.prevTarget.SetActive(false);
         avatar.transform.position = itemLocation;
-        Vector3 temp = new Vector3(avatar.transform.position.x + 11f,
-            avatar.transform.position.y,
-            avatar.transform.position.z);
-        avatar.transform.position = temp;
+        avatar.transform.rotation = Quaternion.Euler(0,-90,0);
+        //Camera.main.transform.position = avatar.transform.position;
+        Camera.main.transform.rotation = avatar.transform.rotation;
 
         hud.showEverything();
     }
