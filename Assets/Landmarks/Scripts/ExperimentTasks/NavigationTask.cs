@@ -23,7 +23,7 @@ public class NavigationTask : ExperimentTask
 	public GameObject currentTarget;
     public GameObject prevTarget;
 
-    public GameObject collider;
+    public GameObject collider; // FrontColliderScript assigns this variable
 
     public TextAsset NavigationInstruction;
 
@@ -90,9 +90,6 @@ public class NavigationTask : ExperimentTask
             log.log("INFO    skip task    " + name, 1);
             return;
         }
-
-        // Move player to the starting location
-        //avatar.transform.position = GameObject.Find("Start").transform.position;
 
 
         if (!destinations)
@@ -370,10 +367,7 @@ public class NavigationTask : ExperimentTask
 
         if (logStartEnd) endXYZ = avatar.GetComponent<LM_PlayerController>().collisionObject.transform.position;
 
-        // Melanie 12/2024
-        // Increment the block var in readTrialInfo so we are in the correct block after 6 trials
-        if (GameObject.Find("TASK_MainLoop").GetComponent<TaskList>().repeatCount >= 6) GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().block++;
-
+        
         //avatarController.stop();
         avatarLog.navLog = false;
         if (isScaled) scaledAvatarLog.navLog = false;

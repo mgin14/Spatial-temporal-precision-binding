@@ -93,11 +93,12 @@ public class readBlockInfo : ExperimentTask
 
         count = targetLocations2D.Count;
 
-        // Replace positoin of target objects with the positons in the excel file
+        // Replace position of target objects with the positons in the excel file
         var targets = GameObject.Find("TargetObjects");
         int b = 0; // temp block var
         var t = 0; // temp trial var
-        for (int i = 0; i < targets.transform.childCount; i++)
+        //for (int i = 0; i < targets.transform.childCount; i++)
+        for (int i = 0; i < 30; i++)
         {
             var cur_tar = targets.transform.GetChild(i);
             cur_tar.transform.position = targetLocations2D[b][t].transform.position;
@@ -117,7 +118,7 @@ public class readBlockInfo : ExperimentTask
 
     public GameObject CurrentLocation()
     {
-        var trial = GameObject.Find("TASK_MainLoop").GetComponent<TaskList>().repeatCount -1;
+        var trial = GameObject.Find("TrialCounter").GetComponent<TrialCounter>().trialNum -1;
         return targetLocations2D[block][trial];
     }
 

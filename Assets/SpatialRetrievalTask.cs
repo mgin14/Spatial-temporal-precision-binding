@@ -12,13 +12,16 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class SpatialRetrievalTask : ExperimentTask
 {
     private NavigationTask cur_tar;
+    private GameObject item;
     private Vector3 itemLocation;
+
     // Start is called before the first frame update
     public override void startTask()
     {
@@ -31,14 +34,18 @@ public class SpatialRetrievalTask : ExperimentTask
 
         if (!manager) Start();
         base.startTask();
-        
-        cur_tar = GameObject.FindGameObjectWithTag("tar_obj").GetComponent<NavigationTask>();
-        
+
+        //cur_tar = GameObject.FindGameObjectWithTag("tar_obj").GetComponent<NavigationTask>();
+
         // Move player to where the triggered collider is
-        GameObject collider = GameObject.Find("Navigate").GetComponent<NavigationTask>().collider;
-        itemLocation = collider.transform.position;
-        cur_tar.prevTarget.SetActive(false);
-        avatar.transform.position = itemLocation;
+        //GameObject collider = GameObject.Find("Navigate").GetComponent<NavigationTask>().collider;
+        //itemLocation = collider.transform.position;
+        var currentRepeat = GameObject.Find("Spatial").GetComponent<TaskList>().repeatCount - 1;
+        item = GameObject.Find("ChooseTask").GetComponent<LM_ChooseTask>().loc[currentRepeat];
+        itemLocation = item.transform.position;
+        //cur_tar.prevTarget.SetActive(false);
+        var newItemLocation = new Vector3(itemLocation.x - 11, 0.25f, 0);
+        avatar.transform.position = newItemLocation;
         avatar.transform.rotation = Quaternion.Euler(0,-90,0);
         //Camera.main.transform.position = avatar.transform.position;
         Camera.main.transform.rotation = avatar.transform.rotation;
@@ -51,9 +58,14 @@ public class SpatialRetrievalTask : ExperimentTask
         // The subject clicked on the screen that they think the object was
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Debug.Log(Input.mousePosition.z);
-            Debug.Log(Input.mousePosition.y);
+            Vector3 mousePos = Input.mousePosition;
+            var newCoords = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Camera.main.nearClipPlane));
+            Debug.Log(newCoords.x);
+            Debug.Log(newCoords.y);
+            Debug.Log(newCoords.z);
             GameObject.Find("KeyboardMouseController").GetComponent<FirstPersonController>().enabled = true;
+            GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().fileBuffer += item.name + ", " + itemLocation.x + ", " + 
+                itemLocation.y + ", " + itemLocation.z + ", "; // DON"T FORGET TO GET RESPONSE COORDS
             return true;
         }
         return false;

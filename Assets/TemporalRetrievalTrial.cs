@@ -54,7 +54,7 @@ public class TemporalRetrievalTrial : ExperimentTask
         if (Input.GetKeyUp(KeyCode.Space))
         {
             response = Time.time - temporalStartTime;
-            spatialTemporalOutput.temporalBuffer += response + ", ";
+            GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().fileBuffer += response + ", ";
             // THIS IS WHERE YOU WILL ALSO DO THE TIME ERROR ONCE JOSH AND I DISCUSS HOW TO GENERATE THE TRIAL
             return true;
         }

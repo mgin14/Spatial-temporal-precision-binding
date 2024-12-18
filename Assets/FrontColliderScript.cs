@@ -28,14 +28,18 @@ public class FrontColliderScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(" ___________________________INSIDE TIRIGGER: " + gameObject.name);
-        int current = GameObject.Find("TASK_MainLoop").GetComponent<TaskList>().repeatCount;
-        cur_des = GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().CurrentLocation().tag;
+
+        GameObject location = GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().CurrentLocation();
+        cur_des = location.tag;
+        
         Debug.Log(" Des tag " + cur_des);
+
         if (GameObject.Find("NavigationTrials").GetComponent<TaskList>().currentTask.name == "Navigate" && cur_des == gameObject.tag)
         {
+            GameObject.Find("TrackTargets").GetComponent<LM_TrackTargets>().AddLocation(location);
             Debug.Log("++++++++Activate object");
             cur_tar.currentTarget.SetActive(true);
-            GameObject.Find("Navigate").GetComponent<NavigationTask>().collider = gameObject;
+            GameObject.Find("Navigate").GetComponent<NavigationTask>().collider = gameObject; // We need this for SpatialRetrievalTask
             //cur_tar.GetComponent<MeshRenderer>().enabled= true;
         }
     }

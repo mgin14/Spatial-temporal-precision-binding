@@ -16,11 +16,9 @@ public class spatialTemporalOutput : MonoBehaviour
     public int subjectNumber;
     public SubjectSex sex;
 
-    public StreamWriter spatialOutput;
-    public StreamWriter temporalOutput;
+    public StreamWriter fileOutput;
     public StreamWriter seqOutput;
-    public static string spatialBuffer;
-    public static string temporalBuffer;
+    public string fileBuffer;
     //public static string seqBuffer;
 
 
@@ -30,25 +28,22 @@ public class spatialTemporalOutput : MonoBehaviour
         // Initiate the csv files for spatial, temporal, and sequence
         string outputPath = Directory.GetCurrentDirectory() + "\\Subject_Data\\";
         string fileName = subject + subjectNumber;
-        string envir = "_Spatial_Output.csv";
-        string path = outputPath + fileName + envir;
+        //string envir = "_Spatial_Output.csv";
+        string path = outputPath + fileName;
 
         // Check that subject number does not exist
         while (File.Exists(path))
         {
             subjectNumber++;
-            fileName = subject + subjectNumber + envir;
-            path = outputPath + fileName + envir;
+            fileName = subject + subjectNumber;
+            path = outputPath + fileName;
         }
 
-        string header = "Subject, sex, TrialNum, Object, ";
+        //string header = "Subject, sex, Block, Trial, LocationName, LocationX, LocationY, LocationZ, ResponseX, ResponseY, ResponseZ, SpatialError, GoalTime, ResponseTime, TemporalError";
 
-        spatialOutput = new StreamWriter(path);
-        spatialOutput.WriteLine(header + "Coord_x, Coord_y, Coord_z, Response_x, Response_y, Response_z, X_error, Y_error, Z_error");
-
-        path = outputPath + fileName + "_Temporal_Output.csv";
-        temporalOutput = new StreamWriter(path);
-        temporalOutput.WriteLine(header + "Actual_time, Response_time, Temporal_error");
+        //fileOutput = new StreamWriter(path);
+        //fileOutput.WriteLine(header + "Coord_x, Coord_y, Coord_z, Response_x, Response_y, Response_z, X_error, Y_error, Z_error");
+        
 
         // DO LATER! SEE HOW WE WANT TO DO SEQ
         //path = outputPath + fileName + "_Sequence_Output.csv";
@@ -56,7 +51,7 @@ public class spatialTemporalOutput : MonoBehaviour
         //seqOutput.WriteLine(header);
 
         // Start the buffers
-        spatialBuffer += fileName + ", " + sex + ", ";
+        fileBuffer += fileName + ", " + sex + ", ";
 
     }
 
