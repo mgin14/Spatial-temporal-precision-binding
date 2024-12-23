@@ -142,8 +142,28 @@ public class InstructionsTaskDisplayTrial : ExperimentTask {
         // This short section will increment the trial and display the trial num to the subject
         GameObject.Find("TrialCounter").GetComponent<TrialCounter>().IncrementTrialNum();
 
-        string msg = "Starting Navigation. Please Wait";
-        hud.setMessage(msg);
+        if (masterText == "")
+        {
+            if (message)
+            {
+                string msg = message.text;
+                if (currentText != null) msg = string.Format(msg, currentText);
+                if (currentObject != null) msg = string.Format(msg, currentObject.name);
+                if (multiObjects.Length > 0) msg = string.Format(msg, currentMultiObjects);
+                hud.setMessage(msg);
+            }
+            else if (!message & texts)
+            {
+                string msg = currentText;
+                if (currentObject != null) msg = string.Format(msg, currentObject.name);
+                hud.setMessage(msg);
+            }
+        }
+        else
+        {
+            string msg = masterText;
+            hud.setMessage(msg);
+        }
 
 
         hud.flashStatus("");

@@ -19,6 +19,11 @@ public class TemporalRetrievalTrial : ExperimentTask
 {
     float temporalStartTime; //Get the time the space bar is held down
     float response;
+    private int tempTrial; // this is just for output
+    private float[] goalTimes = { 1.85f, 5.11f, 7.66f };
+    private float goal;
+    private GameObject item;
+    public Vector3 itemLocation;
 
     // Start is called before the first frame update
     public override void startTask()
@@ -30,9 +35,23 @@ public class TemporalRetrievalTrial : ExperimentTask
     {
         if (!manager) Start();
         base.startTask();
-        //hud.showOnlyTargets(); // Show object
 
-        
+        var currentRepeat = gameObject.GetComponentInParent<TaskList>().repeatCount;
+        tempTrial = 3 - (3 - currentRepeat);
+        currentRepeat = currentRepeat - 1;
+        item = GameObject.Find("ChooseTask").GetComponent<LM_ChooseTask>().loc[currentRepeat];
+        itemLocation = item.transform.position;
+
+        if (item.tag == "front")
+        {
+            goal = goalTimes[0];
+        }
+        else if (item.tag == "mid")
+        {
+            goal = goalTimes[1];
+        }
+        else goal = goalTimes[2];
+
     }
 
     // the returned bool indicates whether to continue updating. True-stop, false-continue
@@ -54,8 +73,13 @@ public class TemporalRetrievalTrial : ExperimentTask
         if (Input.GetKeyUp(KeyCode.Space))
         {
             response = Time.time - temporalStartTime;
-            GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().fileBuffer += response + ", ";
-            // THIS IS WHERE YOU WILL ALSO DO THE TIME ERROR ONCE JOSH AND I DISCUSS HOW TO GENERATE THE TRIAL
+            var timeError = goal - response;
+
+            int block = GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().block;
+            GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().fileBuffer += block + ", " + tempTrial + ", " + item.name + 
+                ", " + itemLocation.x + ", " + itemLocation.y + ", " + itemLocation.z + ", , , , ," + goal + ", " + response + ", " + timeError;
+
+            GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().AddData();
             return true;
         }
 

@@ -19,6 +19,7 @@ public class spatialTemporalOutput : MonoBehaviour
     public StreamWriter fileOutput;
     public StreamWriter seqOutput;
     public string fileBuffer;
+    private string fileName;
     //public static string seqBuffer;
 
 
@@ -27,23 +28,23 @@ public class spatialTemporalOutput : MonoBehaviour
     {
         // Initiate the csv files for spatial, temporal, and sequence
         string outputPath = Directory.GetCurrentDirectory() + "\\Subject_Data\\";
-        string fileName = subject + subjectNumber;
-        //string envir = "_Spatial_Output.csv";
-        string path = outputPath + fileName;
+        fileName = subject + subjectNumber;
+        string envir = "_Output.csv";
+        string path = outputPath + fileName + envir;
 
         // Check that subject number does not exist
         while (File.Exists(path))
         {
             subjectNumber++;
             fileName = subject + subjectNumber;
-            path = outputPath + fileName;
+            path = outputPath + fileName + envir;
         }
 
-        //string header = "Subject, sex, Block, Trial, LocationName, LocationX, LocationY, LocationZ, ResponseX, ResponseY, ResponseZ, SpatialError, GoalTime, ResponseTime, TemporalError";
+        string header = "Subject, sex, Block, Trial, LocationName, LocationX, LocationY, LocationZ, ResponseX, ResponseY, ResponseZ, SpatialError, GoalTime, ResponseTime, TemporalError";
 
-        //fileOutput = new StreamWriter(path);
-        //fileOutput.WriteLine(header + "Coord_x, Coord_y, Coord_z, Response_x, Response_y, Response_z, X_error, Y_error, Z_error");
-        
+        fileOutput = new StreamWriter(path);
+        fileOutput.WriteLine(header);
+
 
         // DO LATER! SEE HOW WE WANT TO DO SEQ
         //path = outputPath + fileName + "_Sequence_Output.csv";
@@ -59,5 +60,16 @@ public class spatialTemporalOutput : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void AddData()
+    {
+        fileOutput.WriteLine(fileBuffer);
+        fileBuffer = fileName + ", " + sex + ", ";
+    }
+
+    void OnApplicationQuit()
+    {
+        fileOutput.Close();
     }
 }

@@ -19,8 +19,9 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class SpatialRetrievalTask : ExperimentTask
 {
     private NavigationTask cur_tar;
-    private GameObject item;
-    private Vector3 itemLocation;
+    public GameObject item;
+    public Vector3 itemLocation;
+    private int tempTrial; // this is just for output
 
     // Start is called before the first frame update
     public override void startTask()
@@ -37,20 +38,22 @@ public class SpatialRetrievalTask : ExperimentTask
 
         //cur_tar = GameObject.FindGameObjectWithTag("tar_obj").GetComponent<NavigationTask>();
 
-        // Move player to where the triggered collider is
-        //GameObject collider = GameObject.Find("Navigate").GetComponent<NavigationTask>().collider;
-        //itemLocation = collider.transform.position;
-        var currentRepeat = GameObject.Find("Spatial").GetComponent<TaskList>().repeatCount - 1;
-        item = GameObject.Find("ChooseTask").GetComponent<LM_ChooseTask>().loc[currentRepeat];
+        // Move player to where the object first appears (close to where the respective collider is)
+        var currentRepeat = gameObject.GetComponentInParent<TaskList>().repeatCount;
+        var trialNum = GameObject.Find("TrialCounter").GetComponent<TrialCounter>().trialNum;
+        tempTrial = trialNum - (3 - currentRepeat);
+        currentRepeat = currentRepeat - 1;
+        Debug.Log(" Current Repeat Num: " + currentRepeat);
+        item = GameObject.Find("ChooseTask").GetComponent<LM_ChooseTask>().loc[currentRepeat]; // this is just the location name
         itemLocation = item.transform.position;
-        //cur_tar.prevTarget.SetActive(false);
-        var newItemLocation = new Vector3(itemLocation.x - 11, 0.25f, 0);
+        //cur_tar.prevTarget.SetActive(false); // The item should already by deactivated
+        var newItemLocation = new Vector3(itemLocation.x + 11, 0.25f, 0);
         avatar.transform.position = newItemLocation;
         avatar.transform.rotation = Quaternion.Euler(0,-90,0);
         //Camera.main.transform.position = avatar.transform.position;
         Camera.main.transform.rotation = avatar.transform.rotation;
 
-        hud.showEverything();
+        hud.showEverything(); // Pin the tail on the donkey time
     }
 
     public override bool updateTask()
@@ -60,12 +63,18 @@ public class SpatialRetrievalTask : ExperimentTask
         {
             Vector3 mousePos = Input.mousePosition;
             var newCoords = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Camera.main.nearClipPlane));
-            Debug.Log(newCoords.x);
+            Debug.Log(newCoords.x); // This will always show that we are 10/11 units less than the actual position (see line 47). Use Y and z
             Debug.Log(newCoords.y);
             Debug.Log(newCoords.z);
+            Vector2 response = new Vector2(newCoords.y, newCoords.z * 100);
+            Vector2 goal = new Vector2(itemLocation.y, itemLocation.z);
+            float distanceError = Vector2.Distance(goal, response);
             GameObject.Find("KeyboardMouseController").GetComponent<FirstPersonController>().enabled = true;
-            GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().fileBuffer += item.name + ", " + itemLocation.x + ", " + 
-                itemLocation.y + ", " + itemLocation.z + ", "; // DON"T FORGET TO GET RESPONSE COORDS
+            int block = GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().block;
+            GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().fileBuffer += block + ", " + tempTrial + ", " + item.name + ", " + itemLocation.x + ", " + 
+                itemLocation.y + ", " + itemLocation.z + ", " + newCoords.x + ", " + newCoords.y + ", " + (newCoords.z * 100) + ", " + distanceError + ", , , ";
+
+            GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().AddData();
             return true;
         }
         return false;
