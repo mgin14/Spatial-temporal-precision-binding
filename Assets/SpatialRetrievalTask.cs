@@ -70,8 +70,7 @@ public class SpatialRetrievalTask : ExperimentTask
             Vector2 goal = new Vector2(itemLocation.y, itemLocation.z);
             float distanceError = Vector2.Distance(goal, response);
             GameObject.Find("KeyboardMouseController").GetComponent<FirstPersonController>().enabled = true;
-            int block = GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().block;
-            GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().fileBuffer += block + ", " + tempTrial + ", " + item.name + ", " + itemLocation.x + ", " + 
+            GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().fileBuffer += "Spatial, " + tempTrial + ", " + item.name + ", " + itemLocation.x + ", " + 
                 itemLocation.y + ", " + itemLocation.z + ", " + newCoords.x + ", " + newCoords.y + ", " + (newCoords.z * 100) + ", " + distanceError + ", , , ";
 
             GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().AddData();

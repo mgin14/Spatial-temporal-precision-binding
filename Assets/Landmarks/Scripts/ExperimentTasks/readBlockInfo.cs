@@ -34,7 +34,7 @@ public class readBlockInfo : ExperimentTask
     [Header("Task-specific Properties")]
     public string blockInfoFile = "Block_info.csv";
     // These two will give us the location name for the target as the header for the file is: Environment, Block, Trial 1, Trial 2, Trial 3, Trial 4, Trial 5, Trial 6
-    public int block = 0; // This var will help access targetLocation2D list. As of 12/24 there are 5 block with 6 trials. Spatial -> temporal -> spatial -> temporal, etc.
+    public int block; // This var will help access targetLocation2D list. As of 12/24 there are 5 block with 6 trials. Spatial -> temporal -> spatial -> temporal, etc.
     public List<List<GameObject>> targetLocations2D = new List<List<GameObject>>(); // This will be a 2D array. Lists within a list, the first index will be the block and the list in that index will be of the trials
     public int count;
 

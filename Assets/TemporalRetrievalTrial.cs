@@ -74,9 +74,8 @@ public class TemporalRetrievalTrial : ExperimentTask
         {
             response = Time.time - temporalStartTime;
             var timeError = goal - response;
-
-            int block = GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().block;
-            GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().fileBuffer += block + ", " + tempTrial + ", " + item.name + 
+            
+            GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().fileBuffer += "Temporal, " + tempTrial + ", " + item.name + 
                 ", " + itemLocation.x + ", " + itemLocation.y + ", " + itemLocation.z + ", , , , ," + goal + ", " + response + ", " + timeError;
 
             GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().AddData();

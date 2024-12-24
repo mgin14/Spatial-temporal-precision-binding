@@ -137,10 +137,10 @@ public class InstructionsTaskDisorient : ExperimentTask {
         if (blackout) hud.showOnlyHUD();
         else hud.showEverything();
 
-        var startNum = Random.Range(101, 111);
-        var countDown = Random.Range(5, 8);
+        var startNum = Random.Range(29, 111);
+        var countDown = Random.Range(4, 8);
 
-        masterText = "Please count backwards from " + startNum.ToString() + " by " + countDown.ToString();
+        masterText = "Please count backwards out loud \nfrom " + startNum.ToString() + " by " + countDown.ToString();
 
         //if (masterText == "")
         //{
