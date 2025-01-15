@@ -1,7 +1,0 @@
-id,condition,sceneName,sceneNumber,task,run,block,trial,Navigate_target,Navigate_actualPath,Navigate_optimalPath,Navigate_excessPath,Navigate_clockwiseTravel,Navigate_duration,
-999,default,Spatial_temporal,1,TASK_MainLoop,1,1,1,Panda_01,82.65541,72.62821,10.0272,-179.3796,10.87743,
-999,default,Spatial_temporal,1,TASK_MainLoop,1,1,2,Alpaca_01 (1),82.29539,26.85723,55.43816,-179.3404,10.46799,
-999,default,Spatial_temporal,1,TASK_MainLoop,1,1,3,Avocado_01,82.29539,52.24672,30.04867,-179.3404,10.57068,
-999,default,Spatial_temporal,1,TASK_MainLoop,1,1,1,
-999,default,Spatial_temporal,1,TASK_MainLoop,1,1,2,
-999,default,Spatial_temporal,1,TASK_MainLoop,1,1,3,

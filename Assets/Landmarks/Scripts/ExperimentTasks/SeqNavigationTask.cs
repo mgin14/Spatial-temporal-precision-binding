@@ -1,0 +1,441 @@
+﻿/* Created by: Melanie 1/2025
+ * 
+ * This script functions like the regular navigation but they will be blind when navigating, essentially it is like the temporal trials,
+ * but they are actually moving in the game without knowing.
+ * 
+ */
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+using Valve.VR;
+using Valve.VR.InteractionSystem;
+
+public class SeqNavigationTask : ExperimentTask
+{
+    [Header("Task-specific Properties")]
+    [Tooltip("Leave blank for free exploration")]
+    public ObjectList destinations;
+	public GameObject currentTarget;
+    public GameObject prevTarget;
+
+    public GameObject collider; // FrontColliderScript assigns this variable
+
+    public TextAsset NavigationInstruction;
+
+    // Manipulate trial/task termination criteria
+    [Tooltip("in meters")]
+    public float distanceAllotted = Mathf.Infinity;
+    [Tooltip("in seconds")]
+    public float timeAllotted = Mathf.Infinity;
+    [Tooltip("Do we want time or distance remaining to be broadcast somewhere?")]
+    public TextMeshProUGUI printRemainingTimeTo;
+    private string baseText;
+
+    // Use a scoring/points system (not currently configured)
+    [HideInInspector] private int score = 0;
+    [HideInInspector] public int scoreIncrement = 50;
+    [HideInInspector] public int penaltyRate = 2000;
+    [HideInInspector] private float penaltyTimer = 0;
+    [HideInInspector] public bool showScoring;
+
+    // Handle the rendering of the target objects (default: always show)
+    public HideTargetOnStart hideTargetOnStart;
+    [Tooltip("negative values denote time before targets are hidden; 0 is always on; set very high for no targets")]
+    public float showTargetAfterSeconds;
+    //public TextMeshProUGUI overlayTargetObject;
+
+    // Manipulate the rendering of the non-target environment objects (default: always show)
+    public bool hideNonTargets;
+
+
+    // For logging output
+    private float startTime;
+    private Vector3 playerLastPosition;
+    private float playerDistance = 0;
+    private Vector3 scaledPlayerLastPosition;
+    private float scaledPlayerDistance = 0;
+    private float optimalDistance;
+    private LM_DecisionPoint[] decisionPoints;
+    private bool exploration;
+
+
+    // 4/27/2022 Added for Loop Closure Task
+    public float allowContinueAfter = Mathf.Infinity; // flag to let participants press a button to continue without necessarily arriving
+    public bool haptics;
+    private float clockwiseTravel = 0; // relative to the origin (0,0,0) in world space
+    public bool logStartEnd;
+    private Vector3 startXYZ;
+    private Vector3 endXYZ;
+
+    // Mel 1/2025
+    public bool blackout = true;
+    //private float[] goalTimes = { 1.85f, 5.11f, 7.66f }; // From my own calculations
+    private float[] goalTimes = { 1.738079f, 2.546022f, 5.086022f }; // These are the measurements from unity
+    private float goal;
+    float response;
+    float temporalStartTime; //Get the time the arrow is held down
+    public Vector3 avatarLocation;
+
+    public override void startTask ()
+	{
+		TASK_START();
+		avatarLog.navLog = true;
+        if (isScaled) scaledAvatarLog.navLog = true;
+    }
+
+	public override void TASK_START()
+	{
+		if (!manager) Start();
+        base.startTask();
+
+        if (skip)
+        {
+            log.log("INFO    skip task    " + name, 1);
+            return;
+        }
+
+        if (blackout) hud.showNothing();
+        else hud.showEverything();
+
+        if (!destinations)
+        {
+            Debug.LogWarning("No target objects specified; task will run as" +
+                " free exploration with specified time Alloted or distance alloted" +
+                " (whichever is less)");
+
+            exploration = true;
+
+            //// Make a dummy placeholder for exploration task to avoid throwing errors
+            //var tmp = new List<GameObject>();
+            //tmp.Add(gameObject);
+            //gameObject.AddComponent<ObjectList>();
+            //gameObject.GetComponent<ObjectList>().objects = tmp;
+            //destinations = gameObject.GetComponent<ObjectList>();
+        }
+        
+
+        if (exploration) currentTarget = gameObject;
+        else currentTarget = destinations.currentObject();
+        var t = GameObject.Find("Temp-SpatialRetrieval").GetComponent<TaskList>().repeatCount;
+        if (t == 1)
+        {
+            goal = goalTimes[0];
+        }
+        else if (t == 2)
+        {
+            goal = goalTimes[1];
+        }
+        else goal = goalTimes[2];
+
+        // update the trial count on the overlay
+        //if (overlayTargetObject != null & currentTarget != null) overlayTargetObject.text = string.Format("{0}", currentTarget.name);
+
+        // Debug.Log ("Find " + current.name);
+
+        // if it's a target, open the door to show it's active
+        if (currentTarget.GetComponentInChildren<LM_TargetStore>() != null)
+        {
+            currentTarget.GetComponentInChildren<LM_TargetStore>().OpenDoor();
+        }
+
+		if (NavigationInstruction)
+		{
+			string msg = NavigationInstruction.text;
+			if (destinations != null) msg = string.Format(msg, currentTarget.name);
+			hud.setMessage(msg);
+   		}
+		else
+		{
+            hud.SecondsToShow = 0;
+		}
+
+        // Handle if we're hiding all the non-targets
+        if (hideNonTargets)
+        {
+            foreach (GameObject item in destinations.objects)
+            {
+                if (item.name != currentTarget.name)
+                {
+                    item.SetActive(false);
+                }
+                else item.SetActive(true);
+            }
+        }
+
+
+        // Handle if we're hiding the target object
+        if (hideTargetOnStart != HideTargetOnStart.Off && !exploration)
+        {
+            if (hideTargetOnStart == HideTargetOnStart.SetInactive)
+            {
+                //foreach (var c in currentTarget.GetComponents<Collider>()) c.enabled = false;
+                manager.DisableRecursive(currentTarget);
+            }
+            else if (hideTargetOnStart == HideTargetOnStart.SetInvisible)
+            {
+                //manager.HideRecursive(currentTarget);
+                //manager.DisableRecursive(currentTarget, ignoreSelf: true); // turn off walls but not target collision
+                currentTarget.SetActive(false);
+            }
+            else if (hideTargetOnStart == HideTargetOnStart.DisableCompletely)
+            {
+                manager.HideRecursive(currentTarget);
+                //foreach (var c in currentTarget.GetComponents<Collider>()) c.enabled = false;
+                manager.DisableRecursive(currentTarget);
+                foreach (var child in currentTarget.GetComponentsInChildren<Transform>())
+                {
+                    var halo = (Behaviour)child.GetComponent("Halo");
+                    if (halo != null) halo.enabled = false;
+                }
+            }
+            else if (hideTargetOnStart == HideTargetOnStart.SetProbeTrial)
+            {
+                manager.HideRecursive(currentTarget);
+                manager.DisableRecursive(currentTarget);
+                //foreach (var c in currentTarget.GetComponents<Collider>()) c.enabled = false;
+
+            }
+            
+        }
+        else if (!exploration)
+        {
+            currentTarget.SetActive(true); // make sure the target is visible unless the bool to hide was checked
+            try
+            {
+                manager.HideRecursive(currentTarget, true);
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogException(ex);
+            }
+        }
+
+        // save the original string so we can reformat each frame
+        if (printRemainingTimeTo != null) baseText = printRemainingTimeTo.text;
+
+        // startTime = Current time in seconds
+        startTime = Time.time;
+
+        // Get the avatar start location (distance = 0)
+        playerDistance = 0.0f;
+        clockwiseTravel = 0.0f;
+        playerLastPosition = avatar.GetComponent<LM_PlayerController>().collisionObject.transform.position;
+        if (isScaled)
+        {
+            scaledPlayerDistance = 0.0f;
+            scaledPlayerLastPosition = scaledAvatar.transform.position;
+        }
+
+        // Calculate optimal distance to travel (straight line)
+        if (isScaled)
+        {
+            optimalDistance = Vector3.Distance(scaledAvatar.transform.position, currentTarget.transform.position);
+        }
+        else optimalDistance = Vector3.Distance(avatar.GetComponent<LM_PlayerController>().collisionObject.transform.position, currentTarget.transform.position);
+
+
+        //// MJS 2019 - Move HUD to top left corner
+        //hud.hudPanel.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 1);
+        //hud.hudPanel.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.9f);
+
+
+        // Look for any LM_Decsion Points we will want to track
+        if (FindObjectsOfType<LM_DecisionPoint>().Length > 0)
+        {
+            decisionPoints = FindObjectsOfType<LM_DecisionPoint>();
+
+            // Clear any decisions on LM_DecisionPoints
+            foreach (var pt in decisionPoints)
+            {
+                pt.ResetDecisionPoint();
+            }
+        }
+
+        if (logStartEnd) startXYZ = avatar.GetComponent<LM_PlayerController>().collisionObject.transform.position;
+            
+        if (vrEnabled & haptics) SteamVR_Actions.default_Haptic.Execute(0f, 2.0f, 65f, 1f, SteamVR_Input_Sources.Any);
+    }
+
+    public override bool updateTask ()
+	{
+		base.updateTask();
+
+        if (skip)
+        {
+            //log.log("INFO    skip task    " + name,1 );
+            return true;
+        }
+       
+        if (killCurrent == true)
+		{
+			return KillCurrent ();
+		}
+
+        // Get the time the subject first presses the up arrow
+        if (Input.GetKeyDown(KeyCode.UpArrow)) // This will only be initialized once when they press the space bar
+        {
+            temporalStartTime = Time.time;
+        }
+
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            // Do we need to get the coordinate that they stop at?
+            avatarLocation = avatar.transform.position;
+            response = Time.time - temporalStartTime;
+            var timeError = response - goal; // Overshooting will result in positive error; undershooting will be negative
+
+            GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().seqBuffer += goal + "," + response + "," + timeError + ",";
+            return true;
+        }
+
+		return false;
+	}
+
+	public override void endTask()
+	{
+		TASK_END();
+		//avatarController.handleInput = false;
+	}
+
+	public override void TASK_PAUSE()
+	{
+		avatarLog.navLog = false;
+        if (isScaled) scaledAvatarLog.navLog = false;
+		//base.endTask();
+		log.log("TASK_PAUSE\t" + name + "\t" + this.GetType().Name + "\t" ,1 );
+		//avatarController.stop();
+
+		hud.setMessage("");
+		hud.showScore = false;
+
+	}
+
+	public override void TASK_END()
+	{
+		base.endTask();
+        if (printRemainingTimeTo != null) printRemainingTimeTo.text = baseText;
+        var navTime = Time.time - startTime;
+
+        if (logStartEnd) endXYZ = avatar.GetComponent<LM_PlayerController>().collisionObject.transform.position;
+
+        
+        //avatarController.stop();
+        avatarLog.navLog = false;
+        if (isScaled) scaledAvatarLog.navLog = false;
+
+        // close the door if the target was a store and it is open
+        // if it's a target, open the door to show it's active
+        if (currentTarget.GetComponentInChildren<LM_TargetStore>() != null)
+        {
+            currentTarget.GetComponentInChildren<LM_TargetStore>().CloseDoor();
+        }
+
+        // re-enable everything on the gameobject we just finished finding
+        manager.HideRecursive(currentTarget, true);
+        manager.DisableRecursive(currentTarget, true);
+        //foreach (var c in currentTarget.GetComponents<Collider>()) c.enabled = true;
+        foreach (var child in currentTarget.GetComponentsInChildren<Transform>())
+        {
+            var halo = (Behaviour)child.GetComponent("Halo");
+            if (halo != null) halo.enabled = true;
+        }
+
+        hud.setMessage("");
+		hud.showScore = false;
+
+        hud.SecondsToShow = hud.GeneralDuration;
+
+
+        // Move hud back to center and reset
+        hud.hudPanel.GetComponent<RectTransform>().anchorMin = new Vector2(0, 0);
+        hud.hudPanel.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1);
+
+        float perfDistance;
+        if (isScaled)
+        {
+            perfDistance = scaledPlayerDistance;
+        }
+        else perfDistance = playerDistance;
+
+        var excessPath = perfDistance - optimalDistance;
+        
+        // set impossible values if the nav task was skipped
+        if (skip)
+        {
+            navTime = float.NaN;
+            perfDistance = float.NaN;
+            optimalDistance = float.NaN;
+            excessPath = float.NaN;
+        }
+
+
+        // log.log("LM_OUTPUT\tNavigationTask.cs\t" + masterTask.name + "\t" + this.name + "\n" +
+        // 	"Task\tBlock\tTrial\tTargetName\tOptimalPath\tActualPath\tExcessPath\tRouteDuration\n" +
+        // 	masterTask.name + "\t" + masterTask.repeatCount + "\t" + parent.repeatCount + "\t" + currentTarget.name + "\t" + optimalDistance + "\t"+ perfDistance + "\t" + excessPath + "\t" + navTime
+        //     , 1);
+
+        // More concise LM_TrialLog logging
+        if (!exploration) taskLog.AddData(transform.name + "_target", currentTarget.name);
+        taskLog.AddData(transform.name + "_actualPath", perfDistance.ToString());
+        if (!exploration) taskLog.AddData(transform.name + "_optimalPath", optimalDistance.ToString());
+        if (!exploration) taskLog.AddData(transform.name + "_excessPath", excessPath.ToString());
+        taskLog.AddData(transform.name + "_clockwiseTravel", clockwiseTravel.ToString());
+        taskLog.AddData(transform.name + "_duration", navTime.ToString());
+
+        if (logStartEnd)
+        {
+
+            taskLog.AddData(transform.name + "_startX", startXYZ.x.ToString());
+            taskLog.AddData(transform.name + "_startZ", startXYZ.z.ToString());
+            taskLog.AddData(transform.name + "_endX", endXYZ.x.ToString());
+            taskLog.AddData(transform.name + "_endZ", endXYZ.z.ToString());
+
+        }
+
+        // Record any decisions made along the way
+        if (decisionPoints != null)
+        {
+            foreach (LM_DecisionPoint nexus in decisionPoints)
+            {
+                taskLog.AddData(nexus.name + "_initialChoice", nexus.initialChoice);
+                taskLog.AddData(nexus.name + "_finalChoice", nexus.currentChoice);
+                taskLog.AddData(nexus.name + "_totalChoices", nexus.totalChoices.ToString());
+
+                nexus.ResetDecisionPoint();
+            }
+        }
+
+        // Hide the overlay by setting back to empty string
+        //if (overlayTargetObject != null) overlayTargetObject.text = "";
+
+        //// If we created a dummy Objectlist for exploration, destroy it
+        //Destroy(GetComponent<ObjectList>());
+
+        prevTarget = currentTarget;
+        if (canIncrementLists) destinations.incrementCurrent();
+        if (!exploration) currentTarget = destinations.currentObject();
+    }
+
+	public override bool OnControllerColliderHit(GameObject hit)
+	{
+		if (hit == currentTarget | hit.transform.parent.gameObject == currentTarget)
+		{
+			if (showScoring)
+			{
+				score = score + scoreIncrement;
+				hud.setScore(score);
+			}
+			return true;
+		}
+
+		return false;
+	}
+
+    public void UpdateCurrent()
+    {
+        currentTarget = destinations.currentObject();
+    }
+}
+

@@ -1,16 +1,9 @@
 ﻿/*
-    LM Dummy
-       
-    Attached object holds task components that need to be effectively ignored 
-    by Tasklist but are required for the script. Thus the object this is 
-    attached to can be detected by Tasklist (won't throw error), but does nothing 
-    except start and end.   
+    LM_TrackTargets.cs
+    created by Melanie G 12/2024
 
-    Copyright (C) 2019 Michael J. Starrett
-
-    Navigate by StarrLite (Powered by LandMarks)
-    Human Spatial Cognition Laboratory
-    Department of Psychology - University of Arizona   
+    The script is found by FrontColliderScript in order to keep track of the current three objects and their location
+    in order to successfully complete the spatial and temporal retrieval. 
 */
 
 using System.Collections;

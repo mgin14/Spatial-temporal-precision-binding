@@ -109,7 +109,15 @@ public class ViewSingleTargets : ExperimentTask {
 
 
         // turn off all objects
-        startObjects = GameObject.Find("ChooseTask").GetComponent<LM_ChooseTask>().tar;
+        if (GameObject.Find("Tasks").GetComponent<TaskList>().currentTask.name == "TASK_MainLoop")
+        {
+            startObjects = GameObject.Find("ChooseTask").GetComponent<LM_ChooseTask>().tar;
+        }
+        else
+        {
+            startObjects = GameObject.Find("ST_TrackTargets").GetComponent<LM_TrackTargets>().tar_array;
+        }
+        
         foreach (GameObject item in startObjects)
         {
             item.SetActive(false);
@@ -174,7 +182,7 @@ public class ViewSingleTargets : ExperimentTask {
 		// move the target to the viewing location temporarily
 		current.transform.parent = destination.transform;
 		current.transform.localPosition = objectPositionOffset;
-        current.transform.localEulerAngles = objectRotationOffset;
+        //current.transform.localEulerAngles = objectRotationOffset;
         current.transform.localScale = Vector3.Scale(current.transform.localScale, destination.transform.localScale);
 
 		// return the target to its original parent (we'll revert other values later)
@@ -213,7 +221,7 @@ public class ViewSingleTargets : ExperimentTask {
         current.SetActive(false);
     }
 	public override void endTask() {
-		//returnCurrent();
+		returnCurrent();
 		//startObjects.current = 0;
 		TASK_END();
 	}

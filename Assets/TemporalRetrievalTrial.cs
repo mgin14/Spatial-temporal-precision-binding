@@ -14,16 +14,26 @@ using UnityStandardAssets.Characters.FirstPerson;
 using Valve.VR;
 using System.IO;
 using UnityEngine.XR;
+using UnityEngine.UI;
 
 public class TemporalRetrievalTrial : ExperimentTask
 {
     float temporalStartTime; //Get the time the space bar is held down
     float response;
     private int tempTrial; // this is just for output
-    private float[] goalTimes = { 1.85f, 5.11f, 7.66f };
+    private float[] goalTimes = { 1.73f, 4.97f, 8.25f }; // These are the measurements from unity
     private float goal;
     private GameObject item;
     public Vector3 itemLocation;
+
+    //text
+    [TextArea] public string masterText;
+    private Text canvas;
+    private HUD avatarHUD;
+    private Color defaultColor;
+    private int defaultFont;
+
+    private bool mainLoopCurrent;
 
     // Start is called before the first frame update
     public override void startTask()
@@ -36,10 +46,23 @@ public class TemporalRetrievalTrial : ExperimentTask
         if (!manager) Start();
         base.startTask();
 
+        var curTask = GameObject.Find("Tasks").GetComponent<TaskList>().currentTask.name;
         var currentRepeat = gameObject.GetComponentInParent<TaskList>().repeatCount;
-        tempTrial = 3 - (3 - currentRepeat);
-        currentRepeat = currentRepeat - 1;
-        item = GameObject.Find("ChooseTask").GetComponent<LM_ChooseTask>().loc[currentRepeat];
+        if (curTask == "TASK_MainLoop")
+        {
+            mainLoopCurrent = true;
+            var trialNum = GameObject.Find("TrialCounter").GetComponent<TrialCounter>().trialNum;
+            tempTrial = trialNum - (3 - currentRepeat);
+            currentRepeat--;
+            item = GameObject.Find("ChooseTask").GetComponent<LM_ChooseTask>().loc[currentRepeat];
+        }
+        else
+        {
+            mainLoopCurrent = false;
+            currentRepeat--;
+            item = GameObject.Find("ST_TrackTargets").GetComponent<LM_TrackTargets>().loc_array[currentRepeat];// this is the current object's location name
+        }
+
         itemLocation = item.transform.position;
 
         if (item.tag == "front")
@@ -52,6 +75,22 @@ public class TemporalRetrievalTrial : ExperimentTask
         }
         else goal = goalTimes[2];
 
+        // handle changes to the hud
+        // Change the anchor points to put the message at the bottom
+        RectTransform hudposition = hud.hudPanel.GetComponent<RectTransform>() as RectTransform;
+        hudposition.pivot = new Vector2(0.5f, 0.5f);
+
+        // Set up the text
+        hud.setMessage(masterText);
+        canvas = GameObject.Find("[HudCanvas]").GetComponent<Text>();
+        defaultColor = canvas.color;
+        defaultFont = canvas.fontSize;
+        canvas.color = Color.white;
+        canvas.fontSize = 55;
+        hud.ForceShowMessage();
+        avatarHUD = avatar.GetComponent<HUD>();
+        avatarHUD.SecondsToShow = 9999;
+        avatarHUD.GeneralDuration = 9999;
     }
 
     // the returned bool indicates whether to continue updating. True-stop, false-continue
@@ -73,12 +112,21 @@ public class TemporalRetrievalTrial : ExperimentTask
         if (Input.GetKeyUp(KeyCode.Space))
         {
             response = Time.time - temporalStartTime;
-            var timeError = goal - response;
-            
-            GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().fileBuffer += "Temporal, " + tempTrial + ", " + item.name + 
-                ", " + itemLocation.x + ", " + itemLocation.y + ", " + itemLocation.z + ", , , , ," + goal + ", " + response + ", " + timeError;
+            var timeError = response - goal; // Overshooting will result in positive error; undershooting will be negative
+            var output = GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>();
+            if (mainLoopCurrent)
+            {
+                output.fileBuffer += "Temporal, " + tempTrial + ", " + item.name +
+                    ", " + itemLocation.x + ", " + itemLocation.y + ", " + itemLocation.z + ", , , , ," + goal + ", " + response + ", " + timeError;
 
-            GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().AddData();
+                // Input response to output file HERE
+                output.AddData();
+            }
+            else
+            {
+                output.sTBuffer += goal + ", " + response + ", " + timeError + ", ";
+            }
+            
             return true;
         }
 
@@ -90,13 +138,16 @@ public class TemporalRetrievalTrial : ExperimentTask
     {
         
         TASK_END();
+        // Reset the text
+        canvas.color = defaultColor;
+        canvas.fontSize = defaultFont;
+        avatarHUD.SecondsToShow = 0;
+        avatarHUD.GeneralDuration = 0;
 
     }
 
     public override void TASK_END()
     {
-        // Input response to output file HERE
-
 
         base.endTask();
     }

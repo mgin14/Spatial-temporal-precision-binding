@@ -1,25 +1,19 @@
 ﻿/*
-    LM Dummy format
-       
-    Attached object holds task components that need to be effectively ignored 
-    by Tasklist but are required for the script. Thus the object this is 
-    attached to can be detected by Tasklist (won't throw error), but does nothing 
-    except start and end.   
-
-    Copyright (C) 2019 Michael J. Starrett
-
-    Navigate by StarrLite (Powered by LandMarks)
-    Human Spatial Cognition Laboratory
-    Department of Psychology - University of Arizona  
-    -----------------------------------------------------------------------------------------
     ReadBlockInfo
 
     Created by Melanie Gin 12/2024
   
     This file will read in the block and trial info which will have the target location
-    for each random target in trial for spatial and temporal.
+    for each random target in trial for spatial and temporal. It will save these as a 2D
+    list where the row is the block number and the columns are the trial.
    
-    File name: Block_info.xlsx
+    File name: Block_info.csv
+    
+
+    It will also read in the sequence block csv file into a separate 2D list since there are
+    30 trials as well but three objects appear in the same hall.
+
+    File name: seq_block.csv
  
 */
 
@@ -32,12 +26,23 @@ using System;
 public class readBlockInfo : ExperimentTask
 {
     [Header("Task-specific Properties")]
+
+    // ----------------------- SPATIAL & TEMPORAL BLOCK VARS ---------------------------------------------
     public string blockInfoFile = "Block_info.csv";
+
     // These two will give us the location name for the target as the header for the file is: Environment, Block, Trial 1, Trial 2, Trial 3, Trial 4, Trial 5, Trial 6
     public int block; // This var will help access targetLocation2D list. As of 12/24 there are 5 block with 6 trials. Spatial -> temporal -> spatial -> temporal, etc.
     public List<List<GameObject>> targetLocations2D = new List<List<GameObject>>(); // This will be a 2D array. Lists within a list, the first index will be the block and the list in that index will be of the trials
-    public int count;
 
+    public int count;
+    // -------------------------------------------------------------------------------
+
+
+    //------------------------ SPACE-TIME BLOCK VARS ----------------------------------------
+    // This list won't need any other variable as it will be accessed directly when the seq block happens.
+    public string spaceTimeInfoFile = "seq_block.csv";
+    public List<List<GameObject>> seqLocations2D = new List<List<GameObject>>(); 
+    // -------------------------------------------------------------------------------
 
     public override void startTask()
     {
@@ -58,57 +63,8 @@ public class readBlockInfo : ExperimentTask
             return;
         }
 
-        // Make sure the file exists
-        if (File.Exists(blockInfoFile))
-        {
-            Debug.Log("________ Block_info File found");
-            // We will read the file and put the locations in a temp list to put in the targetLocation2D list
-            using (var reader = new StreamReader(blockInfoFile))
-            {
-                int count = 1; // This will be used to not include the header line
-                while (!reader.EndOfStream)
-                {
-                    var line = reader.ReadLine();
-                    if (count == 1)
-                    {
-                        count++;
-                    }
-                    else
-                    {
-                        var splitLine = line.Split(',');
-
-                        List<GameObject> temp = new List<GameObject>();
-                        for (int i = 2; i < splitLine.Length; i++)
-                        {
-                            GameObject loc = GameObject.Find(splitLine[i]); // Save the game object so we can get the coordinates and tag
-                            Debug.Log(" Here is the name and tag: " + loc.name + " " + loc.tag);
-                            temp.Add(loc);
-                        }
-
-                        targetLocations2D.Add(temp);
-                    }
-                }
-            }
-        }
-
-        count = targetLocations2D.Count;
-
-        // Replace position of target objects with the positons in the excel file
-        var targets = GameObject.Find("TargetObjects");
-        int b = 0; // temp block var
-        var t = 0; // temp trial var
-        //for (int i = 0; i < targets.transform.childCount; i++)
-        for (int i = 0; i < 30; i++)
-        {
-            var cur_tar = targets.transform.GetChild(i);
-            cur_tar.transform.position = targetLocations2D[b][t].transform.position;
-            t++;
-            if (t == 6)
-            {
-                t = 0; // go back to trial one for next block
-                b++; // increase to next block
-            }
-        }
+        SpatialTempFile();
+        SeqFile();
     }
     
     public void IncrementBlock()
@@ -120,6 +76,11 @@ public class readBlockInfo : ExperimentTask
     {
         var trial = GameObject.Find("TrialCounter").GetComponent<TrialCounter>().trialNum -1;
         return targetLocations2D[block][trial];
+    }
+
+    public GameObject CurrentSeq(int row, int col)
+    {
+        return seqLocations2D[row][col];
     }
 
 
@@ -146,4 +107,114 @@ public class readBlockInfo : ExperimentTask
         // WRITE TASK EXIT CODE HERE
     }
 
+    // This function just reads in the csv file for spatial and temporal block and fills in the 2D list with the locations
+    private void SpatialTempFile()
+    {
+        // Make sure the spatial and temporal file exists
+        if (File.Exists(blockInfoFile))
+        {
+            Debug.Log("________ Block_info File found");
+            // We will read the file and put the locations in a temp list to put in the targetLocation2D list
+            using (var reader = new StreamReader(blockInfoFile))
+            {
+                int row = 1; // This will be used to not include the header line
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    if (row == 1)
+                    {
+                        row++;
+                    }
+                    else
+                    {
+                        var splitLine = line.Split(',');
+
+                        List<GameObject> temp = new List<GameObject>();
+                        for (int i = 2; i < splitLine.Length; i++)
+                        {
+                            GameObject loc = GameObject.Find(splitLine[i]); // Save the game object so we can get the coordinates and tag
+                            //Debug.Log(" Here is the name and tag: " + loc.name + " " + loc.tag);
+                            temp.Add(loc);
+                        }
+
+                        targetLocations2D.Add(temp);
+                    }
+                }
+            }
+        }
+
+        count = targetLocations2D.Count;
+
+        // Replace position of target objects with the positons in the excel file
+        var targets = GameObject.Find("TargetObjects");
+        int b = 0; // temp block var
+        var t = 0; // temp trial var
+        //for (int i = 0; i < targets.transform.childCount; i++)
+        for (int i = 0; i < 60; i++) // The spatial-temp blocks are 30 each so 60 items needed total
+        {
+            var cur_tar = targets.transform.GetChild(i);
+            cur_tar.transform.position = targetLocations2D[b][t].transform.position;
+            t++;
+            if (t == 6)
+            {
+                t = 0; // go back to trial one for next block
+                b++; // increase to next block
+            }
+        }
+
+    }
+
+
+    private void SeqFile()
+    {
+        // Make sure the spatial and temporal file exists
+        if (File.Exists(spaceTimeInfoFile))
+        {
+            Debug.Log("________ Seq info File found");
+            // We will read the file and put the locations in a temp list to put in the seqLocation2D list
+            using (var reader = new StreamReader(spaceTimeInfoFile))
+            {
+                int row = 1; // This will be used to not include the header line
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    if (row == 1)
+                    {
+                        row++;
+                    }
+                    else
+                    {
+                        var splitLine = line.Split(',');
+
+                        List<GameObject> temp = new List<GameObject>();
+                        for (int i = 2; i < splitLine.Length; i++)
+                        {
+                            GameObject loc = GameObject.Find(splitLine[i]); // Save the game object so we can get the coordinates and tag
+                            //Debug.Log(" Here is the name and tag: " + loc.name + " " + loc.tag);
+                            temp.Add(loc);
+                        }
+
+                        seqLocations2D.Add(temp);
+                    }
+                }
+            }
+        }
+        
+
+        // Replace position of target objects with the positons in the excel file
+        var targets = GameObject.Find("TargetObjects");
+        int b = 0; // temp block var
+        var t = 0; // temp trial var
+        for (int i = 60; i < 150; i++)
+        {
+            var cur_tar = targets.transform.GetChild(i);
+            cur_tar.transform.position = seqLocations2D[b][t].transform.position;
+            t++;
+            if (t == 3)
+            {
+                t = 0; // go back to trial one for next block
+                b++; // increase to next block
+            }
+        }
+    }
 }

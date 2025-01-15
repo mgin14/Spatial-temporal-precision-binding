@@ -111,56 +111,16 @@ public class InstructionsTaskDisorient : ExperimentTask {
             }
         }
         if (instruction) canvas.text = instruction.text;
-
-      /*  // Determine where we're getting the text from (default is masterText) <-- MJS FIXME refactor this code
-        if (masterText == "")
-        {
-            if (message == null & texts != null)
-            {
-                Debug.Log("No message asset detected; texts asset found; using texts");
-                gui.text = currentText;
-            }
-            else
-            {
-                Debug.Log("Attempting to use the default, message, asset.");
-                gui.text = message.text;
-            }
-        }
-        else
-        {
-            gui.text = masterText;
-        }
-
-        Debug.Log(gui.text);*/
         
 
         if (blackout) hud.showOnlyHUD();
         else hud.showEverything();
 
-        var startNum = Random.Range(29, 111);
+        var startNum = Random.Range(59, 111);
         var countDown = Random.Range(4, 8);
 
         masterText = "Please count backwards out loud \nfrom " + startNum.ToString() + " by " + countDown.ToString();
-
-        //if (masterText == "")
-        //{
-        //    if (message)
-        //    {
-        //        string msg = message.text;
-        //        if (currentText != null) msg = string.Format(msg, currentText);
-        //        if (currentObject != null) msg = string.Format(msg, currentObject.name);
-        //        if (multiObjects.Length > 0) msg = string.Format(msg, currentMultiObjects);
-        //        hud.setMessage(msg);
-        //    }
-        //    else if (!message & texts)
-        //    {
-        //        string msg = currentText;
-        //        if (currentObject != null) msg = string.Format(msg, currentObject.name);
-        //        hud.setMessage(msg);
-        //    }
-        //}
-        //else
-        //{
+        
         string msg = masterText;
         hud.setMessage(msg);
 

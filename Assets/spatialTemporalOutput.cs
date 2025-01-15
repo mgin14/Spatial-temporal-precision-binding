@@ -17,10 +17,16 @@ public class spatialTemporalOutput : MonoBehaviour
     public SubjectSex sex;
 
     public StreamWriter fileOutput;
+    public StreamWriter sTOutput;
     public StreamWriter seqOutput;
-    public string fileBuffer;
     private string fileName;
-    //public static string seqBuffer;
+
+    [HideInInspector]
+    public string fileBuffer;
+    [HideInInspector]
+    public string sTBuffer;
+    [HideInInspector]
+    public string seqBuffer;
 
 
     // Start is called before the first frame update
@@ -41,19 +47,27 @@ public class spatialTemporalOutput : MonoBehaviour
         }
 
         string header = "Subject, sex, Block, Trial, LocationName, LocationX, LocationY, LocationZ, ResponseX, ResponseY, ResponseZ, SpatialError, GoalTime, ResponseTime, TemporalError";
-
         fileOutput = new StreamWriter(path);
         fileOutput.WriteLine(header);
 
 
-        // DO LATER! SEE HOW WE WANT TO DO SEQ
-        //path = outputPath + fileName + "_Sequence_Output.csv";
-        //seqOutput = new StreamWriter(path);
-        //seqOutput.WriteLine(header);
+        path = outputPath + fileName + "_SpaceTime_Output.csv";
+        sTOutput = new StreamWriter(path);
+        string st_header = "Subject, sex, Trial, " +
+            "LocationX1, LocationY1, LocationZ1, ResponseX1, ResponseY1, ResponseZ1, SpatialError1, GoalTime1, ResponseTime1, TemporalError1, " +
+            "LocationX2, LocationY2, LocationZ2, ResponseX2, ResponseY2, ResponseZ2, SpatialError2, GoalTime2, ResponseTime2, TemporalError2, " +
+            "LocationX3, LocationY3, LocationZ3, ResponseX3, ResponseY3, ResponseZ3, SpatialError3, GoalTime3, ResponseTime3, TemporalError3";
+        sTOutput.WriteLine(st_header);
+
+        path = outputPath + fileName + "_Sequence_Output.csv";
+        seqOutput = new StreamWriter(path);
+        string seq_header = "Subject, sex, Trial, SeqItem1, SeqItem2, SeqItem3, SeqItem4, SeqItem5, ItemResp1, ItemResp2, ItemResp3, ItemResp4, ItemResp5, SeqError";
+        seqOutput.WriteLine(seq_header);
 
         // Start the buffers
         fileBuffer += fileName + ", " + sex + ", ";
-
+        sTBuffer += fileName + ", " + sex + ", ";
+        seqBuffer += fileName + ", " + sex + ", ";
     }
 
     // Update is called once per frame
@@ -68,8 +82,48 @@ public class spatialTemporalOutput : MonoBehaviour
         fileBuffer = fileName + ", " + sex + ", ";
     }
 
+    public void AddSTData() {
+        sTOutput.WriteLine(sTBuffer);
+        sTBuffer = fileName + ", " + sex + ", ";
+    }
+
+    public void AddSeqData()
+    {
+        seqOutput.WriteLine(seqBuffer);
+        seqBuffer = fileName + ", " + sex + ", ";
+    }
+
     void OnApplicationQuit()
     {
-        fileOutput.Close();
+        var str = fileName + ", " + sex + ", ";
+        if (fileBuffer == str)
+        {
+            fileOutput.Close();
+        }
+        else
+        {
+            AddData();
+            fileOutput.Close();
+        }
+
+        if (sTBuffer == str)
+        {
+            sTOutput.Close();
+        }
+        else
+        {
+            AddSTData();
+            sTOutput.Close();
+        }
+
+        if (seqBuffer == str)
+        {
+            seqOutput.Close();
+        }
+        else
+        {
+            AddSeqData();
+            seqOutput.Close();
+        }
     }
 }

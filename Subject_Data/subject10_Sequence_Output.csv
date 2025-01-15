@@ -1,0 +1,7 @@
+Subject, sex, Trial, SeqItem1, SeqItem2, SeqItem3, SeqItem4, SeqItem5, ItemResp1, ItemResp2, ItemResp3, ItemResp4, ItemResp5, SeqError
+subject10, Male, 1,PotionBig,Beer,WineBottle,WineJug,Watermelon (2),Beer,WineJug,Watermelon (2),WineBottle,PotionBig,5,
+subject10, Male, 2,PotionSmall,Avocado_01 (2),NewtonsCradle_01 (1),Drone_01 (1),Bird_01 (2),Bird_01 (2),PotionSmall,Avocado_01 (2),Drone_01 (1),NewtonsCradle_01 (1),4,
+subject10, Male, 3,TeddyBear_01 (1),FlowerPot_01 (1),Bag (2),TennisBall_01 (1),Controller_01 (2),Controller_01 (2),FlowerPot_01 (1),TeddyBear_01 (1),TennisBall_01 (1),Bag (2),3,
+subject10, Male, 4,Ship_01 (2),WateringCan_01 (2),SeaHorse_01 (2),Alpaca_01 (3),Pineapple (3),Pineapple (3),Alpaca_01 (3),SeaHorse_01 (2),WateringCan_01 (2),Ship_01 (2),4,
+subject10, Male, 5,Shovel (1),Darts_01 (1),CassetteRecorder (1),Earphones (1),Rocket_01 (1),Rocket_01 (1),Shovel (1),CassetteRecorder (1),Darts_01 (1),Earphones (1),4,
+subject10, Male, 6,IceCream02 (2),Pineapple (2),Bucket (2),Dinosaur_01 (1),SwimmingRing04 (1),
