@@ -1,6 +1,3 @@
 id,condition,sceneName,sceneNumber,task,run,block,trial,Seq_Navigate_target,Seq_Navigate_actualPath,Seq_Navigate_optimalPath,Seq_Navigate_excessPath,Seq_Navigate_clockwiseTravel,Seq_Navigate_duration,
-999,default,Spatial_temporal,1,TASK_seq,1,1,1,PotionSmall,82.4554,27.38004,55.07536,-179.3878,11.72507,
-999,default,Spatial_temporal,1,TASK_seq,1,2,1,TeddyBear_01 (1),82.65541,27.03792,55.61749,-179.3941,10.57643,
-999,default,Spatial_temporal,1,TASK_seq,1,3,1,Ship_01 (2),82.65541,27.32406,55.33135,-179.4389,10.75638,
-999,default,Spatial_temporal,1,TASK_seq,1,4,1,Shovel (1),82.65541,27.59778,55.05763,-179.3598,15.78011,
-999,default,Spatial_temporal,1,TASK_seq,1,5,1,IceCream02 (2),82.65541,27.31847,55.33694,-179.3796,10.81424,
+999,default,Spatial_temporal,1,TASK_seq,1,1,1,PotionSmall,82.65541,27.38004,55.27538,-179.3796,11.35609,
+999,default,Spatial_temporal,1,TASK_seq,1,2,1,TeddyBear_01 (1),82.65541,27.00038,55.65503,-179.3796,10.60284,

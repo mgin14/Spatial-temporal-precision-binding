@@ -41,8 +41,11 @@ public class readBlockInfo : ExperimentTask
     //------------------------ SPACE-TIME BLOCK VARS ----------------------------------------
     // This list won't need any other variable as it will be accessed directly when the seq block happens.
     public string spaceTimeInfoFile = "seq_block.csv";
-    public List<List<GameObject>> seqLocations2D = new List<List<GameObject>>(); 
+    public List<List<GameObject>> seqLocations2D = new List<List<GameObject>>();
     // -------------------------------------------------------------------------------
+
+    public string seqInfoFile = "lastSequence5.csv";
+    public List<List<GameObject>> seqLoc2D = new List<List<GameObject>>();
 
     public override void startTask()
     {
@@ -65,6 +68,7 @@ public class readBlockInfo : ExperimentTask
 
         SpatialTempFile();
         SeqFile();
+        ReadSeqFile();
     }
     
     public void IncrementBlock()
@@ -153,7 +157,12 @@ public class readBlockInfo : ExperimentTask
         for (int i = 0; i < 60; i++) // The spatial-temp blocks are 30 each so 60 items needed total
         {
             var cur_tar = targets.transform.GetChild(i);
-            cur_tar.transform.position = targetLocations2D[b][t].transform.position;
+            if (targetLocations2D[b][t].name.Contains("bottom"))
+            {
+                var temp_pos = new Vector3(targetLocations2D[b][t].transform.position.x, cur_tar.transform.position.y + targetLocations2D[b][t].transform.position.y, targetLocations2D[b][t].transform.position.z);
+                cur_tar.transform.position = temp_pos;
+            }
+            else { cur_tar.transform.position = targetLocations2D[b][t].transform.position; }
             t++;
             if (t == 6)
             {
@@ -208,9 +217,74 @@ public class readBlockInfo : ExperimentTask
         for (int i = 60; i < 150; i++)
         {
             var cur_tar = targets.transform.GetChild(i);
-            cur_tar.transform.position = seqLocations2D[b][t].transform.position;
+            if (seqLocations2D[b][t].name.Contains("bottom"))
+            {
+                var temp_pos = new Vector3(seqLocations2D[b][t].transform.position.x, cur_tar.transform.position.y + seqLocations2D[b][t].transform.position.y, seqLocations2D[b][t].transform.position.z);
+                cur_tar.transform.position = temp_pos;
+            }
+            else { cur_tar.transform.position = seqLocations2D[b][t].transform.position; }
+            
             t++;
             if (t == 3)
+            {
+                t = 0; // go back to trial one for next block
+                b++; // increase to next block
+            }
+        }
+    }
+
+    private void ReadSeqFile()
+    {
+        // Make sure the spatial and temporal file exists
+        if (File.Exists(seqInfoFile))
+        {
+            Debug.Log("________ Last Seq info File found");
+            // We will read the file and put the locations in a temp list to put in the seqLocation2D list
+            using (var reader = new StreamReader(seqInfoFile))
+            {
+                int row = 1; // This will be used to not include the header line
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    if (row == 1)
+                    {
+                        row++;
+                    }
+                    else
+                    {
+                        var splitLine = line.Split(',');
+
+                        List<GameObject> temp = new List<GameObject>();
+                        for (int i = 1; i < splitLine.Length; i++)
+                        {
+                            GameObject loc = GameObject.Find(splitLine[i]); // Save the game object so we can get the coordinates and tag
+                            //Debug.Log(" Here is the name and tag: " + loc.name + " " + loc.tag);
+                            temp.Add(loc);
+                        }
+
+                        seqLoc2D.Add(temp);
+                    }
+                }
+            }
+        }
+
+
+        // Replace position of target objects with the positons in the excel file
+        var targets = GameObject.Find("TargetObjects");
+        int b = 0; // temp block var
+        var t = 0; // temp trial var
+        for (int i = 150; i < 200; i++)
+        {
+            var cur_tar = targets.transform.GetChild(i);
+            if (seqLoc2D[b][t].name.Contains("bottom"))
+            {
+                var temp_pos = new Vector3(seqLoc2D[b][t].transform.position.x, cur_tar.transform.position.y + seqLoc2D[b][t].transform.position.y, seqLoc2D[b][t].transform.position.z);
+                cur_tar.transform.position = temp_pos;
+            }
+            else { cur_tar.transform.position = seqLoc2D[b][t].transform.position; }
+
+            t++;
+            if (t == 5)
             {
                 t = 0; // go back to trial one for next block
                 b++; // increase to next block

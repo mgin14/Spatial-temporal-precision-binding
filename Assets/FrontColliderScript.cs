@@ -38,7 +38,7 @@ public class FrontColliderScript : MonoBehaviour
     // other: 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log(" ___________________________INSIDE TIRIGGER: " + gameObject.name);
+        Debug.Log(" ___________________________INSIDE TIRIGGER: " + gameObject.name);
         //Debug.Log(" Time: " + (Time.time - GameObject.Find("Navigate").GetComponent<NavigationTask>().pressTime).ToString());
 
         // For the first part of the project we want to activate the items one at a time
@@ -67,13 +67,17 @@ public class FrontColliderScript : MonoBehaviour
             else { objNum = 2; }
             GameObject seqLocation = GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().CurrentSeq(trial, objNum);
 
-            var trackTar = GameObject.Find("ST_TrackTargets").GetComponent<LM_TrackTargets>();
-            trackTar.AddLocation(seqLocation);
-            //Debug.Log("++++++++Activate space time object");
-            cur_tar_st.currentTarget.SetActive(true);
-            trackTar.AddTarget(cur_tar_st.currentTarget);
-            targList.incrementCurrent();
-            cur_tar_st.UpdateCurrent();
+            if (seqLocation.tag == gameObject.tag)
+            {
+                var trackTar = GameObject.Find("ST_TrackTargets").GetComponent<LM_TrackTargets>();
+                trackTar.AddLocation(seqLocation);
+                //Debug.Log("++++++++Activate space time object");
+                cur_tar_st.currentTarget.SetActive(true);
+                trackTar.AddTarget(cur_tar_st.currentTarget);
+                targList.incrementCurrent();
+                cur_tar_st.UpdateCurrent();
+            }
+            
         }
         // This else if is for the sequence block where we just want to track the items that are seen
         else if (GameObject.Find("Seq_NavigationTrials").GetComponent<TaskList>().currentTask &&

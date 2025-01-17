@@ -35,9 +35,7 @@ public class ActivateSeqStuff : ExperimentTask
             log.log("INFO    skip task    " + name, 1);
             return;
         }
-
-        GameObject.Find("front_mid_collider").GetComponent<BoxCollider>().isTrigger = true;
-        GameObject.Find("far_mid_collider").GetComponent<BoxCollider>().isTrigger = true;
+        
 
         ReadSeqFile();
     }
@@ -110,8 +108,13 @@ public class ActivateSeqStuff : ExperimentTask
         for (int i = 150; i < 200; i++)
         {
             var cur_tar = targets.transform.GetChild(i);
-            seqLoc2D[b][t].transform.position = new Vector3(seqLoc2D[b][t].transform.position.x, cur_tar.transform.position.y + seqLoc2D[b][t].transform.position.y, seqLoc2D[b][t].transform.position.z);
-            cur_tar.transform.position = seqLoc2D[b][t].transform.position;
+            if (seqLoc2D[b][t].name.Contains("bottom"))
+            {
+                var temp_pos = new Vector3(seqLoc2D[b][t].transform.position.x, cur_tar.transform.position.y + seqLoc2D[b][t].transform.position.y, seqLoc2D[b][t].transform.position.z);
+                cur_tar.transform.position = temp_pos;
+            }
+            else { cur_tar.transform.position = seqLoc2D[b][t].transform.position; }
+            
             t++;
             if (t == 5)
             {

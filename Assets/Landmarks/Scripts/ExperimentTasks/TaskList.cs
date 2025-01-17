@@ -72,8 +72,12 @@ public class TaskList : ExperimentTask
 
         TASK_START();
 
-
+        // Mel 1/2025 if TASK_MainLoop is skipped change the starting target object
         if (!skip) startNextTask();
+        else
+        {
+            ChangeObjectIndex();
+        } 
     }
 
     public override void TASK_START()
@@ -105,7 +109,29 @@ public class TaskList : ExperimentTask
                 break;
         }
 
-        repeatCount = 1;
+        //repeatCount = 1;
+        // Mel 1/2025
+        // This modification is if they need to be in the middle of a part it will grab the correct location in the 2D list and the correct object
+        if (gameObject.name == "TASK_MainLoop" && repeatCount % 2 != 0) // find odd number
+        {
+            var row = repeatCount / 2;
+            //Debug.Log("=====================================THIS IS THE NEW ROW: " + row);
+            GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().block = row;
+            gameObject.transform.parent.GetChild(1).GetComponent<ObjectList>().current = repeatCount * 3 - 3;
+        }
+        else if (gameObject.name == "TASK_MainLoop")
+        {
+            var row = repeatCount/2 -1;
+            //Debug.Log("=====================================THIS IS THE NEW ROW: " + row);
+            GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().block = row;
+            var parent = gameObject.transform.parent;
+            parent.GetChild(0).GetComponent<TrialCounter>().trialNum = 3;
+            parent.GetChild(1).GetComponent<ObjectList>().current = repeatCount * 3 - 3; }
+        
+        if (gameObject.name == "TASK_SpaceTime")
+        {
+            gameObject.transform.parent.GetChild(1).GetComponent<ObjectList>().current = 60 + repeatCount * 3 - 3;
+        }
 
         base.startTask();
 
@@ -122,6 +148,7 @@ public class TaskList : ExperimentTask
         if (overrideRepeat)
         {
             repeat = overrideRepeat.objects.Count;
+
         }
 
         //----------------------------------------------------------------------
@@ -204,6 +231,12 @@ public class TaskList : ExperimentTask
     public override bool updateTask()
     {
         if (skip) return true;
+
+        //if (repeatCount > repeat)
+        //{
+        //    ChangeObjectIndex();
+        //    return true;
+        //}
 
         if (currentTask.updateTask())
         {
@@ -365,6 +398,22 @@ public class TaskList : ExperimentTask
             i++;
         }
         return string.Format(str, names);
+    }
+
+
+    // Mel 1/2025
+    // Change ListNavigationTargets current object number if these tasks are skipped
+    private void ChangeObjectIndex()
+    {
+        var tasksParent = gameObject.transform.parent;
+        if (gameObject.name == "TASK_MainLoop") // if skipped go to the start of space time
+        {
+            tasksParent.GetChild(1).GetComponentInChildren<ObjectList>().current = 60;
+        }
+        else if (gameObject.name == "TASK_SpaceTime") // if skipped go to sequence
+        {
+            tasksParent.GetChild(1).GetComponentInChildren<ObjectList>().current = 150;
+        }
     }
 
 }

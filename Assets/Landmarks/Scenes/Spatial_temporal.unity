@@ -4053,6 +4053,7 @@ MonoBehaviour:
   block: 0
   count: 0
   spaceTimeInfoFile: seq_block.csv
+  seqInfoFile: lastSequence5.csv
 --- !u!1001 &299550047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6643,7 +6644,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 472753870}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -8165,7 +8166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   avatar: {fileID: 0}
   skip: 0
-  canIncrementLists: 1
+  canIncrementLists: 0
   interval: 0
   interruptTasks: {fileID: 0}
   interruptInterval: 0
@@ -9585,7 +9586,7 @@ MonoBehaviour:
   repeat: 30
   configControlRepeat: 0
   overrideRepeat: {fileID: 0}
-  repeatCount: 1
+  repeatCount: 30
   currentTask: {fileID: 0}
   catchTrialCount: 0
   skipOnCatch: []
@@ -11670,7 +11671,7 @@ Transform:
   - {fileID: 1729216752}
   - {fileID: 2097124848}
   m_Father: {fileID: 5308465571991479888}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &818223219
 MonoBehaviour:
@@ -15754,69 +15755,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.17666419, y: 0.14972697, z: 0.09146467}
   m_Center: {x: -0.000000011175874, y: 0.014836809, z: 0.042030975}
---- !u!1 &1015616083
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1015616084}
-  - component: {fileID: 1015616085}
-  m_Layer: 0
-  m_Name: PrepareSequenceStuff
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1015616084
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1015616083}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5308465571991479888}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1015616085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1015616083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 061d6241ab3ed9944aaf66b4f4cd2732, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  avatar: {fileID: 0}
-  skip: 0
-  canIncrementLists: 0
-  interval: 0
-  interruptTasks: {fileID: 0}
-  interruptInterval: 0
-  repeatInterrupts: 9999
-  currentInterrupt: 0
-  pausedTasks: {fileID: 0}
-  parentTask: {fileID: 0}
-  firstPersonCamera: {fileID: 0}
-  overheadCamera: {fileID: 0}
-  debugButton: {fileID: 0}
-  actionButton: {fileID: 0}
-  vrEnabled: 0
-  taskLog: {fileID: 0}
-  triggerLabel: 
-  triggerOnStart: 0
-  triggerOnEnd: 0
-  seqInfoFile: lastSequence5.csv
 --- !u!1 &1026927768
 GameObject:
   m_ObjectHideFlags: 0
@@ -20900,7 +20838,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311152696}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -23550,7 +23488,8 @@ MonoBehaviour:
   triggerOnStart: 0
   triggerOnEnd: 0
   itemLocation: {x: 0, y: 0, z: 0}
-  masterText: Hold down the SPACE BAR for the time it took to get to that object
+  masterText: Hold down the SPACE BAR for the time it took for the object to appear
+    in front of you
 --- !u!1 &1522743801
 GameObject:
   m_ObjectHideFlags: 0
@@ -24415,7 +24354,8 @@ MonoBehaviour:
   triggerOnStart: 0
   triggerOnEnd: 0
   itemLocation: {x: 0, y: 0, z: 0}
-  masterText: Hold down the SPACE BAR for the time it took to get to that object
+  masterText: Hold down the SPACE BAR for the time it took for the object to appear
+    in front of you
 --- !u!1 &1596822507
 GameObject:
   m_ObjectHideFlags: 0
@@ -29159,7 +29099,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 418fc7f46f5b9d7479a0778f9033474a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.306
+      value: 0.29
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 418fc7f46f5b9d7479a0778f9033474a,
         type: 3}
@@ -31828,7 +31768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   avatar: {fileID: 0}
   skip: 0
-  canIncrementLists: 1
+  canIncrementLists: 0
   interval: 0
   interruptTasks: {fileID: 0}
   interruptInterval: 0
@@ -32602,7 +32542,7 @@ MonoBehaviour:
   repeat: 20
   configControlRepeat: 0
   overrideRepeat: {fileID: 0}
-  repeatCount: 1
+  repeatCount: 19
   currentTask: {fileID: 0}
   catchTrialCount: 0
   skipOnCatch: []
