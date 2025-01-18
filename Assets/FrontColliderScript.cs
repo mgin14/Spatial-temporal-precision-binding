@@ -38,11 +38,22 @@ public class FrontColliderScript : MonoBehaviour
     // other: 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(" ___________________________INSIDE TIRIGGER: " + gameObject.name);
+        //Debug.Log(" ___________________________INSIDE TIRIGGER: " + gameObject.name);
         //Debug.Log(" Time: " + (Time.time - GameObject.Find("Navigate").GetComponent<NavigationTask>().pressTime).ToString());
 
+        if (GameObject.Find("Tasks").GetComponent<TaskList>().currentTask.name == "PracticeTrial")
+        {
+            var practice = GameObject.Find("ListNavigationTargets (1)").GetComponent<ObjectList>().objects[0];
+            if ("farmid" == gameObject.tag)
+            {
+
+                practice.SetActive(true);
+                
+            }
+            else if ("far" == gameObject.tag) { practice.SetActive(false); }
+        }
         // For the first part of the project we want to activate the items one at a time
-        if (GameObject.Find("NavigationTrials").GetComponent<TaskList>().currentTask != null && GameObject.Find("NavigationTrials").GetComponent<TaskList>().currentTask.name == "Navigate")
+        else if (GameObject.Find("NavigationTrials").GetComponent<TaskList>().currentTask != null && GameObject.Find("NavigationTrials").GetComponent<TaskList>().currentTask.name == "Navigate")
         {
             GameObject location = GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().CurrentLocation();
             cur_des = location.tag;
@@ -83,13 +94,30 @@ public class FrontColliderScript : MonoBehaviour
         else if (GameObject.Find("Seq_NavigationTrials").GetComponent<TaskList>().currentTask &&
             GameObject.Find("Seq_NavigationTrials").GetComponent<TaskList>().currentTask.name == "Seq_Navigate")
         {
-            
+            var tag = gameObject.tag;
+            int trial = GameObject.Find("TASK_seq").GetComponent<TaskList>().repeatCount - 1;
             var trackTar = GameObject.Find("Seq_TrackTargets").GetComponent<LM_TrackTargets>();
-            //Debug.Log("++++++++Activate sequence object");
-            cur_tar_seq.currentTarget.SetActive(true);
-            trackTar.AddTarget(cur_tar_seq.currentTarget);
-            targList.incrementCurrent();
-            cur_tar_seq.UpdateCurrent();
+            if ( tag == "front") { objNum = 0; }
+            else if (tag == "frontmid") { objNum = 1; }
+            else if (tag == "mid") { objNum = 2; }
+            else if (tag == "farmid") { objNum = 3; }
+            else if (tag == "far") { objNum = 4; }
+            var count = trackTar.tar_array.Count;
+            if (objNum == count)
+            {
+                GameObject seqLocation = GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().seqLoc2D[trial][objNum];
+                //Debug.Log("=========== Seq tag: " + seqLocation.tag);
+                if (tag == seqLocation.tag)
+                {
+                    //Debug.Log("++++++++Activate sequence object");
+                    cur_tar_seq.currentTarget.SetActive(true);
+                    trackTar.AddTarget(cur_tar_seq.currentTarget);
+                    targList.incrementCurrent();
+                    cur_tar_seq.UpdateCurrent();
+                }
+            }
+            
+            
         }
     }
 

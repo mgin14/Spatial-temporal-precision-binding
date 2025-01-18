@@ -117,7 +117,7 @@ public class TaskList : ExperimentTask
             var row = repeatCount / 2;
             //Debug.Log("=====================================THIS IS THE NEW ROW: " + row);
             GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().block = row;
-            gameObject.transform.parent.GetChild(1).GetComponent<ObjectList>().current = repeatCount * 3 - 3;
+            gameObject.transform.parent.GetChild(2).GetComponent<ObjectList>().current = repeatCount * 3 - 3;
         }
         else if (gameObject.name == "TASK_MainLoop")
         {
@@ -125,12 +125,12 @@ public class TaskList : ExperimentTask
             //Debug.Log("=====================================THIS IS THE NEW ROW: " + row);
             GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().block = row;
             var parent = gameObject.transform.parent;
-            parent.GetChild(0).GetComponent<TrialCounter>().trialNum = 3;
-            parent.GetChild(1).GetComponent<ObjectList>().current = repeatCount * 3 - 3; }
+            parent.GetChild(1).GetComponent<TrialCounter>().trialNum = 3;
+            parent.GetChild(2).GetComponent<ObjectList>().current = repeatCount * 3 - 3; }
         
         if (gameObject.name == "TASK_SpaceTime")
         {
-            gameObject.transform.parent.GetChild(1).GetComponent<ObjectList>().current = 60 + repeatCount * 3 - 3;
+            gameObject.transform.parent.GetChild(2).GetComponent<ObjectList>().current = 60 + repeatCount * 3 - 3;
         }
 
         base.startTask();
@@ -408,11 +408,11 @@ public class TaskList : ExperimentTask
         var tasksParent = gameObject.transform.parent;
         if (gameObject.name == "TASK_MainLoop") // if skipped go to the start of space time
         {
-            tasksParent.GetChild(1).GetComponentInChildren<ObjectList>().current = 60;
+            tasksParent.GetChild(2).GetComponentInChildren<ObjectList>().current = 60;
         }
         else if (gameObject.name == "TASK_SpaceTime") // if skipped go to sequence
         {
-            tasksParent.GetChild(1).GetComponentInChildren<ObjectList>().current = 150;
+            tasksParent.GetChild(2).GetComponentInChildren<ObjectList>().current = 150;
         }
     }
 

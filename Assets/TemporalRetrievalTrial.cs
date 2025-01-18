@@ -56,6 +56,10 @@ public class TemporalRetrievalTrial : ExperimentTask
             currentRepeat--;
             item = GameObject.Find("ChooseTask").GetComponent<LM_ChooseTask>().loc[currentRepeat];
         }
+        else if (gameObject.transform.parent.name == "Practice")
+        {
+            item = GameObject.Find("mm_l_mid_mid");
+        }
         else
         {
             mainLoopCurrent = false;
@@ -111,6 +115,8 @@ public class TemporalRetrievalTrial : ExperimentTask
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            if (gameObject.transform.parent.name == "Practice") { return true; }
+
             response = Time.time - temporalStartTime;
             var timeError = response - goal; // Overshooting will result in positive error; undershooting will be negative
             var output = GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>();

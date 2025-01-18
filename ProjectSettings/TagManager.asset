@@ -22,6 +22,8 @@ TagManager:
   - far
   - tar_obj
   - tar_des
+  - farmid
+  - frontmid
   layers:
   - Default
   - TransparentFX

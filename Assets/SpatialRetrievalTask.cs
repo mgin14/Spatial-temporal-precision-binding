@@ -39,6 +39,8 @@ public class SpatialRetrievalTask : ExperimentTask
 
         //cur_tar = GameObject.FindGameObjectWithTag("tar_obj").GetComponent<NavigationTask>();
 
+        
+
         // Move player to where the object first appears (close to where the respective collider is)
         var curTask = GameObject.Find("Tasks").GetComponent<TaskList>().currentTask.name;
         var currentRepeat = gameObject.GetComponentInParent<TaskList>().repeatCount;
@@ -50,6 +52,10 @@ public class SpatialRetrievalTask : ExperimentTask
             currentRepeat = currentRepeat - 1;
             Debug.Log(" Current Repeat Num: " + currentRepeat);
             item = GameObject.Find("ChooseTask").GetComponent<LM_ChooseTask>().loc[currentRepeat]; // this is just the location name
+        }
+        else if (gameObject.transform.parent.name == "Practice")
+        {
+            item = GameObject.Find("mm_l_mid_mid");
         }
         else
         {
@@ -76,6 +82,8 @@ public class SpatialRetrievalTask : ExperimentTask
         // The subject clicked on the screen that they think the object was
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            if (gameObject.transform.parent.name == "Practice") { return true; }
+
             Vector3 mousePos = Input.mousePosition;
             //Debug.Log(" This is the coordinates: " + mousePos.x + ", " + mousePos.y + ", " + Camera.main.nearClipPlane);
             var newCoords = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 11f)); // 11 because we changed the avatar position's x on line 50 to +11
