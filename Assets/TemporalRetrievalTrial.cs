@@ -122,15 +122,16 @@ public class TemporalRetrievalTrial : ExperimentTask
             var output = GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>();
             if (mainLoopCurrent)
             {
-                output.fileBuffer += "Temporal, " + tempTrial + ", " + item.name +
-                    ", " + itemLocation.x + ", " + itemLocation.y + ", " + itemLocation.z + ", , , , ," + goal + ", " + response + ", " + timeError;
-
+                output.fileOutput.Write("Temporal, " + tempTrial + ", " + item.name +
+                    ", " + itemLocation.x + ", " + itemLocation.y + ", " + itemLocation.z + ", , , , ," + goal + ", " + response + ", " + timeError);
+                output.fileOutput.Flush();
                 // Input response to output file HERE
                 output.AddData();
             }
             else
             {
-                output.sTBuffer += goal + ", " + response + ", " + timeError + ", ";
+                output.sTOutput.Write(goal + ", " + response + ", " + timeError + ", ");
+                output.sTOutput.Flush();
             }
             
             return true;

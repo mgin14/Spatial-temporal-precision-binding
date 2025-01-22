@@ -68,10 +68,11 @@ public class SeqSpatialRetrievalTask : ExperimentTask
             //float distanceError = Vector3.Distance(goal, response);
             float distanceError = Vector2.Distance(goal, response);
             GameObject.Find("KeyboardMouseController").GetComponent<FirstPersonController>().enabled = true;
-            GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().seqBuffer += itemLocation.x + ", " + 
-                itemLocation.y + ", " + itemLocation.z + ", " + newCoords.x + ", " + newCoords.y + ", " + (newCoords.z) + ", " + distanceError + ",";
-
-            GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().AddSeqData();
+            var output = GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>();
+            output.seqOutput.Write(itemLocation.x + ", " + 
+                itemLocation.y + ", " + itemLocation.z + ", " + newCoords.x + ", " + newCoords.y + ", " + (newCoords.z) + ", " + distanceError + ",");
+            output.seqOutput.Flush();
+            output.AddSeqData();
             return true;
         }
         return false;

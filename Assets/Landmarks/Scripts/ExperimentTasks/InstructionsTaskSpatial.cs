@@ -67,6 +67,7 @@ public class InstructionsTaskSpatial : ExperimentTask {
 
     public override void TASK_START()
     {
+        Cursor.visible = true;
         instructionsCounter += 1;
         if (!manager) Start();
         base.startTask();

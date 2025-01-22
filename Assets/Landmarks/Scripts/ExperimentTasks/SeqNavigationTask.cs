@@ -3,6 +3,9 @@
  * This script functions like the regular navigation but they will be blind when navigating, essentially it is like the temporal trials,
  * but they are actually moving in the game without knowing.
  * 
+ * 
+ * 
+ * ********* NOT USED IN THE PROJECT ANYMORE 1/2025
  */
 
 using System.Collections;
@@ -286,7 +289,9 @@ public class SeqNavigationTask : ExperimentTask
             response = Time.time - temporalStartTime;
             var timeError = response - goal; // Overshooting will result in positive error; undershooting will be negative
 
-            GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().seqBuffer += goal + "," + response + "," + timeError + ",";
+            var output = GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>();
+            output.seqOutput.Write(goal + "," + response + "," + timeError + ",");
+            output.seqOutput.Flush();
             return true;
         }
 

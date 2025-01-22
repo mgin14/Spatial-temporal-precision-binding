@@ -13,7 +13,7 @@ public class BoundaryDetection : MonoBehaviour
  */
 {   //empty game object that represents the "warning" popup
     public GameObject popupSign, popupText;
-    //bufferRadius set in the inspector
+    //Radius set in the inspector
     public float bufferRadius;
     //boundaries of the room set by preestablished wall objects in Environment
     private float xPosBound, xNegBound, zPosBound, zNegBound;

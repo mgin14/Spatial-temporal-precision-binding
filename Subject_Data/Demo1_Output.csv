@@ -1,0 +1,8 @@
+Subject, sex, Block, Trial, LocationName, LocationX, LocationY, LocationZ, ResponseX, ResponseY, ResponseZ, SpatialError, GoalTime, ResponseTime, TemporalError
+Demo1, Male, Spatial, 4, far_r_top_mid, -51.33, 3.36, 5.94, -51.33001, 2.880741, 3.355699, 2.628365, , , 
+Demo1, Male, Spatial, 5, front_l_bottom_mid, -1.78, 1.16, -5.31, -1.78, 0.4365594, -6.86174, 1.712093, , , 
+Demo1, Male, Spatial, 6, mid_r_mid, -27.05, 2.69, 5.94, -27.05, 1.648638, 8.063757, 2.365329, , , 
+Demo1, Male, Temporal, 1, far_r_bottom, -51.33, 0.086, 5.94, , , , ,8.25, 1.72908, -6.52092
+Demo1, Male, Temporal, 2, front_l_mid_bottom, -1.78, 0.086, -2.86, , , , ,1.73, 1.228973, -0.5010266
+Demo1, Male, Temporal, 3, mid_r_mid_top, -27.05, 4.48, 3.09, , , , ,4.97, 2.1259, -2.8441
+Demo1, Male, 

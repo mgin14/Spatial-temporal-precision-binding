@@ -89,7 +89,7 @@ public class SequenceRetrieval : ExperimentTask
 
     public override void TASK_START()
     {
-
+        Cursor.visible = true;
 
         if (!manager) Start();
         base.startTask();
@@ -133,9 +133,11 @@ public class SequenceRetrieval : ExperimentTask
         }
 
         // Record the current five objects seen in the hall for this trial in the output
-        GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().seqBuffer += 
+        var output = GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>();
+        output.seqOutput.Write( 
             GameObject.Find("TASK_seq").GetComponent<TaskList>().repeatCount.ToString() + ',' + startObjects[0].name + ',' + startObjects[1].name + ',' + startObjects[2].name + ',' +
-            startObjects[3].name + ',' + startObjects[4].name + ',';
+            startObjects[3].name + ',' + startObjects[4].name + ',');
+        output.seqOutput.Flush();
 
         ogOrder = new List<GameObject>
         {
@@ -208,15 +210,15 @@ public class SequenceRetrieval : ExperimentTask
 
         // move the targets to the viewing location temporarily
         startObjects[0].transform.parent = destination.transform;
-        startObjects[0].transform.localPosition = new Vector3(-4f,0.5f,0);
+        startObjects[0].transform.localPosition = new Vector3(-4f,1.5f,0);
         startObjects[1].transform.parent = destination.transform;
-        startObjects[1].transform.localPosition = new Vector3(-2, 0.5f, 0);
+        startObjects[1].transform.localPosition = new Vector3(-2, 1.5f, 0);
         startObjects[2].transform.parent = destination.transform;
-        startObjects[2].transform.localPosition = new Vector3(0f, 0.5f, 0);
+        startObjects[2].transform.localPosition = new Vector3(0f, 1.5f, 0);
         startObjects[3].transform.parent = destination.transform;
-        startObjects[3].transform.localPosition = new Vector3(2, 0.5f, 0);
+        startObjects[3].transform.localPosition = new Vector3(2, 1.5f, 0);
         startObjects[4].transform.parent = destination.transform;
-        startObjects[4].transform.localPosition = new Vector3(4f, 0.5f, 0);
+        startObjects[4].transform.localPosition = new Vector3(4f, 1.5f, 0);
         //current.transform.localEulerAngles = objectRotationOffset;
         startObjects[0].transform.localScale = Vector3.Scale(startObjects[0].transform.localScale, destination.transform.localScale);
         startObjects[1].transform.localScale = Vector3.Scale(startObjects[1].transform.localScale, destination.transform.localScale);
@@ -334,7 +336,8 @@ public class SequenceRetrieval : ExperimentTask
         base.endTask();
 
         var output = GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>();
-        output.seqBuffer += GetError() + ',';
+        output.seqOutput.Write(GetError() + ',');
+        output.seqOutput.Flush();
         output.AddSeqData();
 
         if (vrEnabled)

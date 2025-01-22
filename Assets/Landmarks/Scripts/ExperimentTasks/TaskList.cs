@@ -108,31 +108,7 @@ public class TaskList : ExperimentTask
             case Role.trial:
                 break;
         }
-
-        //repeatCount = 1;
-        // Mel 1/2025
-        // This modification is if they need to be in the middle of a part it will grab the correct location in the 2D list and the correct object
-        if (gameObject.name == "TASK_MainLoop" && repeatCount % 2 != 0) // find odd number
-        {
-            var row = repeatCount / 2;
-            //Debug.Log("=====================================THIS IS THE NEW ROW: " + row);
-            GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().block = row;
-            gameObject.transform.parent.GetChild(2).GetComponent<ObjectList>().current = repeatCount * 3 - 3;
-        }
-        else if (gameObject.name == "TASK_MainLoop")
-        {
-            var row = repeatCount/2 -1;
-            //Debug.Log("=====================================THIS IS THE NEW ROW: " + row);
-            GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().block = row;
-            var parent = gameObject.transform.parent;
-            parent.GetChild(1).GetComponent<TrialCounter>().trialNum = 3;
-            parent.GetChild(2).GetComponent<ObjectList>().current = repeatCount * 3 - 3; }
         
-        if (gameObject.name == "TASK_SpaceTime")
-        {
-            gameObject.transform.parent.GetChild(2).GetComponent<ObjectList>().current = 60 + repeatCount * 3 - 3;
-        }
-
         base.startTask();
 
         if (taskLog != null) InitTaskLog();
@@ -208,6 +184,30 @@ public class TaskList : ExperimentTask
             {
                 Debug.Log(item);
             }
+        }
+        
+        //repeatCount = 1;
+        // Mel 1/2025
+        // This modification is if they need to be in the middle of a part it will grab the correct location in the 2D list and the correct object
+        if (gameObject.name == "TASK_MainLoop" && repeatCount % 2 != 0) // find odd number
+        {
+            var row = repeatCount / 2;
+            //Debug.Log("=====================================THIS IS THE NEW ROW: " + row);
+            GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().block = row;
+            gameObject.transform.parent.GetChild(2).GetComponent<ObjectList>().current = repeatCount * 3 - 3;
+        }
+        else if (gameObject.name == "TASK_MainLoop")
+        {
+            var row = repeatCount/2 -1;
+            //Debug.Log("=====================================THIS IS THE NEW ROW: " + row);
+            GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().block = row;
+            var parent = gameObject.transform.parent;
+            parent.GetChild(1).GetComponent<TrialCounter>().trialNum = 3;
+            parent.GetChild(2).GetComponent<ObjectList>().current = repeatCount * 3 - 3; }
+        
+        if (gameObject.name == "TASK_SpaceTime")
+        {
+            gameObject.transform.parent.GetChild(2).GetComponent<ObjectList>().current = 60 + repeatCount * 3 - 3;
         }
     }
 

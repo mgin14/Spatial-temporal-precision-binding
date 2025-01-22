@@ -28,7 +28,9 @@ public class OnClickSeq : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().seqBuffer += gameObject.name + ',';
+            var output = GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>();
+            output.seqOutput.Write(gameObject.name + ',');
+            output.seqOutput.Flush();
             GameObject.Find("SequenceRetrieval").GetComponent<SequenceRetrieval>().resp.Add(gameObject);
             gameObject.SetActive(false);
         }

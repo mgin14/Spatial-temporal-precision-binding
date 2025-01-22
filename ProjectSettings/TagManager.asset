@@ -24,6 +24,7 @@ TagManager:
   - tar_des
   - farmid
   - frontmid
+  - temporal
   layers:
   - Default
   - TransparentFX

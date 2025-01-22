@@ -91,7 +91,8 @@ public class NavigationTask : ExperimentTask
             log.log("INFO    skip task    " + name, 1);
             return;
         }
-
+        
+        Cursor.visible = false;
 
         if (!destinations)
         {

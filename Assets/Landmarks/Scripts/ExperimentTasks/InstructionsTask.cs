@@ -272,6 +272,10 @@ public class InstructionsTask : ExperimentTask {
             manager.player.GetComponentInChildren<CharacterController>().enabled = true;
             manager.scaledPlayer.GetComponent<ThirdPersonCharacter>().immobilized = false;
         }
+
+        // Mel 1/2025
+        if (gameObject.tag != "temporal") { this.skip = true; }
+        
     }
 
 }

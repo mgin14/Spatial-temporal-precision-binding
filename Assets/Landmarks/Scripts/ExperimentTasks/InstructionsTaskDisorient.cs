@@ -119,7 +119,7 @@ public class InstructionsTaskDisorient : ExperimentTask {
         var startNum = Random.Range(59, 111);
         var countDown = Random.Range(4, 8);
 
-        masterText = "Please count backwards out loud \nfrom " + startNum.ToString() + " by " + countDown.ToString();
+        masterText = "Please count out loud \nstarting at " + startNum.ToString() + " by " + countDown.ToString();
         
         string msg = masterText;
         hud.setMessage(msg);
@@ -187,6 +187,7 @@ public class InstructionsTaskDisorient : ExperimentTask {
         }
         else if (timer >= timeFrame)
         {
+            timer = 0;
             return true;
         }
 

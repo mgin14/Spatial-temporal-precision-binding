@@ -77,7 +77,7 @@ public class FrontColliderScript : MonoBehaviour
             else if (gameObject.tag == "mid") { objNum = 1; }
             else { objNum = 2; }
             GameObject seqLocation = GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().CurrentSeq(trial, objNum);
-
+            //Debug.Log(" ================= This is the tag: " + seqLocation.tag);
             if (seqLocation.tag == gameObject.tag)
             {
                 var trackTar = GameObject.Find("ST_TrackTargets").GetComponent<LM_TrackTargets>();

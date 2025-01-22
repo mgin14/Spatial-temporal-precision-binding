@@ -33,7 +33,7 @@ public class SpatialRetrievalTask : ExperimentTask
     public override void TASK_START()
     {
         GameObject.Find("KeyboardMouseController").GetComponent<FirstPersonController>().enabled = false;
-
+        Cursor.visible = true;
         if (!manager) Start();
         base.startTask();
 
@@ -102,20 +102,21 @@ public class SpatialRetrievalTask : ExperimentTask
             var output = GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>();
             if (mainLoopCurrent)
             {
-               output.fileBuffer += "Spatial, " + tempTrial + ", " + item.name + ", " + itemLocation.x + ", " +
-                    itemLocation.y + ", " + itemLocation.z + ", " + newCoords.x + ", " + newCoords.y + ", " + newCoords.z + ", " + distanceError + ", , , ";
-
+                output.fileOutput.Write("Spatial, " + tempTrial + ", " + item.name + ", " + itemLocation.x + ", " +
+                    itemLocation.y + ", " + itemLocation.z + ", " + newCoords.x + ", " + newCoords.y + ", " + newCoords.z + ", " + distanceError + ", , , ");
+                output.fileOutput.Flush();
                 output.AddData();
             }
             else
             {
                 if (gameObject.GetComponentInParent<TaskList>().repeatCount == 1)
                 {
-                    output.sTBuffer += GameObject.Find("TASK_SpaceTime").GetComponent<TaskList>().repeatCount + ", "; // Get the trial number
+                    output.sTOutput.Write(GameObject.Find("TASK_SpaceTime").GetComponent<TaskList>().repeatCount + ", "); // Get the trial number
                 }
 
-                output.sTBuffer += itemLocation.x + ", " + itemLocation.y + ", " + itemLocation.z + ", " +
-                    newCoords.x + ", " + newCoords.y + ", " + newCoords.z + ", " + distanceError + ", ";
+                output.sTOutput.Write(itemLocation.x + ", " + itemLocation.y + ", " + itemLocation.z + ", " +
+                    newCoords.x + ", " + newCoords.y + ", " + newCoords.z + ", " + distanceError + ", ");
+                output.sTOutput.Flush();
             }
             
             return true;
