@@ -41,6 +41,7 @@ public class FrontColliderScript : MonoBehaviour
         //Debug.Log(" ___________________________INSIDE TIRIGGER: " + gameObject.name);
         //Debug.Log(" Time: " + (Time.time - GameObject.Find("Navigate").GetComponent<NavigationTask>().pressTime).ToString());
 
+        // Check if the practice trial is currently active because we just want to activate the practice item
         if (GameObject.Find("Tasks").GetComponent<TaskList>().currentTask.name == "PracticeTrial")
         {
             var practice = GameObject.Find("ListNavigationTargets (1)").GetComponent<ObjectList>().objects[0];
@@ -52,14 +53,14 @@ public class FrontColliderScript : MonoBehaviour
             }
             else if ("far" == gameObject.tag) { practice.SetActive(false); }
         }
-        // For the first part of the project we want to activate the items one at a time
+        // For the first real part of the project we want to activate the items one at a time
         else if (GameObject.Find("NavigationTrials").GetComponent<TaskList>().currentTask != null && GameObject.Find("NavigationTrials").GetComponent<TaskList>().currentTask.name == "Navigate")
         {
             GameObject location = GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().CurrentLocation();
             cur_des = location.tag;
             //Debug.Log(" Des tag " + cur_des);
 
-            if (cur_des == gameObject.tag)
+            if (cur_des == gameObject.tag) // make sure the correct collider goes with the correct active item
             {
                 GameObject.Find("TrackTargets").GetComponent<LM_TrackTargets>().AddLocation(location);
                 //Debug.Log("++++++++Activate object");
@@ -73,12 +74,13 @@ public class FrontColliderScript : MonoBehaviour
         else if (GameObject.Find("ST_NavigationTrials").GetComponent<TaskList>().currentTask && GameObject.Find("ST_NavigationTrials").GetComponent<TaskList>().currentTask.name == "ST_Navigate")
         {
             int trial = GameObject.Find("TASK_SpaceTime").GetComponent<TaskList>().repeatCount -1;
+            
             if (gameObject.tag == "front") { objNum = 0; }
             else if (gameObject.tag == "mid") { objNum = 1; }
             else { objNum = 2; }
             GameObject seqLocation = GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().CurrentSeq(trial, objNum);
             //Debug.Log(" ================= This is the tag: " + seqLocation.tag);
-            if (seqLocation.tag == gameObject.tag)
+            if (seqLocation.tag == gameObject.tag) // prevent the motion of going backwards to trigger the next item
             {
                 var trackTar = GameObject.Find("ST_TrackTargets").GetComponent<LM_TrackTargets>();
                 trackTar.AddLocation(seqLocation);
@@ -103,7 +105,7 @@ public class FrontColliderScript : MonoBehaviour
             else if (tag == "farmid") { objNum = 3; }
             else if (tag == "far") { objNum = 4; }
             var count = trackTar.tar_array.Count;
-            if (objNum == count)
+            if (objNum == count) // make sure the correct number of items are active/triggered
             {
                 GameObject seqLocation = GameObject.Find("ReadTrialInfo").GetComponent<readBlockInfo>().seqLoc2D[trial][objNum];
                 //Debug.Log("=========== Seq tag: " + seqLocation.tag);

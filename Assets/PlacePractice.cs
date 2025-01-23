@@ -1,8 +1,7 @@
 ﻿/*
     Created by Melanie Gin 1/2025
     
-    This script is to activate the other two colliders between the front-mid and mid-far for the last block
-    for sequence, as well as read in the information from the excel file with all 5 locations for each trial.
+    This script simply places the practice object into place.
 */
 
 using System.Collections;

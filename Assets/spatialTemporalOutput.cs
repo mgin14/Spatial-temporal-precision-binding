@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/* Created by: Melanie 12/2024
+ * 
+ * This script creates the 3 output files and closes them when appropriate. There are added methods to start a new line for new data.
+ */
+
+
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;

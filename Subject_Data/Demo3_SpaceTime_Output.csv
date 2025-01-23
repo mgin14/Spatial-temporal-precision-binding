@@ -1,0 +1,3 @@
+Subject, sex, Trial, LocationX1, LocationY1, LocationZ1, ResponseX1, ResponseY1, ResponseZ1, SpatialError1, GoalTime1, ResponseTime1, TemporalError1, LocationX2, LocationY2, LocationZ2, ResponseX2, ResponseY2, ResponseZ2, SpatialError2, GoalTime2, ResponseTime2, TemporalError2, LocationX3, LocationY3, LocationZ3, ResponseX3, ResponseY3, ResponseZ3, SpatialError3, GoalTime3, ResponseTime3, TemporalError3
+Demo3, Male, 30, -27.05, 0.086, 5.94, -27.05, -0.2045212, 7.082081, 1.178453, 4.97, 0.4870262, -4.482974, -51.33, 4.48, -4.11, -51.33, 5.455115, -3.576074, 1.111722, 8.25, 1.362873, -6.887127, -1.78, 2.48, -5.31, -1.78, 1.488352, -8.724927, 3.555994, 1.73, 0.6156921, -1.114308, 
+Demo3, Male, 
