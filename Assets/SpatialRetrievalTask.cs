@@ -64,7 +64,7 @@ public class SpatialRetrievalTask : ExperimentTask
             item = GameObject.Find("ST_TrackTargets").GetComponent<LM_TrackTargets>().loc_array[currentRepeat];
             
         }
-
+        
         itemLocation = item.transform.position;
         
         //cur_tar.prevTarget.SetActive(false); // The item should already by deactivated
@@ -98,7 +98,7 @@ public class SpatialRetrievalTask : ExperimentTask
             float distanceError = Vector2.Distance(goal, response);
             GameObject.Find("KeyboardMouseController").GetComponent<FirstPersonController>().enabled = true;
 
-            // RECORD DATA
+            // ----------------------------RECORD DATA------------------------------
             var output = GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>();
             if (mainLoopCurrent)
             {
@@ -113,8 +113,8 @@ public class SpatialRetrievalTask : ExperimentTask
                 {
                     output.sTOutput.Write(GameObject.Find("TASK_SpaceTime").GetComponent<TaskList>().repeatCount + ", "); // Get the trial number
                 }
-
-                output.sTOutput.Write(itemLocation.x + ", " + itemLocation.y + ", " + itemLocation.z + ", " +
+                var cur_item = gameObject.transform.parent.parent.parent.GetChild(1).GetComponent<LM_TrackTargets>().tar_array[gameObject.GetComponentInParent<TaskList>().repeatCount - 1];
+                output.sTOutput.Write(cur_item.name + ", " + itemLocation.x + ", " + itemLocation.y + ", " + itemLocation.z + ", " +
                     newCoords.x + ", " + newCoords.y + ", " + newCoords.z + ", " + distanceError + ", ");
                 output.sTOutput.Flush();
             }

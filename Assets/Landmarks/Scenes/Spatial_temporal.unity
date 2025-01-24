@@ -494,6 +494,81 @@ Transform:
   m_Father: {fileID: 2043692263}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &25210810
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 25210811}
+  - component: {fileID: 25210812}
+  m_Layer: 0
+  m_Name: RotateTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &25210811
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25210810}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1858430690}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &25210812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25210810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8072c28f107bb51418732813b49a0670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  avatar: {fileID: 0}
+  skip: 0
+  canIncrementLists: 1
+  interval: 0
+  interruptTasks: {fileID: 0}
+  interruptInterval: 0
+  repeatInterrupts: 9999
+  currentInterrupt: 0
+  pausedTasks: {fileID: 0}
+  parentTask: {fileID: 0}
+  firstPersonCamera: {fileID: 0}
+  overheadCamera: {fileID: 0}
+  debugButton: {fileID: 0}
+  actionButton: {fileID: 0}
+  vrEnabled: 0
+  taskLog: {fileID: 0}
+  triggerLabel: 
+  triggerOnStart: 0
+  triggerOnEnd: 0
+  startObjects: []
+  current: {fileID: 0}
+  destination: {fileID: 0}
+  blackout: 1
+  rotate: 1
+  rotation_start: 0
+  rotation_start_float: 0
+  objectRotationOffset: {x: 0, y: 0, z: 0}
+  rotationAxis: 1
+  rotationSpeed: 30
+  objectPositionOffset: {x: 0, y: 1.7, z: 0}
+  restrictMovement: 1
+  endTime: 3
 --- !u!1 &28712333
 GameObject:
   m_ObjectHideFlags: 0
@@ -8960,7 +9035,6 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   prevTarget: {fileID: 0}
   collider: {fileID: 0}
-  pressTime: 0
   NavigationInstruction: {fileID: 0}
   distanceAllotted: Infinity
   timeAllotted: Infinity
@@ -14128,7 +14202,6 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   prevTarget: {fileID: 0}
   collider: {fileID: 0}
-  pressTime: 0
   NavigationInstruction: {fileID: 0}
   distanceAllotted: Infinity
   timeAllotted: Infinity
@@ -14487,6 +14560,7 @@ MonoBehaviour:
   itemLocation: {x: 0, y: 0, z: 0}
   masterText: Hold down the SPACE BAR for the time it took for the object to appear
     in front of you
+  fontSize: 0
 --- !u!1 &902724861
 GameObject:
   m_ObjectHideFlags: 0
@@ -20824,7 +20898,6 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   prevTarget: {fileID: 0}
   collider: {fileID: 0}
-  pressTime: 0
   NavigationInstruction: {fileID: 0}
   distanceAllotted: Infinity
   timeAllotted: Infinity
@@ -21340,7 +21413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   avatar: {fileID: 0}
-  skip: 0
+  skip: 1
   canIncrementLists: 0
   interval: 0
   interruptTasks: {fileID: 0}
@@ -23522,9 +23595,9 @@ MonoBehaviour:
   triggerOnEnd: 0
   instruction: {fileID: 0}
   message: {fileID: 4900000, guid: 8cb68c9c3a9ba964689a49599fd3b9c7, type: 3}
-  masterText: "INSTRUCTIONS:\n\nON THE NEXT SCREEN YOU WILL BE PROMPTED TO HOLD DOWN
-    THE SPACE BAR\nFOR THE TIME \rYOU TRAVELLED DOWN THE HALL UNTIL THAT OBJECT\nAPPEARED
-    IN FRONT OF YOU."
+  masterText: "INSTRUCTIONS:\n\nYOU WILL SEE THE SAME OBJECT AGAIN\n\nTHEN YOU WILL
+    BE PROMPTED TO HOLD DOWN THE SPACE BAR\nFOR THE TIME \rYOU TRAVELLED DOWN THE
+    HALL UNTIL THAT OBJECT\nAPPEARED IN FRONT OF YOU."
   objects: {fileID: 0}
   multiObjects: []
   texts: {fileID: 0}
@@ -24762,7 +24835,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2141697156}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1518902949
 MonoBehaviour:
@@ -24798,6 +24871,7 @@ MonoBehaviour:
   itemLocation: {x: 0, y: 0, z: 0}
   masterText: Hold down the SPACE BAR for the time it took for the object to appear
     in front of you
+  fontSize: 55
 --- !u!1 &1522743801
 GameObject:
   m_ObjectHideFlags: 0
@@ -25669,6 +25743,7 @@ MonoBehaviour:
   itemLocation: {x: 0, y: 0, z: 0}
   masterText: Hold down the SPACE BAR for the time it took for the object to appear
     in front of you
+  fontSize: 55
 --- !u!1 &1596822507
 GameObject:
   m_ObjectHideFlags: 0
@@ -29476,6 +29551,86 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58a695cd3883c30479cccfaec2f65ae1, type: 3}
+--- !u!1 &1858430689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1858430690}
+  - component: {fileID: 1858430691}
+  m_Layer: 0
+  m_Name: ViewTarget (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1858430690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858430689}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 25210811}
+  m_Father: {fileID: 2141697156}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1858430691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858430689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b72e5b9b995348e0a53c738244f788b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  avatar: {fileID: 0}
+  skip: 0
+  canIncrementLists: 1
+  interval: 0
+  interruptTasks: {fileID: 0}
+  interruptInterval: 0
+  repeatInterrupts: 9999
+  currentInterrupt: 0
+  pausedTasks: {fileID: 0}
+  parentTask: {fileID: 0}
+  firstPersonCamera: {fileID: 0}
+  overheadCamera: {fileID: 0}
+  debugButton: {fileID: 0}
+  actionButton: {fileID: 0}
+  vrEnabled: 0
+  taskLog: {fileID: 0}
+  triggerLabel: 
+  triggerOnStart: 0
+  triggerOnEnd: 0
+  taskListType: 0
+  skipConditions: []
+  tasks: []
+  objectsList: []
+  repeat: 1
+  configControlRepeat: 0
+  overrideRepeat: {fileID: 0}
+  repeatCount: 1
+  currentTask: {fileID: 0}
+  catchTrialCount: 0
+  skipOnCatch: []
+  onlyOnCatch: []
+  noCatchOnFirstTrial: 1
+  catchTrials: 
+  catchFlag: 0
+  overlayRepeatCount: {fileID: 0}
+  overlayListItem: {fileID: 0}
 --- !u!1 &1865465058
 GameObject:
   m_ObjectHideFlags: 0
@@ -34043,6 +34198,7 @@ Transform:
   - {fileID: 732565354}
   - {fileID: 1114684876}
   - {fileID: 1412285811}
+  - {fileID: 1858430690}
   - {fileID: 1518902948}
   m_Father: {fileID: 549508912}
   m_RootOrder: 4
@@ -34451,7 +34607,6 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   prevTarget: {fileID: 0}
   collider: {fileID: 0}
-  pressTime: 0
   NavigationInstruction: {fileID: 0}
   distanceAllotted: Infinity
   timeAllotted: Infinity

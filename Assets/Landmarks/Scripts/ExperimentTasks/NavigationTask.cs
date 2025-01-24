@@ -24,7 +24,7 @@ public class NavigationTask : ExperimentTask
     public GameObject prevTarget;
 
     public GameObject collider; // FrontColliderScript assigns this variable
-    public float pressTime;
+    public System.DateTime pressTime;
 
     public TextAsset NavigationInstruction;
 
@@ -256,7 +256,7 @@ public class NavigationTask : ExperimentTask
             return true;
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow)) { pressTime = Time.time; }
+        if (Input.GetKeyDown(KeyCode.UpArrow)) { pressTime = System.DateTime.Now; }
 
         if (score > 0) penaltyTimer = penaltyTimer + (Time.deltaTime * 1000);
 

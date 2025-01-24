@@ -1,4 +1,0 @@
-id,condition,sceneName,sceneNumber,task,run,block,trial,ST_Navigate_target,ST_Navigate_actualPath,ST_Navigate_optimalPath,ST_Navigate_excessPath,ST_Navigate_clockwiseTravel,ST_Navigate_duration,
-999,default,Spatial_temporal,1,TASK_SpaceTime,1,30,1,PotionBig,83.44542,27.33622,56.1092,-179.3796,11.11037,
-999,default,Spatial_temporal,1,TASK_SpaceTime,1,30,2,
-999,default,Spatial_temporal,1,TASK_SpaceTime,1,30,3,

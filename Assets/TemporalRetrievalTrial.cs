@@ -18,11 +18,11 @@ using UnityEngine.UI;
 
 public class TemporalRetrievalTrial : ExperimentTask
 {
-    float temporalStartTime; //Get the time the space bar is held down
-    float response;
+    System.DateTime temporalStartTime; //Get the time the space bar is held down
+    double response;
     private int tempTrial; // this is just for output
-    private float[] goalTimes = { 1.73f, 4.97f, 8.25f }; // These are the measurements from unity
-    private float goal;
+    private double[] goalTimes = { 1.73, 4.97, 8.25 }; // These are the measurements from unity
+    private double goal;
     private GameObject item;
     public Vector3 itemLocation;
 
@@ -32,6 +32,7 @@ public class TemporalRetrievalTrial : ExperimentTask
     private HUD avatarHUD;
     private Color defaultColor;
     private int defaultFont;
+    public int fontSize;
 
     private bool mainLoopCurrent;
 
@@ -90,7 +91,7 @@ public class TemporalRetrievalTrial : ExperimentTask
         defaultColor = canvas.color;
         defaultFont = canvas.fontSize;
         canvas.color = Color.white;
-        canvas.fontSize = 55;
+        canvas.fontSize = fontSize;
         hud.ForceShowMessage();
         avatarHUD = avatar.GetComponent<HUD>();
         avatarHUD.SecondsToShow = 9999;
@@ -106,18 +107,20 @@ public class TemporalRetrievalTrial : ExperimentTask
             log.log("INFO    skip task    " + name, 1);
             return true;
         }
-        
+
         // Get the time the subject first presses the space bar
         if (Input.GetKeyDown(KeyCode.Space)) // This will only be initialized once when they press the space bar
         {
-            temporalStartTime = Time.time;
+            //temporalStartTime = Time.time;
+            temporalStartTime = System.DateTime.Now;
         }
-
+        
         if (Input.GetKeyUp(KeyCode.Space))
         {
             if (gameObject.transform.parent.name == "Practice") { return true; }
 
-            response = Time.time - temporalStartTime;
+            response = (System.DateTime.Now - temporalStartTime).TotalSeconds;
+            //Debug.Log(" ++++++++++ NEW TIME: " + (System.DateTime.Now - temporalStartTime).ToString());
             var timeError = response - goal; // Overshooting will result in positive error; undershooting will be negative
             var output = GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>();
             if (mainLoopCurrent)

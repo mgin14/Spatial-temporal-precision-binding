@@ -39,7 +39,7 @@ public class FrontColliderScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log(" ___________________________INSIDE TIRIGGER: " + gameObject.name);
-        //Debug.Log(" Time: " + (Time.time - GameObject.Find("Navigate").GetComponent<NavigationTask>().pressTime).ToString());
+        //Debug.Log(" )))))))))))))) Time: " + (System.DateTime.Now - GameObject.Find("Navigate").GetComponent<NavigationTask>().pressTime).ToString());
 
         // Check if the practice trial is currently active because we just want to activate the practice item
         if (GameObject.Find("Tasks").GetComponent<TaskList>().currentTask.name == "PracticeTrial")

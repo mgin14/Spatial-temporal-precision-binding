@@ -1,3 +1,0 @@
-id,condition,sceneName,sceneNumber,task,run,block,trial,Seq_Navigate_target,Seq_Navigate_actualPath,Seq_Navigate_optimalPath,Seq_Navigate_excessPath,Seq_Navigate_clockwiseTravel,Seq_Navigate_duration,
-999,default,Spatial_temporal,1,TASK_seq,1,1,1,PotionSmall,83.28989,27.4015,55.88838,-179.3796,10.56033,
-999,default,Spatial_temporal,1,TASK_seq,1,2,1,TeddyBear_01 (1),83.44542,26.95426,56.49116,-179.3796,10.98529,

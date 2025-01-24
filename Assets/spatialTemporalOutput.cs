@@ -60,9 +60,9 @@ public class spatialTemporalOutput : MonoBehaviour
 
         path = outputPath + fileName + "_SpaceTime_Output.csv";
         string st_header = "Subject, sex, Trial, " +
-            "LocationX1, LocationY1, LocationZ1, ResponseX1, ResponseY1, ResponseZ1, SpatialError1, GoalTime1, ResponseTime1, TemporalError1, " +
-            "LocationX2, LocationY2, LocationZ2, ResponseX2, ResponseY2, ResponseZ2, SpatialError2, GoalTime2, ResponseTime2, TemporalError2, " +
-            "LocationX3, LocationY3, LocationZ3, ResponseX3, ResponseY3, ResponseZ3, SpatialError3, GoalTime3, ResponseTime3, TemporalError3";
+            "Item1, LocationX1, LocationY1, LocationZ1, ResponseX1, ResponseY1, ResponseZ1, SpatialError1, GoalTime1, ResponseTime1, TemporalError1, " +
+            "Item2, LocationX2, LocationY2, LocationZ2, ResponseX2, ResponseY2, ResponseZ2, SpatialError2, GoalTime2, ResponseTime2, TemporalError2, " +
+            "Item3, LocationX3, LocationY3, LocationZ3, ResponseX3, ResponseY3, ResponseZ3, SpatialError3, GoalTime3, ResponseTime3, TemporalError3";
         sTOutput = new StreamWriter(path, true); // append to the file
         sTOutput.WriteLine(st_header);
         sTOutput.Flush();
