@@ -1,9 +1,9 @@
 INSTRUCTIONS:
 
-FIRST YOU WILL BE SHOWN AN OBJECT
+First you will be shown an object
 
-THEN YOU WILL BE PLACED AT THE POINT IN THE HALL 
-WHERE THE OBJECT FIRST APPEARED IN FRONT OF YOU
+Then you will be placed at the point in the hall
+where the object first appeared in front of you
 
-YOUR TASK IS TO USE THE MOUSE AND CLICK ON THE SPOT
-WHERE THE OBJECT WAS. 
+Your task is to use the mouse and click on the spot
+where the obejct was.

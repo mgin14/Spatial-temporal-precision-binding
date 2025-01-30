@@ -52,8 +52,8 @@ public class ViewPracticeObject : ExperimentTask
     public override void startTask()
     {
         TASK_START();
-        
-        
+
+        current = startObjects[gameObject.transform.parent.parent.parent.GetComponent<TaskList>().repeatCount - 1];
 
         initCurrent();
         rotation_start = Experiment.Now();

@@ -1,6 +1,6 @@
 INSTRUCTIONS:
 
-FIRST YOU WILL BE SHOWN AN OBJECT
+First you will be shown an object
 
-THEN WHEN PROMPTED, HOLD DOWN THE SPACE BAR FOR THE TIME 
-YOU TRAVELLED DOWN THE HALL UNTIL THAT OBJECT APPEARED IN FRONT OF YOU.
+Then when prompted, hold down the space bar for the time
+you travelled down the hall until that object appeared in front you.

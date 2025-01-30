@@ -1,0 +1,3 @@
+Subject, sex, Trial, Item1, LocationX1, LocationY1, LocationZ1, ResponseX1, ResponseY1, ResponseZ1, SpatialError1, GoalTime1, ResponseTime1, TemporalError1, Item2, LocationX2, LocationY2, LocationZ2, ResponseX2, ResponseY2, ResponseZ2, SpatialError2, GoalTime2, ResponseTime2, TemporalError2, Item3, LocationX3, LocationY3, LocationZ3, ResponseX3, ResponseY3, ResponseZ3, SpatialError3, GoalTime3, ResponseTime3, TemporalError3
+Demo0, Male, 14, FrenchHorn_01, -51, 0.086, 3.09, -51, 0.900869, 2.427655, 1.050101, 8.25, 0.8499305, -7.4000695, Bell_01, -1.78, 4.48, -4.11, -1.78, 0.5252874, -7.551293, 5.242352, 1.73, 0.5266869, -1.2033131, CongaDrum_01, -27.05, 0.086, -5.4, -27.05, 0.05587125, -5.861279, 0.4622618, 4.97, 0.703237, -4.266763, 
+Demo0, Male, 

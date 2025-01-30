@@ -24,6 +24,10 @@ public class SpatialRetrievalTask : ExperimentTask
     private int tempTrial; // this is just for output
     private bool mainLoopCurrent;
 
+    private bool feedback = false;
+    public float timeFrame = 3f;
+    private float timer;
+
     // Start is called before the first frame update
     public override void startTask()
     {
@@ -55,7 +59,7 @@ public class SpatialRetrievalTask : ExperimentTask
         }
         else if (gameObject.transform.parent.name == "Practice")
         {
-            item = GameObject.Find("mm_l_mid_mid");
+            item = gameObject.transform.parent.GetChild(1).GetComponentInChildren<ViewPracticeObject>().current;
         }
         else
         {
@@ -68,7 +72,7 @@ public class SpatialRetrievalTask : ExperimentTask
         itemLocation = item.transform.position;
         
         //cur_tar.prevTarget.SetActive(false); // The item should already by deactivated
-        var newItemLocation = new Vector3(itemLocation.x + 11, 0.25f, 0); // This is just to move the avatar to be placed in front of the item
+        var newItemLocation = new Vector3(itemLocation.x + 10.4f, 0, 0); // This is just to move the avatar to be placed in front of the item
         avatar.transform.position = newItemLocation;
         avatar.transform.rotation = Quaternion.Euler(0,-90,0);
         //Camera.main.transform.position = avatar.transform.position;
@@ -82,19 +86,20 @@ public class SpatialRetrievalTask : ExperimentTask
         // The subject clicked on the screen that they think the object was
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (gameObject.transform.parent.name == "Practice") { return true; }
+            if (gameObject.transform.parent.name == "Practice")
+            {
+                item.SetActive(true);
+                timer += Time.deltaTime;
+                feedback = true;
+                return false;
+            }
 
             Vector3 mousePos = Input.mousePosition;
             //Debug.Log(" This is the coordinates: " + mousePos.x + ", " + mousePos.y + ", " + Camera.main.nearClipPlane);
-            var newCoords = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 11f)); // 11 because we changed the avatar position's x on line 50 to +11
+            var newCoords = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 10.4f)); // 10.4 because we changed the avatar position's x on line 50 to +11
             //Debug.Log(" This is the new coordinates: " + newCoords.x + ", " + newCoords.y + ", " + newCoords.z);
             Vector2 response = new Vector2(newCoords.y, newCoords.z);
             Vector2 goal = new Vector2(itemLocation.y, itemLocation.z);
-            //var item3D2D = Camera.main.WorldToScreenPoint(itemLocation);
-            //Debug.Log(" This is the item coordinates: " + itemLocation.x + ", " + itemLocation.y + ", " + itemLocation.z);
-            //Debug.Log(" This is the item's new coordinates: " + item3D2D.x + ", " + item3D2D.y + ", " + item3D2D.z);
-            //var back3D = Camera.main.ScreenToWorldPoint(item3D2D);
-            //Debug.Log(" This is the item's converted back to 3D coordinates: " + back3D.x + ", " + back3D.y + ", " + back3D.z);
             float distanceError = Vector2.Distance(goal, response);
             GameObject.Find("KeyboardMouseController").GetComponent<FirstPersonController>().enabled = true;
 
@@ -121,6 +126,18 @@ public class SpatialRetrievalTask : ExperimentTask
             
             return true;
         }
+        if (feedback)
+        {
+            timer += Time.deltaTime;
+            if (timer > timeFrame)
+            {
+                timer = 0;
+                feedback = false;
+                item.SetActive(false);
+                return true;
+            }
+        }
+
         return false;
     }
     public override void endTask()

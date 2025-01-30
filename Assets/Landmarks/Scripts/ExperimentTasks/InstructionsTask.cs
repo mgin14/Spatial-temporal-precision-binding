@@ -71,6 +71,8 @@ public class InstructionsTask : ExperimentTask {
         if (!manager) Start();
         base.startTask();
 
+        if (gameObject.name == "Break" && gameObject.transform.parent.GetComponent<TaskList>().repeatCount == 15) { skip = false; }
+
         if (skip) {
             Debug.Log("Skipping Temporal Instructions Task");
             log.log("INFO    skip task    " + name,1 );
@@ -235,7 +237,7 @@ public class InstructionsTask : ExperimentTask {
 
     public override void TASK_END() {
         base.endTask ();
-
+        if (gameObject.name == "Break") { skip = true; }
         hud.setMessage ("");
         hud.SecondsToShow = hud.GeneralDuration;
 
