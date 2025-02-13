@@ -29,30 +29,44 @@ Locations:
 
 1____20____4__________7____19____10
 
-13_______________________________18
+13________________________________18
 
-2__________5__________8__________11
+2___________5__________8__________11
 
-14_______________________________17
+14________________________________17
 
 3____15____6__________9____16____12
 
 
 LEFT SIDE: (THE RIGHT SIDE IS MIRRORED BUT LABELED WITH _r_, ex: 10 - _r_top). My vocab at the time was very rushed and limited and now it is too late, especially with modifications in the middle of development.
 1  - _l_top
+
 20 - _l_midmid_top
+
 4  - _l_mid_top
+
 13 - _l_top_mid
+
 2  - _l_mid
+
 5  - _l_mid_mid
+
 14 - _l_bottom_mid
+
 3  - _l_bottom
+
 15 - _l_midmid_bottom
+
 6  - _l_mid_bottom
+
 
 Colliders:
 front - first collider
+
 fm - front-mid collider/second collider for the seq part
+
 mid - middle collider/second collider for the first two parts
+
 mm - middle-mid collider/fourth collider for the seq part
+
 far - last collider
