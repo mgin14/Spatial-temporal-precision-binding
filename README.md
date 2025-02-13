@@ -1,16 +1,58 @@
 # Spatial-temporal-precision-binding
- Experiment #2: Spatial and temporal precision and binding
- 
+Experiment #2: Spatial and temporal precision and binding
  To test our model by focusing on novel spatiotemporal episodic memory deficits accompanying bilateral MTL lesions.
 
- Purpose: 
-    To test our model by focusing on novel spatiotemporal episodic memory deficits accompanying bilateral MTL lesions.
-Design: Patients and healthy controls will watch a video of events occurring within a hallway (Figure E3), with videos lasting about 10 seconds each. Participants view the scene in the video while remaining at a fixed location.  In the first block of testing, which we term the spatiotemporal block, one object will appear at a fixed time point in the hallway.  The object will appear at a randomized location and after a randomized amount of time within the 10 second interval.  Participants will watch three such videos.  They will then be asked to place the object either in space (one third of the trials) or time (one third of the trials of trials) within the video.  On the last third of trials, they will place the object in both space and time to provide an estimate for spatiotemporal placement for a single object.  They will do this by moving back and forward within the video frame and stopping at the location to place it either in space, time, or both.  
-    In the second block of testing, which we term the object-space-time binding block, participants will see videos with three objects occurring at different times and places, all in the same video.  During retrieval, the objects will be removed from the video and participants will again need to scroll through the video and place each object.  All three objects will be present at the top of the computer screen and participants will thus decide which object to place where and at what time point during the video (Figure E3).  By scrolling through the video, as before, on different thirds of trials, participants will 1) place all objects in space 2) place all objects in time 3) place all objects in both space and time. 
 
 Anticipated results:
     We expect that patients will show greater deficits in both spatial and temporal precision than controls, which will increase dramatically for 3 items vs. 1. This is because now all three items must be bound to each other and also in both space and time compared to single object/spatiotemporal binding.  This predicts a 3-way group by condition by number of objects interaction effect.  Specifically, both groups will perform worse at remembering the three items compared to one item but this will be more pronounced for the patients for remembering the three objects correctly in space and time compared to one object or any of these separately.
 
+
 Alternative directions:
     Temporal compared to spatial precision may be more difficult for all participants, suggested in one report [107]; behavioral piloting can help match for difficulty across conditions.
 
+
+# How to run the experiment:
+Once you get the Spatial_temporal scene up, expand _Landmarks_ game object and click the LM_Experiment gameobject you will fill out the subjct name, number, and sex of the participant in the inspector window.
+Save, then run.
+ 
+
+# Troubleshooting
+
+If the experiment crashes or you for some reason or you had to stop the experiment, you can skip some of the tasks (Practice Trial, TASK_MainLoop, TASK_SpaceTime, and TASK_seq) and you can modify what trial to start at for each task by changing the Repeat Count variable from 1 to whatever trial they left off at or that you want them to start at.
+
+You don't have to change the subject name/number as the code has it set to increment the number automatically to prevent overwriting.
+
+
+# Vocabulary
+
+Locations:
+
+1    20    4          7    19    10
+
+13                               18
+
+2          5          8          11
+
+14                               17
+
+3    15    6          9    16    12
+
+
+LEFT SIDE: (THE RIGHT SIDE IS MIRRORED BUT LABELED WITH _r_, ex: 10 - _r_top). My vocab at the time was very rushed and limited and now it is too late, especially with modifications in the middle of development.
+1  - _l_top
+20 - _l_midmid_top
+4  - _l_mid_top
+13 - _l_top_mid
+2  - _l_mid
+5  - _l_mid_mid
+14 - _l_bottom_mid
+3  - _l_bottom
+15 - _l_midmid_bottom
+6  - _l_mid_bottom
+
+Colliders:
+front - first collider
+fm - front-mid collider/second collider for the seq part
+mid - middle collider/second collider for the first two parts
+mm - middle-mid collider/fourth collider for the seq part
+far - last collider

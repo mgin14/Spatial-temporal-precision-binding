@@ -3,7 +3,7 @@ INSTRUCTIONS:
 First you will be shown an object
 
 Then you will be placed at the point in the hall
-where the object first appeared in front of you
+where the object first appeared.
 
 Your task is to use the mouse and click on the spot
 where the obejct was.

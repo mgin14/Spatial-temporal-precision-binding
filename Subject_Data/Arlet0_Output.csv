@@ -1,0 +1,14 @@
+Subject, sex, Block, Trial, LocationName, LocationX, LocationY, LocationZ, ResponseX, ResponseY, ResponseZ, SpatialError, GoalTime, ResponseTime, TemporalError
+Arlet0, Female, Spatial, 1, front_l_mid_top, -1.78, 4.48, -2.86, -1.780002, 3.816815, 6.492658, 9.376142, , , 
+Arlet0, Female, Spatial, 2, far_r_mid_mid, -51, 3.02, 3.09, -51, 3.930968, 3.411192, 0.9659331, , , 
+Arlet0, Female, Spatial, 3, mid_r_bottom_mid, -27.05, 1.16, 5.94, -27.05, 3.84219, -5.782511, 12.02545, , , 
+Arlet0, Female, Spatial, 4, far_r_top_mid, -51, 3.36, 5.94, -51, 3.347636, 5.009, 0.9310818, , , 
+Arlet0, Female, Spatial, 5, mid_r_mid, -27.05, 2.69, 5.94, -27.05, 3.880226, 8.49623, 2.819743, , , 
+Arlet0, Female, Spatial, 6, front_l_bottom_mid, -1.78, 1.16, -5.31, -1.78, 4.019712, -6.036145, 2.950464, , , 
+Arlet0, Female, Temporal, 1, mid_r_mid_top, -27.05, 4.48, 3.09, , , , ,4.97, 3.7424061, -1.2275939
+Arlet0, Female, Temporal, 2, front_l_mid_bottom, -1.78, 0.086, -2.86, , , , ,1.73, 6.8616747, 5.1316747
+Arlet0, Female, Temporal, 3, far_r_bottom, -51, 0.086, 5.94, , , , ,8.25, 9.1037022, 0.853702199999999
+Arlet0, Female, Temporal, 4, far_l_mid_top, -51, 4.48, -2.86, , , , ,8.25, 6.4782545, -1.7717455
+Arlet0, Female, Temporal, 5, mid_r_mid, -27.05, 2.69, 5.94, , , , ,4.97, 9.1968182, 4.2268182
+Arlet0, Female, Temporal, 6, front_l_midmid_top, -1.78, 4.48, -4.11, , , , ,1.73, 1.8236504, 0.0936504
+Arlet0, Female, 

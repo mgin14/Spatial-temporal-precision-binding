@@ -9992,7 +9992,7 @@ MonoBehaviour:
   repeat: 30
   configControlRepeat: 0
   overrideRepeat: {fileID: 0}
-  repeatCount: 30
+  repeatCount: 1
   currentTask: {fileID: 0}
   catchTrialCount: 0
   skipOnCatch: []
@@ -16183,9 +16183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90304d14998704e4ca95c11886e7faeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subject: Demo
+  subject: Arlet
   subjectNumber: 0
-  sex: 0
+  sex: 1
   fileBuffer: 
   sTBuffer: 
   seqBuffer: 
@@ -18389,7 +18389,7 @@ MonoBehaviour:
   message: {fileID: 4900000, guid: 8cb68c9c3a9ba964689a49599fd3b9c7, type: 3}
   masterText: "INSTRUCTIONS:\r\n\r\nYou will be shown the same object\r again as
     a reminder\n\r\nThen when prompted, hold down the space bar for the time\r\nyou
-    travelled down the hall until that object appeared in front you."
+    travelled down the hall until that object appeared."
   objects: {fileID: 0}
   multiObjects: []
   texts: {fileID: 0}
@@ -23838,7 +23838,7 @@ MonoBehaviour:
   message: {fileID: 4900000, guid: 8cb68c9c3a9ba964689a49599fd3b9c7, type: 3}
   masterText: "INSTRUCTIONS:\r\n\r\nYou will be shown the same object\r again as
     a reminder\n\r\nThen when prompted, hold down the space bar for the time\r\nyou
-    travelled down the hall until that object appeared in front you."
+    travelled down the hall until that object appeared."
   objects: {fileID: 0}
   multiObjects: []
   texts: {fileID: 0}
@@ -25112,7 +25112,6 @@ MonoBehaviour:
   triggerOnEnd: 0
   itemLocation: {x: 0, y: 0, z: 0}
   masterText: Hold down the SPACE BAR for the time it took for the object to appear
-    in front of you
   fontSize: 33
 --- !u!1 &1522743801
 GameObject:
@@ -25984,7 +25983,6 @@ MonoBehaviour:
   triggerOnEnd: 0
   itemLocation: {x: 0, y: 0, z: 0}
   masterText: Hold down the SPACE BAR for the time it took for the object to appear
-    in front of you
   fontSize: 33
 --- !u!1 &1596822507
 GameObject:

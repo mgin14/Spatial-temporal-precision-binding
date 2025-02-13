@@ -3,4 +3,4 @@ INSTRUCTIONS:
 First you will be shown an object
 
 Then when prompted, hold down the space bar for the time
-you travelled down the hall until that object appeared in front you.
+you travelled down the hall until that object appeared.
