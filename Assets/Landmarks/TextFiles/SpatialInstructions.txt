@@ -6,4 +6,4 @@ Then you will be placed at the point in the hall
 where the object first appeared.
 
 Your task is to use the mouse and click on the spot
-where the obejct was.
+where the object was.
