@@ -27,15 +27,15 @@ You don't have to change the subject name/number as the code has it set to incre
 
 Locations:
 
-1    20    4          7    19    10
+1____20____4__________7____19____10
 
-13                               18
+13_______________________________18
 
-2          5          8          11
+2__________5__________8__________11
 
-14                               17
+14_______________________________17
 
-3    15    6          9    16    12
+3____15____6__________9____16____12
 
 
 LEFT SIDE: (THE RIGHT SIDE IS MIRRORED BUT LABELED WITH _r_, ex: 10 - _r_top). My vocab at the time was very rushed and limited and now it is too late, especially with modifications in the middle of development.
