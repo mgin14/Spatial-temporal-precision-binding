@@ -1,3 +1,0 @@
-id,condition,sceneName,sceneNumber,task,run,block,trial,PracticeNavigate_target,PracticeNavigate_actualPath,PracticeNavigate_optimalPath,PracticeNavigate_excessPath,PracticeNavigate_clockwiseTravel,PracticeNavigate_duration,
-999,default,Spatial_temporal,1,PracticeTrial,1,1,1,PracticeWineJug,87.80553,64.06168,23.74385,-179.3796,16.27024,
-999,default,Spatial_temporal,1,PracticeTrial,1,1,2,PracticeWineJug,83.44542,64.0657,19.37971,-179.3796,11.97654,

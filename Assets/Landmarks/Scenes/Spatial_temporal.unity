@@ -9992,7 +9992,7 @@ MonoBehaviour:
   repeat: 30
   configControlRepeat: 0
   overrideRepeat: {fileID: 0}
-  repeatCount: 29
+  repeatCount: 1
   currentTask: {fileID: 0}
   catchTrialCount: 0
   skipOnCatch: []
@@ -12269,7 +12269,7 @@ MonoBehaviour:
   repeat: 10
   configControlRepeat: 0
   overrideRepeat: {fileID: 0}
-  repeatCount: 9
+  repeatCount: 1
   currentTask: {fileID: 0}
   catchTrialCount: 0
   skipOnCatch: []
@@ -34813,7 +34813,7 @@ MonoBehaviour:
   repeat: 20
   configControlRepeat: 0
   overrideRepeat: {fileID: 0}
-  repeatCount: 18
+  repeatCount: 1
   currentTask: {fileID: 0}
   catchTrialCount: 0
   skipOnCatch: []

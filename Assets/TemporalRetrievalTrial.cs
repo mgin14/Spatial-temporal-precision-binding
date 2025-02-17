@@ -133,7 +133,8 @@ public class TemporalRetrievalTrial : ExperimentTask
             }
             else
             {
-                output.sTOutput.Write(goal + ", " + response + ", " + timeError + ", ");
+                output.sTOutput.Write(goal + ", " + response + ", " + timeError);
+                if (gameObject.transform.parent.GetComponent<TaskList>().repeatCount != 3) { output.sTOutput.Write(", "); }
                 output.sTOutput.Flush();
             }
             

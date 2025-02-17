@@ -336,7 +336,7 @@ public class SequenceRetrieval : ExperimentTask
         base.endTask();
 
         var output = GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>();
-        output.seqOutput.Write(GetError() + ',');
+        output.seqOutput.Write(GetError());
         output.seqOutput.Flush();
         output.AddSeqData();
 

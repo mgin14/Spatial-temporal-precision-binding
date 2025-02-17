@@ -1,0 +1,3 @@
+Subject, sex, Trial, Item1, LocationX1, LocationY1, LocationZ1, ResponseX1, ResponseY1, ResponseZ1, SpatialError1, GoalTime1, ResponseTime1, TemporalError1, Item2, LocationX2, LocationY2, LocationZ2, ResponseX2, ResponseY2, ResponseZ2, SpatialError2, GoalTime2, ResponseTime2, TemporalError2, Item3, LocationX3, LocationY3, LocationZ3, ResponseX3, ResponseY3, ResponseZ3, SpatialError3, GoalTime3, ResponseTime3, TemporalError3
+Meltest2, Female, 30, SeaHorse_01 (1), -27.05, 0.086, 5.94, -27.05, 1.593886, -6.004427, 12.03923, 4.97, 0.5955506, -4.3744494, Bag (1), -51, 4.48, -4.11, -51, 5.817834, -3.759892, 1.382887, 8.25, 0.4713282, -7.7786718, Pineapple (1), -1.78, 2.48, -5.31, -1.780002, 1.0635, 5.919204, 11.31819, 1.73, 0.3242995, -1.4057005
+Meltest2, Female, 

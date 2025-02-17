@@ -1,0 +1,2 @@
+id,condition,sceneName,sceneNumber,task,run,block,trial,Seq_Navigate_target,Seq_Navigate_actualPath,Seq_Navigate_optimalPath,Seq_Navigate_excessPath,Seq_Navigate_clockwiseTravel,Seq_Navigate_duration,
+999,default,Spatial_temporal,1,TASK_seq,1,1,1,PotionSmall,83.36897,27.4015,55.96747,-179.3796,10.57638,
