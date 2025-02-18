@@ -209,6 +209,11 @@ public class TaskList : ExperimentTask
         {
             gameObject.transform.parent.GetChild(2).GetComponent<ObjectList>().current = 60 + repeatCount * 3 - 3;
         }
+
+        if (gameObject.name == "TASK_seq")
+        {
+            gameObject.transform.parent.GetChild(2).GetComponent<ObjectList>().current = 150 + ((repeatCount - 1) * 5);
+        }
     }
 
 

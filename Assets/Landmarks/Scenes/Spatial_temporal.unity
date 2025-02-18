@@ -14641,8 +14641,8 @@ MonoBehaviour:
   triggerOnStart: 0
   triggerOnEnd: 0
   itemLocation: {x: 0, y: 0, z: 0}
-  masterText: Hold down the SPACE BAR for the time it took for the object to appear
-    in front of you
+  masterText: Hold down the SPACE BAR for the time you travelled down the hall until
+    the object appeared
   fontSize: 33
 --- !u!1 &902724861
 GameObject:
@@ -16183,9 +16183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90304d14998704e4ca95c11886e7faeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subject: pilot
+  subject: test
   subjectNumber: 1
-  sex: 1
+  sex: 0
   fileBuffer: 
   sTBuffer: 
   seqBuffer: 
@@ -21358,131 +21358,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264486599}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1282118021
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 5308465571431694794}
-    m_Modifications:
-    - target: {fileID: -4216859302048453862, guid: 7006c80f28486e7489516fad7a3d5daa,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 7006c80f28486e7489516fad7a3d5daa,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 7006c80f28486e7489516fad7a3d5daa,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 7006c80f28486e7489516fad7a3d5daa,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 7006c80f28486e7489516fad7a3d5daa,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 7006c80f28486e7489516fad7a3d5daa,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 7006c80f28486e7489516fad7a3d5daa,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 7006c80f28486e7489516fad7a3d5daa,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 7006c80f28486e7489516fad7a3d5daa,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 7006c80f28486e7489516fad7a3d5daa,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 7006c80f28486e7489516fad7a3d5daa,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 7006c80f28486e7489516fad7a3d5daa,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 7006c80f28486e7489516fad7a3d5daa,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 7006c80f28486e7489516fad7a3d5daa,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 7006c80f28486e7489516fad7a3d5daa,
-        type: 3}
-      propertyPath: m_Name
-      value: Doll_02 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 7006c80f28486e7489516fad7a3d5daa,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 7006c80f28486e7489516fad7a3d5daa,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7006c80f28486e7489516fad7a3d5daa, type: 3}
---- !u!1 &1282118022 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 7006c80f28486e7489516fad7a3d5daa,
-    type: 3}
-  m_PrefabInstance: {fileID: 1282118021}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1282118023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282118022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27f0729652261c04582fcd431ef8efa8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!65 &1282118024
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282118022}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.25893608, y: 0.38138956, z: 0.16005814}
-  m_Center: {x: 8.0625485e-23, y: 0.19037154, z: -0.0106942095}
 --- !u!1001 &1286752523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25111,7 +24986,8 @@ MonoBehaviour:
   triggerOnStart: 0
   triggerOnEnd: 0
   itemLocation: {x: 0, y: 0, z: 0}
-  masterText: Hold down the SPACE BAR for the time it took for the object to appear
+  masterText: Hold down the SPACE BAR for the time you travelled down the hall until
+    the object appeared
   fontSize: 33
 --- !u!1 &1522743801
 GameObject:
@@ -25982,7 +25858,8 @@ MonoBehaviour:
   triggerOnStart: 0
   triggerOnEnd: 0
   itemLocation: {x: 0, y: 0, z: 0}
-  masterText: Hold down the SPACE BAR for the time it took for the object to appear
+  masterText: Hold down the SPACE BAR for the time you travelled down the hall until
+    the object appeared
   fontSize: 33
 --- !u!1 &1596822507
 GameObject:
