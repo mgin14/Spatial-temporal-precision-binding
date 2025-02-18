@@ -58,7 +58,7 @@ public class spatialTemporalOutput : MonoBehaviour
         fileOutput.Flush();
 
 
-        path = outputPath + fileName + "_SpaceTime_Output.csv";
+        path = outputPath + fileName + "_Binding_Output.csv";
         string st_header = "Subject, sex, Trial, " +
             "Item1, LocationX1, LocationY1, LocationZ1, ResponseX1, ResponseY1, ResponseZ1, SpatialError1, GoalTime1, ResponseTime1, TemporalError1, " +
             "Item2, LocationX2, LocationY2, LocationZ2, ResponseX2, ResponseY2, ResponseZ2, SpatialError2, GoalTime2, ResponseTime2, TemporalError2, " +

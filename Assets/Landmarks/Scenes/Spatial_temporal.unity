@@ -16183,7 +16183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90304d14998704e4ca95c11886e7faeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subject: Sona
+  subject: pilot
   subjectNumber: 1
   sex: 1
   fileBuffer: 
