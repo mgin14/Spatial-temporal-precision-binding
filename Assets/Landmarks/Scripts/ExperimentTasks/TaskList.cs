@@ -375,7 +375,10 @@ public class TaskList : ExperimentTask
             overrideRepeat.incrementCurrent();
         }
 
-        
+        if (gameObject.name == "TASK_MainLoop") { GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().fileOutput.Close(); }
+        else if (gameObject.name == "TASK_SpaceTime") { GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().sTOutput.Close(); }
+        else if (gameObject.name == "TASK_seq") { GameObject.Find("LM_Experiment").GetComponent<spatialTemporalOutput>().seqOutput.Close(); }
+
         //	if (pausedTasks) {
         //currentTask = pausedTasks;
         //endTask();

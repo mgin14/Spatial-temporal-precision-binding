@@ -1,0 +1,7 @@
+id,condition,sceneName,sceneNumber,task,run,block,trial,Navigate_target,Navigate_actualPath,Navigate_optimalPath,Navigate_excessPath,Navigate_clockwiseTravel,Navigate_duration,
+999,default,Spatial_temporal,1,TASK_MainLoop,1,20,1,Stone02,83.64542,52.36502,31.28039,-179.3724,10.75511,
+999,default,Spatial_temporal,1,TASK_MainLoop,1,20,2,Notebook,83.2854,75.94621,7.339188,-179.3404,10.70817,
+999,default,Spatial_temporal,1,TASK_MainLoop,1,20,3,Case02A,83.62405,27.25986,56.3642,-179.367,10.63241,
+999,default,Spatial_temporal,1,TASK_MainLoop,1,20,1,
+999,default,Spatial_temporal,1,TASK_MainLoop,1,20,2,
+999,default,Spatial_temporal,1,TASK_MainLoop,1,20,3,
