@@ -33,7 +33,7 @@ public class TemporalRetrievalTrial : ExperimentTask
     private Color defaultColor;
     private int defaultFont;
     public int fontSize;
-
+    private bool pressedDown;
     private bool mainLoopCurrent;
 
     // Start is called before the first frame update
@@ -113,9 +113,10 @@ public class TemporalRetrievalTrial : ExperimentTask
         {
             //temporalStartTime = Time.time;
             temporalStartTime = System.DateTime.Now;
+            pressedDown = true;
         }
         
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) && pressedDown)
         {
             if (gameObject.transform.parent.name == "Practice") { return true; }
 
@@ -137,7 +138,7 @@ public class TemporalRetrievalTrial : ExperimentTask
                 if (gameObject.transform.parent.GetComponent<TaskList>().repeatCount != 3) { output.sTOutput.Write(", "); }
                 output.sTOutput.Flush();
             }
-            
+            pressedDown = false;
             return true;
         }
 
