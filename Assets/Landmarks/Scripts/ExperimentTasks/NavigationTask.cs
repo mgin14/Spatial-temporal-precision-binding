@@ -375,23 +375,17 @@ public class NavigationTask : ExperimentTask
         //avatarController.stop();
         avatarLog.navLog = false;
         if (isScaled) scaledAvatarLog.navLog = false;
-
-        // close the door if the target was a store and it is open
-        // if it's a target, open the door to show it's active
-        if (currentTarget.GetComponentInChildren<LM_TargetStore>() != null)
-        {
-            currentTarget.GetComponentInChildren<LM_TargetStore>().CloseDoor();
-        }
+        
 
         // re-enable everything on the gameobject we just finished finding
-        manager.HideRecursive(currentTarget, true);
-        manager.DisableRecursive(currentTarget, true);
+        //manager.HideRecursive(currentTarget, true);
+        //manager.DisableRecursive(currentTarget, true);
         //foreach (var c in currentTarget.GetComponents<Collider>()) c.enabled = true;
-        foreach (var child in currentTarget.GetComponentsInChildren<Transform>())
-        {
-            var halo = (Behaviour)child.GetComponent("Halo");
-            if (halo != null) halo.enabled = true;
-        }
+        //foreach (var child in currentTarget.GetComponentsInChildren<Transform>())
+        //{
+        //    var halo = (Behaviour)child.GetComponent("Halo");
+        //    if (halo != null) halo.enabled = true;
+        //}
 
         hud.setMessage("");
 		hud.showScore = false;
@@ -428,35 +422,35 @@ public class NavigationTask : ExperimentTask
         //     , 1);
 
         // More concise LM_TrialLog logging
-        if (!exploration) taskLog.AddData(transform.name + "_target", currentTarget.name);
-        taskLog.AddData(transform.name + "_actualPath", perfDistance.ToString());
-        if (!exploration) taskLog.AddData(transform.name + "_optimalPath", optimalDistance.ToString());
-        if (!exploration) taskLog.AddData(transform.name + "_excessPath", excessPath.ToString());
-        taskLog.AddData(transform.name + "_clockwiseTravel", clockwiseTravel.ToString());
-        taskLog.AddData(transform.name + "_duration", navTime.ToString());
+        //if (!exploration) taskLog.AddData(transform.name + "_target", currentTarget.name);
+        //taskLog.AddData(transform.name + "_actualPath", perfDistance.ToString());
+        //if (!exploration) taskLog.AddData(transform.name + "_optimalPath", optimalDistance.ToString());
+        //if (!exploration) taskLog.AddData(transform.name + "_excessPath", excessPath.ToString());
+        //taskLog.AddData(transform.name + "_clockwiseTravel", clockwiseTravel.ToString());
+        //taskLog.AddData(transform.name + "_duration", navTime.ToString());
 
-        if (logStartEnd)
-        {
+        //if (logStartEnd)
+        //{
 
-            taskLog.AddData(transform.name + "_startX", startXYZ.x.ToString());
-            taskLog.AddData(transform.name + "_startZ", startXYZ.z.ToString());
-            taskLog.AddData(transform.name + "_endX", endXYZ.x.ToString());
-            taskLog.AddData(transform.name + "_endZ", endXYZ.z.ToString());
+        //    taskLog.AddData(transform.name + "_startX", startXYZ.x.ToString());
+        //    taskLog.AddData(transform.name + "_startZ", startXYZ.z.ToString());
+        //    taskLog.AddData(transform.name + "_endX", endXYZ.x.ToString());
+        //    taskLog.AddData(transform.name + "_endZ", endXYZ.z.ToString());
 
-        }
+        //}
 
-        // Record any decisions made along the way
-        if (decisionPoints != null)
-        {
-            foreach (LM_DecisionPoint nexus in decisionPoints)
-            {
-                taskLog.AddData(nexus.name + "_initialChoice", nexus.initialChoice);
-                taskLog.AddData(nexus.name + "_finalChoice", nexus.currentChoice);
-                taskLog.AddData(nexus.name + "_totalChoices", nexus.totalChoices.ToString());
+        //// Record any decisions made along the way
+        //if (decisionPoints != null)
+        //{
+        //    foreach (LM_DecisionPoint nexus in decisionPoints)
+        //    {
+        //        taskLog.AddData(nexus.name + "_initialChoice", nexus.initialChoice);
+        //        taskLog.AddData(nexus.name + "_finalChoice", nexus.currentChoice);
+        //        taskLog.AddData(nexus.name + "_totalChoices", nexus.totalChoices.ToString());
 
-                nexus.ResetDecisionPoint();
-            }
-        }
+        //        nexus.ResetDecisionPoint();
+        //    }
+        //}
 
         // Hide the overlay by setting back to empty string
         //if (overlayTargetObject != null) overlayTargetObject.text = "";
