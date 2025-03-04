@@ -13,7 +13,7 @@ Alternative directions:
 <br />
 
 ## How to run the experiment:
-Once you get the Spatial_temporal scene up, expand _Landmarks_ game object and click the LM_Experiment gameobject you will fill out the subjct name, number, and sex of the participant in the inspector panel.
+Once you get the Spatial_temporal scene up (open Assets>Landmarks>Scenes), expand _Landmarks_ game object and click the LM_Experiment gameobject you will fill out the subjct name, number, and sex of the participant in the inspector panel.
 Save, then run.
  <br />
  <br />
