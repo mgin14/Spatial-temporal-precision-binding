@@ -20,9 +20,11 @@ Save, then run.
 
 ## Troubleshooting
 
-If the experiment crashes or you for some reason or you had to stop the experiment, you can skip some of the tasks (Practice Trial, TASK_MainLoop, TASK_SpaceTime, and TASK_seq) and you can modify what trial to start at for each task by changing the Repeat Count variable from 1 to whatever trial they left off at or that you want them to start at.
+If the experiment crashes or you had to stop the experiment, you can skip the previous tasks to continue to the current task by clicking on the gameobjects (Practice Trial, TASK_MainLoop, TASK_SpaceTime) and in the inspector view, check the skip option. For example, if you want to continue in TASK_MainLoop, you would just skip Practice Trial gameobject. If you want to continue from TASK_SpaceTime, you would skip BOTH Practice Trial AND TASK_MainLoop gameobjects.
 
-You don't have to change the subject name/number as the code has it set to increment the number automatically to prevent overwriting.
+Then if you want to skip ahead to the current trial the subject left off at, you can modify what trial to start at by the gameobjects TASK_MainLoop, TASK_SpaceTime, or TASK_seq in the inspector view and changing the Repeat Count variable from 1 to whatever trial they left off at (you would check this in their output csv file).
+
+If you had to do the above, modify the subject num to whatever they were prior and add .5, so if they were subject 3, their continued portion would be 3.5.
 <br />
 <br />
 
