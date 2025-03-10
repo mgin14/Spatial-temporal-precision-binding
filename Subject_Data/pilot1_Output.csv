@@ -1,62 +1,62 @@
 Subject, sex, Block, Trial, LocationName, LocationX, LocationY, LocationZ, ResponseX, ResponseY, ResponseZ, SpatialError, GoalTime, ResponseTime, TemporalError
-pilot1, Male, Spatial, 1, front_l_mid_mid, -1.78, 2.48, -2.86, -1.78, 2.536037, -2.84054, 0.05931981, , , 
-pilot1, Male, Spatial, 2, far_l_bottom_mid, -51, 1.16, -5.31, -51, 2.358519, 3.056123, 8.451536, , , 
-pilot1, Male, Spatial, 3, mid_r_mid, -27.05, 2.69, 5.94, -27.05, 2.776987, 5.706422, 0.2492493, , , 
-pilot1, Male, Spatial, 4, far_r_midmid_bottom, -51, 0.086, 4.55, -51, 0.278832, 5.998119, 1.460901, , , 
-pilot1, Male, Spatial, 5, front_l_midmid_top, -1.78, 4.48, -4.11, -1.78, 1.838578, -4.742686, 2.716137, , , 
-pilot1, Male, Spatial, 6, mid_l_midmid_bottom, -27.05, 0.086, -4.11, -27.05, 0.3295649, -5.655701, 1.564773, , , 
-pilot1, Male, Temporal, 1, mid_l_mid, -27.05, 2.69, -5.4, , , , ,4.97, 63875486751.2613, 63875486746.2913
-pilot1, Male, Temporal, 2, far_r_bottom_mid, -51, 1.16, 5.94, , , , ,8.25, 2.8159248, -5.4340752
-pilot1, Male, Temporal, 3, front_r_mid_bottom, -1.78, 0.086, 3.09, , , , ,1.73, 1.8367975, 0.1067975
-pilot1, Male, Temporal, 4, mid_r_bottom_mid, -27.05, 1.16, 5.94, , , , ,4.97, 2.0314994, -2.9385006
-pilot1, Male, Temporal, 5, front_l_mid_top, -1.78, 4.48, -2.86, , , , ,1.73, 9.2004145, 7.4704145
-pilot1, Male, Temporal, 6, far_r_mid_top, -51, 4.48, 3.09, , , , ,8.25, 14.9596818, 6.7096818
-pilot1, Male, Spatial, 1, front_r_bottom_mid, -1.78, 1.16, 5.94, -1.780002, 2.05416, 5.21188, 1.153118, , , 
-pilot1, Male, Spatial, 2, far_l_bottom_mid, -51, 1.16, -5.31, -51, 2.054178, -5.047045, 0.9320405, , , 
-pilot1, Male, Spatial, 3, mid_r_mid, -27.05, 2.69, 5.94, -27.05, 2.40924, 3.893048, 2.066117, , , 
-pilot1, Male, Spatial, 4, front_r_mid, -1.78, 2.25, 5.94, -1.780002, 2.510676, 4.007187, 1.950312, , , 
-pilot1, Male, Spatial, 5, mid_l_top, -27.05, 4.48, -5.4, -27.05, 3.715376, -5.668381, 0.810357, , , 
-pilot1, Male, Spatial, 6, far_l_mid_mid, -51, 3.02, -2.86, -51, 2.371194, -3.018082, 0.6677864, , , 
-pilot1, Male, Temporal, 1, mid_l_midmid_top, -27.05, 4.48, -4.11, , , , ,4.97, 1.7406611, -3.2293389
-pilot1, Male, Temporal, 2, front_r_top_mid, -1.78, 3.36, 5.94, , , , ,1.73, 1.0398793, -0.6901207
-pilot1, Male, Temporal, 3, front_l_bottom_mid, -1.78, 1.16, -5.31, , , , ,1.73, 6.0330886, 4.3030886
-pilot1, Male, Temporal, 4, far_r_bottom_mid, -51, 1.16, 5.94, , , , ,8.25, 1.7752466, -6.4747534
-pilot1, Male, Temporal, 5, mid_r_mid, -27.05, 2.69, 5.94, , , , ,4.97, 6.3018598, 1.3318598
-pilot1, Male, Temporal, 6, far_l_midmid_top, -51, 4.48, -4.11, , , , ,8.25, 10.6377261, 2.3877261
-pilot1, Male, Spatial, 1, front_l_top_mid, -1.78, 3.36, -5.31, -1.780002, 4.463542, 7.291561, 12.64979, , , 
-pilot1, Male, Spatial, 2, front_r_bottom_mid, -1.78, 1.16, 5.94, -1.78, 2.929145, -5.934698, 12.00576, , , 
-pilot1, Male, Spatial, 3, far_l_midmid_bottom, -51, 0.086, -4.11, -51, 2.624824, 5.249939, 9.698149, , , 
-pilot1, Male, Spatial, 4, mid_l_top, -27.05, 4.48, -5.4, -27.05, 2.345833, -4.907525, 2.190251, , , 
-pilot1, Male, Spatial, 5, far_r_mid_top, -51, 4.48, 3.09, -51, 4.133865, 3.322425, 0.4169299, , , 
-pilot1, Male, Spatial, 6, mid_r_midmid_bottom, -27.05, 0.086, 4.55, -27.05, 3.030605, 5.883956, 3.232667, , , 
-pilot1, Male, Temporal, 1, front_l_mid, -1.78, 2.48, -5.31, , , , ,1.73, 1.2307873, -0.4992127
-pilot1, Male, Temporal, 2, far_l_mid_top, -51, 4.48, -2.86, , , , ,8.25, 1.5987784, -6.6512216
-pilot1, Male, Temporal, 3, far_r_top_mid, -51, 3.36, 5.94, , , , ,8.25, 1.4549856, -6.7950144
-pilot1, Male, Temporal, 4, front_r_mid_bottom, -1.78, 0.086, 3.09, , , , ,1.73, 1.3580013, -0.3719987
-pilot1, Male, Temporal, 5, front_r_bottom, -1.78, 0.086, 5.94, , , , ,1.73, 1.9993178, 0.2693178
-pilot1, Male, Temporal, 6, front_l_midmid_bottom, -1.78, 0.086, -4.11, , , , ,1.73, 1.8086826, 0.0786825999999998
-pilot1, Male, Spatial, 1, front_l_top, -1.78, 4.48, -5.31, -1.78, 4.362099, -4.6666, 0.6541135, , , 
-pilot1, Male, Spatial, 2, far_l_mid_bottom, -51, 0.086, -2.86, -51, 2.155622, 6.150292, 9.244928, , , 
-pilot1, Male, Spatial, 3, far_r_midmid_top, -51, 4.48, 4.55, -51, 3.905607, 4.007199, 0.7902914, , , 
-pilot1, Male, Spatial, 4, mid_r_bottom, -27.05, 0.086, 5.94, -27.05, 0.9002078, 4.007176, 2.097318, , , 
-pilot1, Male, Spatial, 5, front_r_mid_bottom, -1.78, 0.086, 3.09, -1.780002, 1.217212, 2.929305, 1.142569, , , 
-pilot1, Male, Spatial, 6, mid_l_bottom_mid, -27.05, 1.16, -5.31, -27.05, 3.753422, -3.778921, 3.011651, , , 
-pilot1, Male, Temporal, 1, front_l_bottom_mid, -1.78, 1.16, -5.31, , , , ,1.73, 1.3410414, -0.3889586
-pilot1, Male, Temporal, 2, far_l_top_mid, -51, 3.36, -5.31, , , , ,8.25, 1.6641614, -6.5858386
-pilot1, Male, Temporal, 3, far_r_midmid_top, -51, 4.48, 4.55, , , , ,8.25, 2.1918801, -6.0581199
-pilot1, Male, Temporal, 4, front_l_mid_bottom, -1.78, 0.086, -2.86, , , , ,1.73, 2.1585149, 0.4285149
-pilot1, Male, Temporal, 5, mid_r_midmid_bottom, -27.05, 0.086, 4.55, , , , ,4.97, 2.1441488, -2.8258512
-pilot1, Male, Temporal, 6, far_l_top, -51, 4.48, -5.417, , , , ,8.25, 1.59918, -6.65082
-pilot1, Male, Spatial, 1, front_l_mid_top, -1.78, 4.48, -2.86, -1.78, 3.499789, -3.943784, 1.461301, , , 
-pilot1, Male, Spatial, 2, mid_r_bottom_mid, -27.05, 1.16, 5.94, -27.05, 2.71358, -1.813376, 7.907493, , , 
-pilot1, Male, Spatial, 3, far_r_mid_mid, -51, 3.02, 3.09, -51, 2.561417, 2.726418, 0.5852272, , , 
-pilot1, Male, Spatial, 4, far_r_top_mid, -51, 3.36, 5.94, -51, 2.282436, 4.793422, 1.573463, , , 
-pilot1, Male, Spatial, 5, mid_r_mid, -27.05, 2.69, 5.94, -27.05, 2.371194, 4.007176, 1.95894, , , 
-pilot1, Male, Spatial, 6, front_l_bottom_mid, -1.78, 1.16, -5.31, -1.780001, 2.447268, -1.851424, 3.690367, , , 
-pilot1, Male, Temporal, 1, far_r_bottom, -51, 0.086, 5.94, , , , ,8.25, 1.8560657, -6.3939343
-pilot1, Male, Temporal, 2, mid_r_mid_top, -27.05, 4.48, 3.09, , , , ,4.97, 2.1107724, -2.8592276
-pilot1, Male, Temporal, 3, front_l_mid_bottom, -1.78, 0.086, -2.86, , , , ,1.73, 1.6473588, -0.0826412000000001
-pilot1, Male, Temporal, 4, far_l_mid_top, -51, 4.48, -2.86, , , , ,8.25, 2.3665579, -5.8834421
-pilot1, Male, Temporal, 5, front_l_midmid_top, -1.78, 4.48, -4.11, , , , ,1.73, 3.0062402, 1.2762402
-pilot1, Male, Temporal, 6, mid_r_mid, -27.05, 2.69, 5.94, , , , ,4.97, 3.2159115, -1.7540885
-pilot1, Male, 
+pilot1, Male, Spatial,1, front_l_mid_mid,-1.78,2.48,-2.86,-1.78,2.536037,-2.84054,0.05931981, , , 
+pilot1, Male, Spatial,2, far_l_bottom_mid,-51,1.16,-5.31,-51,2.358519,3.056123,8.451536, , , 
+pilot1, Male, Spatial,3, mid_r_mid,-27.05,2.69,5.94,-27.05,2.776987,5.706422,0.2492493, , , 
+pilot1, Male, Spatial,4, far_r_midmid_bottom,-51,0.086,4.55,-51,0.278832,5.998119,1.460901, , , 
+pilot1, Male, Spatial,5, front_l_midmid_top,-1.78,4.48,-4.11,-1.78,1.838578,-4.742686,2.716137, , , 
+pilot1, Male, Spatial,6, mid_l_midmid_bottom,-27.05,0.086,-4.11,-27.05,0.3295649,-5.655701,1.564773, , , 
+pilot1, Male, Temporal,1, mid_l_mid,-27.05,2.69,-5.4, , , , ,4.97,6.387548675,1.41754868
+pilot1, Male, Temporal,2, far_r_bottom_mid,-51,1.16,5.94, , , , ,8.25,2.8159248,-5.4340752
+pilot1, Male, Temporal,3, front_r_mid_bottom,-1.78,0.086,3.09, , , , ,1.73,1.8367975,0.1067975
+pilot1, Male, Temporal,4, mid_r_bottom_mid,-27.05,1.16,5.94, , , , ,4.97,2.0314994,-2.9385006
+pilot1, Male, Temporal,5, front_l_mid_top,-1.78,4.48,-2.86, , , , ,1.73,9.2004145,7.4704145
+pilot1, Male, Temporal,6, far_r_mid_top,-51,4.48,3.09, , , , ,8.25,14.9596818,6.7096818
+pilot1, Male, Spatial,1, front_r_bottom_mid,-1.78,1.16,5.94,-1.780002,2.05416,5.21188,1.153118, , , 
+pilot1, Male, Spatial,2, far_l_bottom_mid,-51,1.16,-5.31,-51,2.054178,-5.047045,0.9320405, , , 
+pilot1, Male, Spatial,3, mid_r_mid,-27.05,2.69,5.94,-27.05,2.40924,3.893048,2.066117, , , 
+pilot1, Male, Spatial,4, front_r_mid,-1.78,2.25,5.94,-1.780002,2.510676,4.007187,1.950312, , , 
+pilot1, Male, Spatial,5, mid_l_top,-27.05,4.48,-5.4,-27.05,3.715376,-5.668381,0.810357, , , 
+pilot1, Male, Spatial,6, far_l_mid_mid,-51,3.02,-2.86,-51,2.371194,-3.018082,0.6677864, , , 
+pilot1, Male, Temporal,1, mid_l_midmid_top,-27.05,4.48,-4.11, , , , ,4.97,1.7406611,-3.2293389
+pilot1, Male, Temporal,2, front_r_top_mid,-1.78,3.36,5.94, , , , ,1.73,1.0398793,-0.6901207
+pilot1, Male, Temporal,3, front_l_bottom_mid,-1.78,1.16,-5.31, , , , ,1.73,6.0330886,4.3030886
+pilot1, Male, Temporal,4, far_r_bottom_mid,-51,1.16,5.94, , , , ,8.25,1.7752466,-6.4747534
+pilot1, Male, Temporal,5, mid_r_mid,-27.05,2.69,5.94, , , , ,4.97,6.3018598,1.3318598
+pilot1, Male, Temporal,6, far_l_midmid_top,-51,4.48,-4.11, , , , ,8.25,10.6377261,2.3877261
+pilot1, Male, Spatial,1, front_l_top_mid,-1.78,3.36,-5.31,-1.780002,4.463542,7.291561,12.64979, , , 
+pilot1, Male, Spatial,2, front_r_bottom_mid,-1.78,1.16,5.94,-1.78,2.929145,-5.934698,12.00576, , , 
+pilot1, Male, Spatial,3, far_l_midmid_bottom,-51,0.086,-4.11,-51,2.624824,5.249939,9.698149, , , 
+pilot1, Male, Spatial,4, mid_l_top,-27.05,4.48,-5.4,-27.05,2.345833,-4.907525,2.190251, , , 
+pilot1, Male, Spatial,5, far_r_mid_top,-51,4.48,3.09,-51,4.133865,3.322425,0.4169299, , , 
+pilot1, Male, Spatial,6, mid_r_midmid_bottom,-27.05,0.086,4.55,-27.05,3.030605,5.883956,3.232667, , , 
+pilot1, Male, Temporal,1, front_l_mid,-1.78,2.48,-5.31, , , , ,1.73,1.2307873,-0.4992127
+pilot1, Male, Temporal,2, far_l_mid_top,-51,4.48,-2.86, , , , ,8.25,1.5987784,-6.6512216
+pilot1, Male, Temporal,3, far_r_top_mid,-51,3.36,5.94, , , , ,8.25,1.4549856,-6.7950144
+pilot1, Male, Temporal,4, front_r_mid_bottom,-1.78,0.086,3.09, , , , ,1.73,1.3580013,-0.3719987
+pilot1, Male, Temporal,5, front_r_bottom,-1.78,0.086,5.94, , , , ,1.73,1.9993178,0.2693178
+pilot1, Male, Temporal,6, front_l_midmid_bottom,-1.78,0.086,-4.11, , , , ,1.73,1.8086826,0.0786826
+pilot1, Male, Spatial,1, front_l_top,-1.78,4.48,-5.31,-1.78,4.362099,-4.6666,0.6541135, , , 
+pilot1, Male, Spatial,2, far_l_mid_bottom,-51,0.086,-2.86,-51,2.155622,6.150292,9.244928, , , 
+pilot1, Male, Spatial,3, far_r_midmid_top,-51,4.48,4.55,-51,3.905607,4.007199,0.7902914, , , 
+pilot1, Male, Spatial,4, mid_r_bottom,-27.05,0.086,5.94,-27.05,0.9002078,4.007176,2.097318, , , 
+pilot1, Male, Spatial,5, front_r_mid_bottom,-1.78,0.086,3.09,-1.780002,1.217212,2.929305,1.142569, , , 
+pilot1, Male, Spatial,6, mid_l_bottom_mid,-27.05,1.16,-5.31,-27.05,3.753422,-3.778921,3.011651, , , 
+pilot1, Male, Temporal,1, front_l_bottom_mid,-1.78,1.16,-5.31, , , , ,1.73,1.3410414,-0.3889586
+pilot1, Male, Temporal,2, far_l_top_mid,-51,3.36,-5.31, , , , ,8.25,1.6641614,-6.5858386
+pilot1, Male, Temporal,3, far_r_midmid_top,-51,4.48,4.55, , , , ,8.25,2.1918801,-6.0581199
+pilot1, Male, Temporal,4, front_l_mid_bottom,-1.78,0.086,-2.86, , , , ,1.73,2.1585149,0.4285149
+pilot1, Male, Temporal,5, mid_r_midmid_bottom,-27.05,0.086,4.55, , , , ,4.97,2.1441488,-2.8258512
+pilot1, Male, Temporal,6, far_l_top,-51,4.48,-5.417, , , , ,8.25,1.59918,-6.65082
+pilot1, Male, Spatial,1, front_l_mid_top,-1.78,4.48,-2.86,-1.78,3.499789,-3.943784,1.461301, , , 
+pilot1, Male, Spatial,2, mid_r_bottom_mid,-27.05,1.16,5.94,-27.05,2.71358,-1.813376,7.907493, , , 
+pilot1, Male, Spatial,3, far_r_mid_mid,-51,3.02,3.09,-51,2.561417,2.726418,0.5852272, , , 
+pilot1, Male, Spatial,4, far_r_top_mid,-51,3.36,5.94,-51,2.282436,4.793422,1.573463, , , 
+pilot1, Male, Spatial,5, mid_r_mid,-27.05,2.69,5.94,-27.05,2.371194,4.007176,1.95894, , , 
+pilot1, Male, Spatial,6, front_l_bottom_mid,-1.78,1.16,-5.31,-1.780001,2.447268,-1.851424,3.690367, , , 
+pilot1, Male, Temporal,1, far_r_bottom,-51,0.086,5.94, , , , ,8.25,1.8560657,-6.3939343
+pilot1, Male, Temporal,2, mid_r_mid_top,-27.05,4.48,3.09, , , , ,4.97,2.1107724,-2.8592276
+pilot1, Male, Temporal,3, front_l_mid_bottom,-1.78,0.086,-2.86, , , , ,1.73,1.6473588,-0.0826412
+pilot1, Male, Temporal,4, far_l_mid_top,-51,4.48,-2.86, , , , ,8.25,2.3665579,-5.8834421
+pilot1, Male, Temporal,5, front_l_midmid_top,-1.78,4.48,-4.11, , , , ,1.73,3.0062402,1.2762402
+pilot1, Male, Temporal,6, mid_r_mid,-27.05,2.69,5.94, , , , ,4.97,3.2159115,-1.7540885
+pilot1, Male, ,,,,,,,,,,,,
