@@ -770,7 +770,11 @@ public class Experiment : MonoBehaviour
         // Shut down any LM_TaskLogs
         foreach (var log in FindObjectsOfType<LM_TaskLog>())
         {
-            log.output.Close();
+            if (log.output != null)
+            {
+                log.output.Close();
+            }
+            
         }
 
 

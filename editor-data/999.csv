@@ -1,4 +1,4 @@
-id,condition,sceneName,sceneNumber,task,run,block,trial,
+﻿id,condition,sceneName,sceneNumber,task,run,block,trial,
 999,default,Spatial_temporal,1,TASK_seq,1,8,1,
 999,default,Spatial_temporal,1,TASK_seq,1,9,1,
 999,default,Spatial_temporal,1,TASK_seq,1,10,1,
