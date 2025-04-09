@@ -9967,7 +9967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   avatar: {fileID: 0}
-  skip: 1
+  skip: 0
   canIncrementLists: 1
   interval: 0
   interruptTasks: {fileID: 0}
@@ -12269,7 +12269,7 @@ MonoBehaviour:
   repeat: 10
   configControlRepeat: 0
   overrideRepeat: {fileID: 0}
-  repeatCount: 3
+  repeatCount: 1
   currentTask: {fileID: 0}
   catchTrialCount: 0
   skipOnCatch: []
@@ -16184,7 +16184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subject: pilot
-  subjectNumber: 11
+  subjectNumber: 13
   sex: 0
   fileBuffer: 
   sTBuffer: 
@@ -34665,7 +34665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   avatar: {fileID: 0}
-  skip: 1
+  skip: 0
   canIncrementLists: 1
   interval: 0
   interruptTasks: {fileID: 0}
