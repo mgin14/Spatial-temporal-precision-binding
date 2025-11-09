@@ -1,0 +1,12 @@
+Subject, sex, Trial, SeqItem1, SeqItem2, SeqItem3, SeqItem4, SeqItem5, ItemResp1, ItemResp2, ItemResp3, ItemResp4, ItemResp5, SeqError
+pilot10, Male, 1,PotionBig,Beer,WineBottle,WineJug,Watermelon (2),Watermelon (2),WineBottle,WineJug,PotionBig,Beer,5
+pilot10, Male, 2,PotionSmall,Avocado_01 (2),NewtonsCradle_01 (1),Drone_01 (1),Bird_01 (2),Avocado_01 (2),Bird_01 (2),NewtonsCradle_01 (1),Drone_01 (1),PotionSmall,3
+pilot10, Male, 3,TeddyBear_01 (1),FlowerPot_01 (1),Bag (2),TennisBall_01 (1),Controller_01 (2),TeddyBear_01 (1),FlowerPot_01 (1),Bag (2),TennisBall_01 (1),Controller_01 (2),0
+pilot10, Male, 4,Ship_01 (2),WateringCan_01 (2),SeaHorse_01 (2),Alpaca_01 (3),Pineapple (3),Ship_01 (2),Alpaca_01 (3),Pineapple (3),SeaHorse_01 (2),WateringCan_01 (2),4
+pilot10, Male, 5,Shovel (1),Darts_01 (1),CassetteRecorder (1),Earphones (1),Rocket_01 (1),Shovel (1),Darts_01 (1),CassetteRecorder (1),Rocket_01 (1),Earphones (1),2
+pilot10, Male, 6,IceCream02 (2),Pineapple (2),Bucket (2),Dinosaur_01 (1),SwimmingRing04 (1),Bucket (2),SwimmingRing04 (1),Pineapple (2),IceCream02 (2),Dinosaur_01 (1),5
+pilot10, Male, 7,Waterpolo01 (1),Sunglasses (2),Football_01 (2),SwimmingRing02 (1),Carrot_01 (1),Waterpolo01 (1),Sunglasses (2),Football_01 (2),SwimmingRing02 (1),Carrot_01 (1),0
+pilot10, Male, 8,Waterpolo (1),FreezerBag (1),Stone02 (1),Bunny_01 (1),Abacus_01 (1),Waterpolo (1),FreezerBag (1),Stone02 (1),Bunny_01 (1),Abacus_01 (1),0
+pilot10, Male, 9,SeaHorse_01 (3),Car_01 (1),Ball_01 (1),TeddyBear_01 (2),Doll_01 (1),SeaHorse_01 (3),Ball_01 (1),Car_01 (1),TeddyBear_01 (2),Doll_01 (1),2
+pilot10, Male, 10,Basketball_01 (1),Car_02 (1),Binocular_01 (2),DumpTruck_01 (1),Fish_01 (1),Basketball_01 (1),Car_02 (1),Binocular_01 (2),DumpTruck_01 (1),Fish_01 (1),0
+pilot10, Male, 
